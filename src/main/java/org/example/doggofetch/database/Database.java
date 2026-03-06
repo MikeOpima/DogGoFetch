@@ -3,8 +3,10 @@ package org.example.doggofetch.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import static org.example.doggofetch.database.Const.*;
+
 // import db values
-//import static org.example.doggofetch.database.Const.*;
+//import static org.example.doggofetch.HelloApplication.*;
 
 public class Database {
     // singleton design pattern: connection for use in full app
@@ -15,10 +17,9 @@ public class Database {
     private Database(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection = DriverManager
-//                    .getConnection("jdbc:mysql//localhost/" + DB_NAME+"?serverTimezone=UTC",
-//                            DB_USER,
-//                            DB_PASS);
+            connection = DriverManager
+                    .getConnection("jdbc:mysql//localhost/" + DB_NAME +"?serverTimezone=UTC",
+                            DB_USER, DB_PASS);
             System.out.println("Created Connection");
         }catch (Exception e){
             e.printStackTrace();

@@ -4,17 +4,23 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.doggofetch.database.Database;
 
-import java.awt.print.PrinterIOException;
-import java.io.File;
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
+import java.sql.Connection;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         BorderPane root = new BorderPane();
@@ -55,18 +61,18 @@ public class HelloApplication extends Application {
         Text dbUser = new Text("Enter in USER: ");
         TextField dbUserTf = new TextField();
         Text dbPass = new Text("Enter in PASS: ");
-        PasswordField dbPassPf = new PasswordField();
+        PasswordField dbPassTf = new PasswordField();
         Button test = new Button(" test connection ");
-        Button submit = new Button(" connect ");
+        Button connect = new Button(" connect ");
 
 
         instructionsVb.getChildren().addAll(
-                instructions, dbName, dbNameTf, dbUser, dbUserTf, dbPass, dbPassPf, test, submit);
+                instructions, dbName, dbNameTf, dbUser, dbUserTf, dbPass, dbPassTf, test, connect);
 
         configCheck.setCenter(instructionsVb);
 
         ///  add in db config.txt check with scene switches //
-
+        ArrayList<String> dbArray = new ArrayList<>();
         File dbConfig = new File("config.txt");
         try {
             if (dbConfig.isFile()) {
@@ -77,6 +83,100 @@ public class HelloApplication extends Application {
             } else {
                 root.setCenter(configCheck);
 
+                // on test
+                test.setOnMouseClicked( e->{
+                    try{
+
+                        // add to array
+                        dbArray.add(dbNameTf.getText() + "\n" +
+                                dbUserTf.getText() + "\n" +
+                                dbPassTf.getText() + "\n");
+
+                        BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+                        out.close();
+
+                        System.out.println("Created Connection");
+                        Text testMessage = new Text("Connection Created");
+                        root.setBottom(testMessage);
+
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        Text testMessage = new Text("Connection Error try again");
+                        root.setBottom(testMessage);
+                    }
+
+                    try {
+                        PrintWriter out = new PrintWriter( new BufferedWriter
+                                (new FileWriter("config.txt", true)));
+
+                        for(String str : dbArray) {
+                            out.write(str + "\n");
+                        }
+
+                        out.close();
+
+                        // clear the form
+//                        dbNameTf.clear();
+//                        dbUserTf.clear();
+//                        dbPassTf.clear();
+
+                        try{
+                            System.out.println(Database.getInstance());
+                        } catch (RuntimeException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                }); /// end test action
+
+                // create connection
+                connect.setOnMouseClicked( e->{
+                    try{
+
+                        // add to array
+                        dbArray.add(dbNameTf.getText() + "\n" +
+                                dbUserTf.getText() + "\n" +
+                                dbPassTf.getText() + "\n");
+
+                        BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+                        out.close();
+
+                        System.out.println("Created Connection");
+                        Text testMessage = new Text("Connection Created");
+                        root.setBottom(testMessage);
+
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        Text testMessage = new Text("Connection Error try again");
+                        root.setBottom(testMessage);
+                    }
+
+                    try {
+                        PrintWriter out = new PrintWriter( new BufferedWriter
+                                (new FileWriter("config.txt", true)));
+
+                        for(String str : dbArray) {
+                            out.write(str + "\n");
+                        }
+
+                        out.close();
+
+                        // clear the form
+                        dbNameTf.clear();
+                        dbUserTf.clear();
+                        dbPassTf.clear();
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                }); /// end connect action
+
+
             }
 
             // set global variables from config.txt
@@ -85,14 +185,14 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
-
-
-
-
-
         Scene scene = new Scene(root, 600, 240);
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
     }
+
 }
+
+
+
+
