@@ -8,4 +8,6 @@ module org.example.doggofetch {
 
     opens org.example.doggofetch to javafx.fxml;
     exports org.example.doggofetch;
+    exports org.example.doggofetch.tabs;
+    opens org.example.doggofetch.tabs to javafx.fxml;
 }

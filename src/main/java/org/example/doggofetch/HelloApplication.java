@@ -1,16 +1,16 @@
 package org.example.doggofetch;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.doggofetch.tabs.AddItemTab;
+import org.example.doggofetch.tabs.CartTab;
+import org.example.doggofetch.tabs.RemoveItemTab;
 
-import java.awt.print.PrinterIOException;
 import java.io.File;
 import java.io.IOException;
 
@@ -50,11 +50,11 @@ public class HelloApplication extends Application {
 
         VBox instructionsVb = new VBox();
         Text instructions = new Text("Missing Config Doc \n \n");
-        Text dbName = new Text("Enter in NAME: ");
+        Text dbName = new Text("Enter in DB_NAME: ");
         TextField dbNameTf = new TextField();
-        Text dbUser = new Text("Enter in USER: ");
+        Text dbUser = new Text("Enter in USER NAME: ");
         TextField dbUserTf = new TextField();
-        Text dbPass = new Text("Enter in PASS: ");
+        Text dbPass = new Text("Enter in PASSWORD: ");
         PasswordField dbPassPf = new PasswordField();
         Button test = new Button(" test connection ");
         Button submit = new Button(" connect ");
