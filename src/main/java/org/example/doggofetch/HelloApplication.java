@@ -1,7 +1,6 @@
 package org.example.doggofetch;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -14,10 +13,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.doggofetch.database.Database;
 
-import java.awt.*;
 import java.io.*;
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class HelloApplication extends Application {
 
@@ -37,11 +35,11 @@ public class HelloApplication extends Application {
 
         // add items
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(login, inventory, search, cart,
-        orders);
-        signout.setOnAction( e-> {
-            System.exit(0);
-        });
+        mainMenuBar.getMenus().addAll(login, inventory, search, cart, orders);
+            signout.setOnAction( e-> {
+                System.exit(0);
+            });
+
         // create tab pane
         TabPane pane = new TabPane();
 
@@ -49,9 +47,9 @@ public class HelloApplication extends Application {
         AddItemTab addItemTab = new AddItemTab();
         RemoveItemTab removeItemTab = new RemoveItemTab();
         CartTab statsTab = new CartTab();
-
         pane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
+        // if no config --- configCheck pane
         BorderPane configCheck = new BorderPane();
 
         VBox instructionsVb = new VBox();
@@ -64,22 +62,28 @@ public class HelloApplication extends Application {
         PasswordField dbPassTf = new PasswordField();
         Button test = new Button(" test connection ");
         Button connect = new Button(" connect ");
-
-
         instructionsVb.getChildren().addAll(
                 instructions, dbName, dbNameTf, dbUser, dbUserTf, dbPass, dbPassTf, test, connect);
 
         configCheck.setCenter(instructionsVb);
 
+        // end configCheck pane form
+
         ///  add in db config.txt check with scene switches //
-        ArrayList<String> dbArray = new ArrayList<>();
+        ArrayList<String> dbArray = new ArrayList<String>();
+
         File dbConfig = new File("config.txt");
+
+        // check for config file
         try {
             if (dbConfig.isFile()) {
                 // add tabs to pane
                 pane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
                 root.setTop(mainMenuBar);
                 root.setCenter(pane);
+                System.out.println("config file exist");
+                Database.getInstance();
+
             } else {
                 root.setCenter(configCheck);
 
@@ -95,7 +99,8 @@ public class HelloApplication extends Application {
                         BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
                         out.close();
 
-                        System.out.println("Created Connection");
+                        System.out.println("Wrote to File");
+
                         Text testMessage = new Text("Connection Created");
                         root.setBottom(testMessage);
 
@@ -120,12 +125,7 @@ public class HelloApplication extends Application {
 //                        dbUserTf.clear();
 //                        dbPassTf.clear();
 
-                        try{
-                            System.out.println(Database.getInstance());
-                        } catch (RuntimeException ex) {
-                            throw new RuntimeException(ex);
-                        }
-
+                        Database db = Database.getInstance();
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -170,6 +170,8 @@ public class HelloApplication extends Application {
                         dbUserTf.clear();
                         dbPassTf.clear();
 
+                        Database db = Database.getInstance();
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -185,11 +187,15 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
+
         Scene scene = new Scene(root, 600, 240);
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
+
     }
+
+
 
 }
 

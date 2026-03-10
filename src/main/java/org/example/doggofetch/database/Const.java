@@ -1,43 +1,71 @@
 package org.example.doggofetch.database;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Const {
-    private static String dbName;
-    private static String dbUser;
-    private static String dbPass;
 
-    public void Const() {
-        File file = new File("config.txt");
+public class Const {
+
+    public static ArrayList<String> dbArray = new ArrayList<>();
+
+    public Const() {
+
+        File file = new File("../../../config.txt");
 
         try {
             if (file.isFile()) {
                 System.out.println("file found");
                 Scanner in = new Scanner(file);
-                while (in.hasNext()) {
-                    dbName = in.next();
-                    dbUser = in.next();
-                    dbPass = in.next();
-                    System.out.println(dbName + " " + dbUser + "connection vars");
+                System.out.println("write to file");
+
+                if(dbArray.getFirst() == null){
+                    System.out.println("array value is null");
                 }
+
+                while (in.hasNext()) {
+                    dbArray.add(String.valueOf(in.next()));
+                }
+
+
 
             } else {
                 System.out.println("no file found");
             }
 
+
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
-        }
+        } // end try / catch
 
     }
 
-    public static final String DB_NAME = dbName;
-    public static final String DB_USER = dbUser;
-    public static final String DB_PASS = dbPass;
+    public static String  DB_NAME = dbArray.getFirst();
+    public static String  DB_USER = dbArray.get(1);
+    public static String  DB_PASS = dbArray.get(2);
 
-}
+//    public static String setDbName() {
+//        DB_NAME = dbArray.getFirst();
+//        return DB_NAME;
+//    }
+//
+//    public static String setDbUser() {
+//        DB_USER = dbArray.get(1);
+//        return DB_USER;
+//    }
+//
+//    public static String getDbName(){
+//        return DB_NAME;
+//    }
+//    public static String getDbUser(){
+//        return DB_USER;
+//    }
+//    public static String getDbPass(){
+//        return DB_PASS;
+//    }
+
+} // end Const class
+
 
