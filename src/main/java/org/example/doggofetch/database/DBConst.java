@@ -13,7 +13,10 @@ public class DBConst {
     //INVENTORY TABLE
     public static final String TABLE_INVENTORY = "Inventory";
     public static final String INVENTORY_COLUMN_ID = "Id";
-    public static final String PRODUCT_COLUMN_LIST = "List";
+    public static final String INVENTORY_COLUMN_QUANTITY = "Quantity";
+    public static final String INVENTORY_COLUMN_NAME = "Name";
+    public static final String INVENTORY_COLUMN_DESCRIPTION = "DESCRIPTION";
+    public static final String INVENTORY_COLUMN_LOCATION = "Location";
 
     //ORDER TABLE
     public static final String TABLE_ORDER = "Order";
@@ -33,7 +36,10 @@ public class DBConst {
     public static final String CREATE_TABLE_INVENTORY =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_INVENTORY +"(" +
                     INVENTORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
-                    PRODUCT_COLUMN_LIST + " VARCHAR(200) NOT NULL), " +
+                    INVENTORY_COLUMN_QUANTITY + " INT NOT NULL), " +
+                    INVENTORY_COLUMN_NAME + " VARCHAR(200) NOT NULL), " +
+                    INVENTORY_COLUMN_DESCRIPTION + " VARCHAR(200) NOT NULL), " +
+                    INVENTORY_COLUMN_LOCATION + " VARCHAR(200) NOT NULL), " +
                     "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "))";
 
     public static final String CREATE_TABLE_ORDER =
