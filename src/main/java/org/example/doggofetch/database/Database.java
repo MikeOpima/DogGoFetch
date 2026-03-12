@@ -59,5 +59,9 @@ public class Database {
         return instance;
     }
 
+    public Connection getConnection(){
+        return connection;
+    }
+
 
 }
