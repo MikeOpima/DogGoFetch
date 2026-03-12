@@ -7,10 +7,13 @@ import java.util.Scanner;
 
 
 public class Const {
-
     public static ArrayList<String> dbArray = new ArrayList<>();
+    public String  DB_NAME;
+    public String  DB_USER;
+    public String  DB_PASS;
 
-    public Const() {
+    public Const(String DB_NAME) {
+
 
         File file = new File("../../../config.txt");
 
@@ -42,9 +45,7 @@ public class Const {
 
     }
 
-    public static String  DB_NAME = dbArray.getFirst();
-    public static String  DB_USER = dbArray.get(1);
-    public static String  DB_PASS = dbArray.get(2);
+
 
 //    public static String setDbName() {
 //        DB_NAME = dbArray.getFirst();

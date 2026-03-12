@@ -42,5 +42,5 @@ bin/
 .DS_Store
 
 ### add in ignores ###
-config000.txt
 config.txt
+src/main/java/com/example/DogGoFetch/database/Const.java
