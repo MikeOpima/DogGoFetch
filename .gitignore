@@ -43,3 +43,4 @@ bin/
 
 ### add in ignores ###
 config.txt
+src/main/java/com/example/DogGoFetch/database/Const.java
