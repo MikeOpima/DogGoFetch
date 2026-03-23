@@ -2,36 +2,37 @@ package org.example.doggofetch.pojo;
 
 public class Order {
 
-    private int id;
-    private String date;
-    private int quantity;
-    private String status;
+    private int orderId;
+    private String orderDate;
+    private int orderQuantity;
+    private String orderStatus;
 
     public Order(int id, String date, int quantity, String status) {
-        this.id = id;
-        this.date = date;
-        this.quantity = quantity;
-        this.status = status;
+        this.orderId = id;
+        this.orderDate = date;
+        this.orderQuantity = quantity;
+        this.orderStatus = status;
     }
 
-    public int getId() {return id;}
+    public int getId() {return orderId;}
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {this.orderId = id;}
 
-    public String getDate() {return date;}
+    public String getDate() {return orderDate;}
 
-    public void setDate(String date) {this.date = date;}
+    public void setDate(String date) {this.orderDate = date;}
 
-    public int getQuantity() {return quantity;}
+    public int getQuantity() {return orderQuantity;}
 
-    public void setQuantity(int quantity) {this.quantity = quantity;}
+    public void setQuantity(int quantity) {this.orderQuantity = quantity;}
 
-    public String getStatus() {return status;}
+    public String getStatus() {return orderStatus;}
 
-    public void setStatus(String status) {this.status = status;}
+    public void setStatus(String status) {this.orderStatus = status;}
 
-    //TODO toString?
-//    @Override
-//    public String toString() {return id;}
+    @Override
+    public String toString() {
+        String orderStringId = Integer.toString(orderId);
+        return "Order #"+ orderStringId;}
 
 }
