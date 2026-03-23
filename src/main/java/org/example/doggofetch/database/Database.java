@@ -2,6 +2,7 @@ package org.example.doggofetch.database;
 
 import java.sql.*;
 
+import static org.example.doggofetch.database.Const.*;
 
 // import db values
 //import static org.example.doggofetch.database.Const.*;
@@ -15,10 +16,10 @@ public class Database {
     private Database(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection = DriverManager
-//                    .getConnection("jdbc:mysql//localhost/" + DB_NAME+"?serverTimezone=UTC",
-//                            DB_USER,
-//                            DB_PASS);
+            connection = DriverManager
+                    .getConnection("jdbc:mysql//localhost/" + DB_NAME+"?serverTimezone=UTC",
+                            DB_USER,
+                            DB_PASS);
             System.out.println("Created Connection");
             createTable(DBConst.TABLE_PRODUCT, DBConst.CREATE_TABLE_PRODUCTS,connection);
             createTable(DBConst.TABLE_INVENTORY, DBConst.CREATE_TABLE_INVENTORY,connection);
@@ -34,7 +35,7 @@ public class Database {
     public void createTable(String tableName, String create_table, Connection connection) throws SQLException {
         Statement createTable;
         DatabaseMetaData metaData = connection.getMetaData();
-        ResultSet resultSet = metaData.getTables("DB_NAME", null, tableName, null);
+        ResultSet resultSet = metaData.getTables("mopimajava", null, tableName, null);
         if (resultSet.next()) {
             System.out.println(tableName + " already exists");
         }else {
@@ -56,10 +57,6 @@ public class Database {
             instance = new Database();
         }
         return instance;
-    }
-
-    public Connection getConnection(){
-        return connection;
     }
 
 
