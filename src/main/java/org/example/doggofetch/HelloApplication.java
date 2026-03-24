@@ -32,7 +32,7 @@ public class HelloApplication extends Application {
         // add items
         // menuBar.getMenu().add(file);
         mainMenuBar.getMenus().addAll(login, inventory, search, cart,
-        orders);
+                orders);
         signout.setOnAction( e-> {
             System.exit(0);
         });
