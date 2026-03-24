@@ -15,25 +15,25 @@ public class Inventory {
         this.inventoryLocation = inventoryLocation;
     }
 
-    public int getId() {return inventoryId;}
+    public int getInventoryId() {return inventoryId;}
 
-    public void setId(int inventoryId) {this.inventoryId = inventoryId;}
+    public void setInventoryId(int inventoryId) {this.inventoryId = inventoryId;}
 
-    public int getQuantity() {return inventoryQuantity;}
+    public int getInventoryQuantity() {return inventoryQuantity;}
 
-    public void setQuantity(int inventoryQuantity) {this.inventoryQuantity = inventoryQuantity;}
+    public void setInventoryQuantity(int inventoryQuantity) {this.inventoryQuantity = inventoryQuantity;}
 
-    public String getName() {return inventoryName;}
+    public String getInventoryName() {return inventoryName;}
 
-    public void setName(String inventoryName) {this.inventoryName = inventoryName;}
+    public void setInventoryName(String inventoryName) {this.inventoryName = inventoryName;}
 
-    public String getDescription() {return inventoryDescription;}
+    public String getInventoryDescription() {return inventoryDescription;}
 
-    public void setDescription(String inventoryDescription) {this.inventoryDescription = inventoryDescription;}
+    public void setInventoryDescription(String inventoryDescription) {this.inventoryDescription = inventoryDescription;}
 
-    public String getLocation() {return inventoryLocation;}
+    public String getInventoryLocation() {return inventoryLocation;}
 
-    public void setLocation(String inventoryLocation) {this.inventoryLocation = inventoryLocation;}
+    public void setInventoryLocation(String inventoryLocation) {this.inventoryLocation = inventoryLocation;}
 
     @Override
     public String toString() {return inventoryName;}

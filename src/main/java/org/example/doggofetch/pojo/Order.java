@@ -14,25 +14,26 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public int getId() {return orderId;}
+    public int getOrderId() {return orderId;}
 
-    public void setId(int orderId) {this.orderId = orderId;}
+    public void setOrderId(int orderId) {this.orderId = orderId;}
 
-    public String getDate() {return orderDate;}
+    public String getOrderDate() {return orderDate;}
 
-    public void setDate(String orderDate) {this.orderDate = orderDate;}
+    public void setOrderDate(String orderDate) {this.orderDate = orderDate;}
 
-    public int getQuantity() {return orderQuantity;}
+    public int getOrderQuantity() {return orderQuantity;}
 
-    public void setQuantity(int orderQuantity) {this.orderQuantity = orderQuantity;}
+    public void setOrderQuantity(int orderQuantity) {this.orderQuantity = orderQuantity;}
 
-    public String getStatus() {return orderStatus;}
+    public String getOrderStatus() {return orderStatus;}
 
-    public void setStatus(String orderStatus) {this.orderStatus = orderStatus;}
+    public void setOrderStatus(String orderStatus) {this.orderStatus = orderStatus;}
 
     @Override
     public String toString() {
         String orderStringId = Integer.toString(orderId);
         return "Order #"+ orderStringId;}
+
 
 }
