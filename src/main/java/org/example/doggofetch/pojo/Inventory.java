@@ -1,40 +1,40 @@
 package org.example.doggofetch.pojo;
 
 public class Inventory {
-    private int id;
-    private int quantity;
-    private String name;
-    private String description;
-    private String location;
+    private int inventoryId;
+    private int inventoryQuantity;
+    private String inventoryName;
+    private String inventoryDescription;
+    private String inventoryLocation;
 
-    public Inventory(int id, int quantity, String name, String description, String location) {
-        this.id = id;
-        this.quantity = quantity;
-        this.name = name;
-        this.description = description;
-        this.location = location;
+    public Inventory(int inventoryId, int inventoryQuantity, String inventoryName, String inventoryDescription, String inventoryLocation) {
+        this.inventoryId = inventoryId;
+        this.inventoryQuantity = inventoryQuantity;
+        this.inventoryName = inventoryName;
+        this.inventoryDescription = inventoryDescription;
+        this.inventoryLocation = inventoryLocation;
     }
 
-    public int getId() {return id;}
+    public int getId() {return inventoryId;}
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int inventoryId) {this.inventoryId = inventoryId;}
 
-    public int getQuantity() {return quantity;}
+    public int getQuantity() {return inventoryQuantity;}
 
-    public void setQuantity(int quantity) {this.quantity = quantity;}
+    public void setQuantity(int inventoryQuantity) {this.inventoryQuantity = inventoryQuantity;}
 
-    public String getName() {return name;}
+    public String getName() {return inventoryName;}
 
-    public void setName(String name) {this.name = name;}
+    public void setName(String inventoryName) {this.inventoryName = inventoryName;}
 
-    public String getDescription() {return description;}
+    public String getDescription() {return inventoryDescription;}
 
-    public void setDescription(String description) {this.description = description;}
+    public void setDescription(String inventoryDescription) {this.inventoryDescription = inventoryDescription;}
 
-    public String getLocation() {return location;}
+    public String getLocation() {return inventoryLocation;}
 
-    public void setLocation(String location) {this.location = location;}
+    public void setLocation(String inventoryLocation) {this.inventoryLocation = inventoryLocation;}
 
     @Override
-    public String toString() {return name;}
+    public String toString() {return inventoryName;}
 }

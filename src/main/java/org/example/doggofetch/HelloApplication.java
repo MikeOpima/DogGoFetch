@@ -90,7 +90,7 @@ public class HelloApplication extends Application {
 
 
 
-        Scene scene = new Scene(root, 600, 240);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
