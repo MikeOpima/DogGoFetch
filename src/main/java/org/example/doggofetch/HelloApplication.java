@@ -44,8 +44,8 @@ public class HelloApplication extends Application {
 
 
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(login, inventory, search, cart,
-                orders);
+        mainMenuBar.getMenus().addAll(inventory, search, cart,
+                orders,login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -67,6 +67,7 @@ public class HelloApplication extends Application {
 
         // create tab pane
         TabPane pane = new TabPane();
+        pane.getStyleClass().add("pane");
 
         // create tabs
         AddItemTab addItemTab = new AddItemTab();
