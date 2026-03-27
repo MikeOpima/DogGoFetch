@@ -31,8 +31,14 @@
     menu-font-color: #FFFFFF;
     menu-font-color-highlighted: #FFFFFF;
     menu-font-family: 'Bungee';
+    menu-font-size: 1.4em;
 
-    /** tab bar default **/
+ /** tab bar default **/
+    tab-color: #FFFFFF;
+    tab-color-highlighted: 'blue';
+    tab-font-color: #FFFFFF;
+    tab-font-family: 'sans-serif';
+    tab-font-size: 1.4em;
 }
 
 
@@ -69,3 +75,27 @@
     -fx-font-size: 1.3em;
 }
 
+/* main tabs nav settings */
+.tab-pane {
+    -fx-tab-min-width:10em;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #efefef;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #000099;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #000099;
+    -fx-font-size: 1.4em;
+    -fx-font-weight: 500;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #FFFFFF;
+}

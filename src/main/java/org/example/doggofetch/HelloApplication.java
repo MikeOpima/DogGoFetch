@@ -66,15 +66,15 @@ public class HelloApplication extends Application {
         headerContent.setBottom(mainMenuBar);
 
         // create tab pane
-        TabPane pane = new TabPane();
-        pane.getStyleClass().add("pane");
+        TabPane itemTabPane = new TabPane();
+        itemTabPane.getStyleClass().add("itemTabPane");
 
         // create tabs
         AddItemTab addItemTab = new AddItemTab();
         RemoveItemTab removeItemTab = new RemoveItemTab();
         CartTab statsTab = new CartTab();
 
-        pane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         BorderPane configCheck = new BorderPane();
 
@@ -101,9 +101,9 @@ public class HelloApplication extends Application {
         try {
             if (dbConfig.isFile()) {
                 // add tabs to pane
-                pane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
+                itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
                 root.setTop(headerContent);
-                root.setCenter(pane);
+                root.setCenter(itemTabPane);
             } else {
                 root.setCenter(configCheck);
 
