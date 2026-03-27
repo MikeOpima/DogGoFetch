@@ -99,3 +99,20 @@
     -fx-alignment: CENTER;
     -fx-text-fill: #FFFFFF;
 }
+
+//** DecoButton Custom Button Class styles **/
+.button {
+    -fx-background-color: 'red';
+    -fx-text-fill: 'red';
+}
+
+/* button hover */
+.button:hover {
+    -fx-text-fill: 'green';
+    -fx-background-color: 'yellow';
+}
+/* button focused */
+.button:focused {
+    -fx-text-fill: 'purple';
+}
+
