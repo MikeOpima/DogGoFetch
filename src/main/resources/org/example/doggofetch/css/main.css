@@ -1,0 +1,26 @@
+
+@font-face {
+        -fx-font-family: 'Bungee';
+        src: url('fonts/bungee/Bungee-Regular.ttf');
+    }
+
+.headerContent{
+    -fx-background-color: white;
+}
+
+.title{
+    -fx-font-size:30pt;
+	-fx-font-family: 'Bungee';
+	-fx-fill:#FF0000;
+	-fx-text-alignment: left;
+}
+
+.mainMenuBar{
+    -fx-text-fill: lightblue;
+    -fx-opacity: 1;
+    -fx-font-size: 1.2em;
+    -fx-font-family: 'Bungee';
+    -fx-background-color: black;
+}
+
+

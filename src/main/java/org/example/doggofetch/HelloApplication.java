@@ -3,6 +3,8 @@ package org.example.doggofetch;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -14,12 +16,23 @@ import org.example.doggofetch.tabs.RemoveItemTab;
 import java.io.File;
 import java.io.IOException;
 
+
+/**
+ * HelloApplication
+ * checks for config settings - displays landing page
+ * Kat Koeller
+ * Feb 2026
+ **/
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         BorderPane root = new BorderPane();
+
         // menu bar
         MenuBar mainMenuBar = new MenuBar();
+        mainMenuBar.getStyleClass().add("mainMenuBar");
         // menu items inventory, search, user/login, cart
         Menu login = new Menu("Log-in");
         Menu inventory = new Menu("Inventory");
@@ -29,13 +42,29 @@ public class HelloApplication extends Application {
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
-        // add items
+
         // menuBar.getMenu().add(file);
         mainMenuBar.getMenus().addAll(login, inventory, search, cart,
                 orders);
         signout.setOnAction( e-> {
             System.exit(0);
         });
+
+        // add items
+        Text title = new Text("Dog.Go Fetch");
+        title.getStyleClass().add("title");
+
+        ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("images/doggofetch_logo.png")));
+        logo.setFitHeight(108);
+        logo.setFitWidth(108);
+
+        // header Content
+        BorderPane headerContent = new BorderPane();
+        headerContent.getStyleClass().add("headerContent");
+        headerContent.setCenter(title);
+        headerContent.setLeft(logo);
+        headerContent.setBottom(mainMenuBar);
+
         // create tab pane
         TabPane pane = new TabPane();
 
@@ -72,7 +101,7 @@ public class HelloApplication extends Application {
             if (dbConfig.isFile()) {
                 // add tabs to pane
                 pane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-                root.setTop(mainMenuBar);
+                root.setTop(headerContent);
                 root.setCenter(pane);
             } else {
                 root.setCenter(configCheck);
@@ -85,12 +114,8 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
-
-
-
-
-
-        Scene scene = new Scene(root, 600, 240);
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(String.valueOf(this.getClass().getResource("css/main.css")));
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
