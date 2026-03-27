@@ -103,7 +103,11 @@
 //** DecoButton Custom Button Class styles **/
 .button {
     -fx-background-color: 'red';
-    -fx-text-fill: 'red';
+    -fx-text-fill: 'white';
+    -fx-pref-width: 100px;
+    -fx-pref-height: 50px;
+     -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
 }
 
 /* button hover */
