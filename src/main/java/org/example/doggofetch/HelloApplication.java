@@ -7,9 +7,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.doggofetch.tabs.AddItemTab;
+import org.example.doggofetch.tabs.AddProductTab;
 import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.RemoveItemTab;
+import org.example.doggofetch.tabs.RemoveProductTab;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,8 +40,8 @@ public class HelloApplication extends Application {
         TabPane pane = new TabPane();
 
         // create tabs
-        AddItemTab addItemTab = new AddItemTab();
-        RemoveItemTab removeItemTab = new RemoveItemTab();
+        AddProductTab addItemTab = new AddProductTab();
+        RemoveProductTab removeItemTab = new RemoveProductTab();
         CartTab statsTab = new CartTab();
 
         pane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);

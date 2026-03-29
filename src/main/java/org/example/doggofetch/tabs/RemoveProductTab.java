@@ -4,8 +4,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
-public class RemoveItemTab extends Tab {
-    public RemoveItemTab(){
+public class RemoveProductTab extends Tab {
+    public RemoveProductTab(){
             this.setText("Remove Item");
             BorderPane root = new BorderPane();
             Text welcome = new Text("Remove Items");
