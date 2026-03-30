@@ -3,6 +3,7 @@ package org.example.doggofetch.tables;
 import org.example.doggofetch.database.Database;
 import org.example.doggofetch.dao.CategoryDAO;
 import org.example.doggofetch.pojo.Category;
+import org.example.doggofetch.pojo.Product;
 
 import java.awt.image.DataBuffer;
 import java.sql.PreparedStatement;
@@ -59,8 +60,18 @@ public class CategoryTable implements CategoryDAO {
     }
 
 
-    public void updateCategory(Category category){
+    public void updateCategory(Category category) {
+        String query = "UPDATE " + TABLE_CATEGORY + " SET " +
+                CATEGORY_COLUMN_NAME + "= " + category.getName() + ", " +
+                "WHERE " + CATEGORY_COLUMN_ID + " = " + category.getId();
+        try {
+            Statement updateCategory = db.getConnection().createStatement();
+            System.out.println("Category" + category.getName() + "Updated");
+            updateCategory.executeUpdate(query);
 
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }  // end updateProduct
 
 } // end Category Table Class
