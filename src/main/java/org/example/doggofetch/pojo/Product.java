@@ -1,13 +1,19 @@
 package org.example.doggofetch.pojo;
 
+/**
+ * Product POJO
+ * march2026
+ * katkoe
+ */
 public class Product {
     private int id;
     private String name;
     private int quantity;
     private String location;
-    private String supplier;
+    private int supplier;
+    private int category;
 
-    public Product(int id, String name,  int quantity, String location, String supplier) {
+    public Product(int id, String name,  int quantity, String location, int supplier, int category) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -15,7 +21,7 @@ public class Product {
         this.supplier = supplier;
     }
 
-    public Product(String name, int quantity, String location, String supplier) {
+    public Product(String name, int quantity, String location, int supplier, int category) {
         this.name = name;
         this.quantity = quantity;
         this.location = location;
@@ -58,12 +64,20 @@ public class Product {
         this.location = location;
     }
 
-    public String getSupplier() {
+    public int getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(String supplier) {
+    public void setSupplier(int supplier) {
         this.supplier = supplier;
+    }
+
+    public int getSCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 //
 //    @Override

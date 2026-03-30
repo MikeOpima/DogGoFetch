@@ -4,6 +4,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
+/**
+ * AddProductTab
+ * katkoe 29mar26
+ * add in products tab feature
+ */
 public class AddProductTab extends Tab {
     public AddProductTab(){
         this.setText("Add Item");

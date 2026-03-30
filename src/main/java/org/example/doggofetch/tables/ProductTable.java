@@ -14,6 +14,11 @@ import java.util.ArrayList;
 
 import static org.example.doggofetch.database.DBConst.*;
 
+/**
+ * Product Table pojo Class
+ * katkoe 29mar26
+ * CRUD and display Product methods
+ */
 public class ProductTable implements ProductDAO {
     private static ProductTable instance;
     Database db =  Database.getInstance();
@@ -38,15 +43,22 @@ public class ProductTable implements ProductDAO {
                         data.getString(PRODUCT_COLUMN_NAME),
                         data.getInt(PRODUCT_COLUMN_QUANTITY),
                         data.getString(PRODUCT_COLUMN_LOCATION),
-                        data.getString(PRODUCT_COLUMN_SUPPLIER)
+                        data.getInt(PRODUCT_COLUMN_SUPPLIER),
+                        data.getInt(PRODUCT_COLUMN_CATEGORY)
                 ));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return products;
-    }
+    } // end getAllProducts
 
+    /**
+     * getProduct
+     * return single product record on id match
+     * @param id
+     * @return
+     */
     @Override
     public Product getProduct(int id) {
         Product product = new Product();
@@ -55,32 +67,82 @@ public class ProductTable implements ProductDAO {
         try{
             ResultSet data = db.getConnection().createStatement().executeQuery(query);
             if(data.next()){
-                return new Product(
+                product = new Product(
                         data.getInt(PRODUCT_COLUMN_ID),
                         data.getString(PRODUCT_COLUMN_NAME),
                         data.getInt(PRODUCT_COLUMN_QUANTITY),
                         data.getString(PRODUCT_COLUMN_LOCATION),
-                        data.getString(PRODUCT_COLUMN_SUPPLIER)
+                        data.getInt(PRODUCT_COLUMN_SUPPLIER),
+                        data.getInt(PRODUCT_COLUMN_CATEGORY)
                 );
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return null;
-    } // getProduct
+        return product;
+
+    } // end getProduct
 
     public void updateProduct(Product product) {
+        String query = "UPDATE " + TABLE_PRODUCT + " SET " +
+                PRODUCT_COLUMN_NAME + "= " + product.getName() + ", " +
+                PRODUCT_COLUMN_QUANTITY + "= " + product.getQuantity() + ", " +
+                PRODUCT_COLUMN_LOCATION + "= " + product.getLocation() + ", " +
+                PRODUCT_COLUMN_SUPPLIER + "= " + product.getSupplier() +
+                PRODUCT_COLUMN_CATEGORY + "= " + product.getSCategory() +
+                "WHERE " + PRODUCT_COLUMN_ID + " = " + product.getId();
+        try {
+            Statement updateProduct = db.getConnection().createStatement();
+            System.out.println("Product" + product.getName() + "Updated");
+            updateProduct.executeUpdate(query);
 
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }  // end updateProduct
 
     @Override
     public void deleteProduct(int id) {
-        //String query = "DELETE FROM " + TABLE_PRODUCT
-    }
+        String query  = "DELETE FROM " + TABLE_PRODUCT + " WHERE " +
+                PRODUCT_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Product");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } // end deleteProduct
 
     @Override
     public void createProduct(Product product) {
+        String query = "INSERT INTO " + TABLE_PRODUCT +
+                "(" + PRODUCT_COLUMN_NAME +"," +
+                PRODUCT_COLUMN_QUANTITY +"," +
+                PRODUCT_COLUMN_LOCATION +") VALUES ('" +
+                product.getName() +"','" + product.getQuantity() +"','" +
+                product.getLocation() + "')";
+        try{
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Add New Product: " + product.getName());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    } // end createProduct
 
-    }
+    public int getProductCount(int product) {
+        int count = -1;
+        try {
+            PreparedStatement getCount = db.getConnection()
+                    .prepareStatement("SELECT COUNT(*) as count FROM " + TABLE_PRODUCT + " WHERE "
+                            + PRODUCT_COLUMN_CATEGORY + " = '" + product + "'");
+            ResultSet data = getCount.executeQuery();
+            data.next();
+            return data.getInt("count");
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    } // end get ProductCount  --- count qty of product type added
 
 }

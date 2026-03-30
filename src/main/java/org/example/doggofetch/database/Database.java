@@ -11,6 +11,12 @@ import static org.example.doggofetch.database.DBConst.*;
 
 // import db values
 
+/**
+ * Database Class
+ * feb2026
+ * updated javadoc 29march26
+ * katkoe
+ */
 public class Database {
     // singleton design pattern: connection for use in full app
     // step 1 - private static instance variable

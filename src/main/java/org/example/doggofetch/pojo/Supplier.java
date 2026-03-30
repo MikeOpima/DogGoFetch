@@ -15,6 +15,10 @@ public class Supplier {
         this.email = email;
     }
 
+    public Supplier(){
+
+    }
+
     public int getId() {
         return id;
     }
