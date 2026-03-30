@@ -19,7 +19,6 @@ public class CategoryTable implements CategoryDAO {
     Database db = Database.getInstance();
     ArrayList<Category> categories;
 
-    @Override
     public ArrayList<Category> getAllCategory() {
         return null;
     } // end getALLCategory
@@ -35,7 +34,6 @@ public class CategoryTable implements CategoryDAO {
         return instance;
     } // get CategoryTable instance
 
-    @Override
     public void deleteCategory(int id) {
         String query  = "DELETE FROM " + TABLE_CATEGORY + " WHERE " +
                 CATEGORY_COLUMN_ID + " = " + id;
@@ -47,7 +45,7 @@ public class CategoryTable implements CategoryDAO {
         }
     } // end Delete Category Method
 
-    @Override
+
     public void createCategory(Category category) {
         String query = "INSERT INTO " + TABLE_CATEGORY +
                 "(" + CATEGORY_COLUMN_NAME + ") VALUES ('" +
@@ -61,5 +59,8 @@ public class CategoryTable implements CategoryDAO {
     }
 
 
+    public void updateCategory(Category category){
+
+    }
 
 } // end Category Table Class

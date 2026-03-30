@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 29mar2026
  * katkoe
  */
-public class CategoryDAO {
+public interface CategoryDAO {
         public ArrayList<Category> getAllCategory();
         public Category getCategory(int id);
         public void updateCategory(Category category);
