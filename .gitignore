@@ -312,3 +312,16 @@ $RECYCLE.BIN/
 
 # 
 config.txt
+
+.gradle/
+.gradle-user/
+.gradle-user-2/
+.android-home/
+.idea/
+*.iml
+local.properties
+build/
+*/build/
+.externalNativeBuild/
+.cxx/
+captures/
