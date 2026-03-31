@@ -10,8 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SupplierTable implements SupplierDAO {
+    private  static SupplierTable instance;
     Database db =Database.getInstance();
     ArrayList<Supplier> suppliers = new ArrayList<>();
+
+    public static SupplierTable getInstance(){
+        if(instance == null){
+            instance = new SupplierTable();
+        }
+        return instance;
+    }
 
     @Override
     public ArrayList<Supplier> getAllSuppliers() {

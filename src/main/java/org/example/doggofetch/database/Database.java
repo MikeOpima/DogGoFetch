@@ -32,7 +32,7 @@ public class Database {
             String DB_USER = file.next();
             String DB_PASS = file.next();
             file.close();
-            connection = DriverManagergit 
+            connection = DriverManager
                     .getConnection("jdbc:mysql://localhost/" + DB_NAME +"?serverTimezone=UTC", DB_USER,
                             DB_PASS);
             System.out.println("Created Connection");

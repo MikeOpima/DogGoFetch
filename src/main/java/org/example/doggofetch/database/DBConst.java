@@ -41,6 +41,7 @@ public class DBConst {
     public static final String CATEGORY_COLUMN_ID = "id";
     public static final String CATEGORY_COLUMN_NAME = "name";
 
+
     public static final String CREATE_TABLE_INVENTORY =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_INVENTORY +"(" +
                     INVENTORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
@@ -56,7 +57,7 @@ public class DBConst {
                     ORDER_COLUMN_DATE + " VARCHAR(12) NOT NULL, " +
                     ORDER_COLUMN_QUANTITY + " INT NOT NULL, " +
                     ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL," +
-                    "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "));";
+                    "PRIMARY KEY(" + ORDER_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_SUPPLIER =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_SUPPLIER +"(" +
