@@ -115,17 +115,8 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
-<<<<<<< HEAD
-
-
-
-
-
-        Scene scene = new Scene(root, 800, 600);
-=======
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(String.valueOf(this.getClass().getResource("css/main.css")));
->>>>>>> css
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
