@@ -38,9 +38,12 @@ public class Database {
             System.out.println("Created Connection");
 
             createTable(TABLE_INVENTORY, CREATE_TABLE_INVENTORY, connection);
-            createTable(TABLE_ORDER, CREATE_TABLE_ORDER, connection);
-            createTable(TABLE_PRODUCT, CREATE_TABLE_PRODUCTS, connection);
             createTable(TABLE_SUPPLIER, CREATE_TABLE_SUPPLIER, connection);
+            createTable(TABLE_CATEGORY, CREATE_TABLE_CATEGORY, connection);
+            createTable(TABLE_PRODUCT, CREATE_TABLE_PRODUCTS, connection);
+            //createTable(TABLE_ORDER, CREATE_TABLE_ORDER, connection);
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -49,9 +52,9 @@ public class Database {
 
     public void createTable(String tableName, String tableQuery, Connection connection) throws SQLException {
         Statement createTable;
-        DatabaseMetaData md = connection.getMetaData();
+        DatabaseMetaData doggo = connection.getMetaData();
         //Look inside the database for a table with tableName
-        ResultSet resultSet = md.getTables("knagelmd", null, tableName, null);
+        ResultSet resultSet = doggo.getTables("doggo", null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " table already exists");
         }

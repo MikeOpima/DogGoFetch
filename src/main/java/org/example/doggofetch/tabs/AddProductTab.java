@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.Category;
+import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.InventoryTable;
 import org.example.doggofetch.tables.ProductTable;
@@ -20,6 +21,8 @@ import org.example.doggofetch.tables.SupplierTable;
  * @version 1.0
  */
 public class AddProductTab extends Tab {
+    private static AddProductTab instance;
+
     public AddProductTab(){
         this.setText("Add Item");
 
@@ -35,20 +38,29 @@ public class AddProductTab extends Tab {
         SupplierTable supplierTable = SupplierTable.getInstance();
 
         Text category = new Text("Category");
-        ComboBox<Category> comboName = new ComboBox<>();
-        comboName.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
-        comboName.getSelectionModel().select(0);
+        ComboBox<Category> comboCategory = new ComboBox<>();
+        comboCategory.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
+        comboCategory.getSelectionModel().select(0);
+        root.add(category, 0,0);
+        root.add(comboCategory, 1, 0);
 
+        Text supplier = new Text("Supplier");
+        ComboBox<Supplier> comboSupplier = new ComboBox<>();
+        comboSupplier.setItems(FXCollections.observableList(supplierTable.getAllSuppliers()));
+        comboSupplier.getSelectionModel().select(0);
+        root.add(supplier, 0,1);
+        root.add(comboSupplier, 1, 1);
 
+        this.setContent(root);
 
+    } // end AddProductTab form
 
-
-
-
-
-
-
-    } // end con
+    public static AddProductTab getInstance(){
+        if(instance == null){
+            instance = new AddProductTab();
+        }
+        return instance;
+    } // end create instance call
 
 
 } // end addItemTab class

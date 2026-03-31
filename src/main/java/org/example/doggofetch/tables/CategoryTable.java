@@ -3,10 +3,7 @@ package org.example.doggofetch.tables;
 import org.example.doggofetch.database.Database;
 import org.example.doggofetch.dao.CategoryDAO;
 import org.example.doggofetch.pojo.Category;
-import org.example.doggofetch.pojo.Product;
 
-import java.awt.image.DataBuffer;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,17 +11,50 @@ import java.util.ArrayList;
 
 import static org.example.doggofetch.database.DBConst.*;
 
-
 public class CategoryTable implements CategoryDAO {
     private static CategoryTable instance;
     Database db = Database.getInstance();
     ArrayList<Category> categories;
 
+    @Override
     public ArrayList<Category> getAllCategory() {
-        return null;
+        String query = "SELECT * FROM " + TABLE_CATEGORY;
+        categories = new ArrayList<>();
+        try{
+
+            //TODO RUN QUERY
+            Statement getCoins = db.getConnection().createStatement();
+            ResultSet resultSet = getCoins.executeQuery(query);
+
+            while (resultSet.next()){
+                categories.add(new Category(
+                        resultSet.getInt(CATEGORY_COLUMN_ID),
+                        resultSet.getString(CATEGORY_COLUMN_NAME)
+                ));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return categories;
     } // end getALLCategory
 
+
+
     public Category getCategory(int id){
+        String query = "SELECT * FROM " + TABLE_CATEGORY + " WHERE " + CATEGORY_COLUMN_ID + " = " + id;
+        try {
+            Statement getCoins = db.getConnection().createStatement();
+            ResultSet resultSet = getCoins.executeQuery(query);
+            if(resultSet.next()){
+                Category coin = new Category(
+                        resultSet.getInt(CATEGORY_COLUMN_ID),
+                        resultSet.getString(CATEGORY_COLUMN_NAME)
+                );
+                return coin;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return null;
     } // end getCategory
 
@@ -34,6 +64,7 @@ public class CategoryTable implements CategoryDAO {
         }
         return instance;
     } // get CategoryTable instance
+
 
     public void deleteCategory(int id) {
         String query  = "DELETE FROM " + TABLE_CATEGORY + " WHERE " +

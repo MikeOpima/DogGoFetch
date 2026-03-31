@@ -41,7 +41,6 @@ public class DBConst {
     public static final String CATEGORY_COLUMN_ID = "id";
     public static final String CATEGORY_COLUMN_NAME = "name";
 
-
     public static final String CREATE_TABLE_INVENTORY =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_INVENTORY +"(" +
                     INVENTORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
@@ -57,7 +56,7 @@ public class DBConst {
                     ORDER_COLUMN_DATE + " VARCHAR(12) NOT NULL, " +
                     ORDER_COLUMN_QUANTITY + " INT NOT NULL, " +
                     ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL," +
-                    "PRIMARY KEY(" + ORDER_COLUMN_ID + "));";
+                    "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_SUPPLIER =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_SUPPLIER +"(" +
@@ -76,15 +75,10 @@ public class DBConst {
                     PRODUCT_COLUMN_LOCATION + " VARCHAR(200) NOT NULL," +
                     PRODUCT_COLUMN_SUPPLIER + " INT," +
                     PRODUCT_COLUMN_CATEGORY + " INT," +
-                    "FOREIGN KEY(" +PRODUCT_COLUMN_SUPPLIER +")" +
+                    "FOREIGN KEY(" + PRODUCT_COLUMN_SUPPLIER +")" +
                         "REFERENCES " + TABLE_SUPPLIER + "(" + SUPPLIER_COLUMN_ID +")," +
-                    "FOREIGN KEY(" +PRODUCT_COLUMN_CATEGORY +")" +
-                    "REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_COLUMN_ID +")," +
-
-//                    "FOREIGN KEY(" +PRODUCT_COLUMN_LOCATION +")" +
-//                        "REFERENCES " + TABLE_INVENTORY + "(" + INVENTORY_COLUMN_ID +")," +
-//                    "FOREIGN KEY(" +PRODUCT_COLUMN_QUANTITY +")" +
-//                        "REFERENCES " + TABLE_ORDER + "(" + ORDER_COLUMN_ID +")," +
+                    "FOREIGN KEY(" + PRODUCT_COLUMN_CATEGORY +")" +
+                        "REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_COLUMN_ID +")," +
                     "PRIMARY KEY(" + PRODUCT_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_CATEGORY =
