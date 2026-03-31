@@ -317,8 +317,6 @@ config.txt
 .gradle-user/
 .gradle-user-2/
 .android-home/
-.idea/
-*.iml
 local.properties
 build/
 */build/

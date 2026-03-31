@@ -4,7 +4,7 @@ module org.example.doggofetch {
     requires java.sql;
     requires javafx.graphics;
     requires java.desktop;
-//    requires org.example.doggofetch;
+    requires javafx.base;
 
 
     opens org.example.doggofetch to javafx.fxml;
