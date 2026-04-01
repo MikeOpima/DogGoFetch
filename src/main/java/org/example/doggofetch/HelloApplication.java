@@ -1,25 +1,38 @@
 package org.example.doggofetch;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.doggofetch.tabs.AddProductTab;
+import org.example.doggofetch.tabs.CartTab;
+import org.example.doggofetch.tabs.RemoveProductTab;
 
-import java.awt.print.PrinterIOException;
 import java.io.File;
 import java.io.IOException;
+
+
+/**
+ * HelloApplication
+ * checks for config settings - displays landing page
+ * Kat Koeller
+ * Feb 2026
+ **/
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         BorderPane root = new BorderPane();
+
         // menu bar
         MenuBar mainMenuBar = new MenuBar();
+        mainMenuBar.getStyleClass().add("mainMenuBar");
         // menu items inventory, search, user/login, cart
         Menu login = new Menu("Log-in");
         Menu inventory = new Menu("Inventory");
@@ -29,32 +42,49 @@ public class HelloApplication extends Application {
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
-        // add items
+
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(login, inventory, search, cart,
-        orders);
+        mainMenuBar.getMenus().addAll(inventory, search, cart,
+                orders,login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
+
+        // add items
+        Text title = new Text("Dog.Go Fetch");
+        title.getStyleClass().add("title");
+
+        ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("images/doggofetch_logo.png")));
+        logo.setFitHeight(108);
+        logo.setFitWidth(108);
+
+        // header Content
+        BorderPane headerContent = new BorderPane();
+        headerContent.getStyleClass().add("headerContent");
+        headerContent.setCenter(title);
+        headerContent.setLeft(logo);
+        headerContent.setBottom(mainMenuBar);
+
         // create tab pane
-        TabPane pane = new TabPane();
+        TabPane itemTabPane = new TabPane();
+        itemTabPane.getStyleClass().add("itemTabPane");
 
         // create tabs
-        AddItemTab addItemTab = new AddItemTab();
-        RemoveItemTab removeItemTab = new RemoveItemTab();
+        AddProductTab addItemTab = new AddProductTab();
+        RemoveProductTab removeItemTab = new RemoveProductTab();
         CartTab statsTab = new CartTab();
 
-        pane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         BorderPane configCheck = new BorderPane();
 
         VBox instructionsVb = new VBox();
         Text instructions = new Text("Missing Config Doc \n \n");
-        Text dbName = new Text("Enter in NAME: ");
+        Text dbName = new Text("Enter in DB_NAME: ");
         TextField dbNameTf = new TextField();
-        Text dbUser = new Text("Enter in USER: ");
+        Text dbUser = new Text("Enter in USER NAME: ");
         TextField dbUserTf = new TextField();
-        Text dbPass = new Text("Enter in PASS: ");
+        Text dbPass = new Text("Enter in PASSWORD: ");
         PasswordField dbPassPf = new PasswordField();
         Button test = new Button(" test connection ");
         Button submit = new Button(" connect ");
@@ -71,9 +101,9 @@ public class HelloApplication extends Application {
         try {
             if (dbConfig.isFile()) {
                 // add tabs to pane
-                pane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-                root.setTop(mainMenuBar);
-                root.setCenter(pane);
+                itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
+                root.setTop(headerContent);
+                root.setCenter(itemTabPane);
             } else {
                 root.setCenter(configCheck);
 
@@ -85,12 +115,8 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
 
-
-
-
-
-
-        Scene scene = new Scene(root, 600, 240);
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(String.valueOf(this.getClass().getResource("css/main.css")));
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
