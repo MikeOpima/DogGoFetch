@@ -4,8 +4,11 @@ module org.example.doggofetch {
     requires java.sql;
     requires javafx.graphics;
     requires java.desktop;
+    requires javafx.base;
 
 
     opens org.example.doggofetch to javafx.fxml;
     exports org.example.doggofetch;
+    exports org.example.doggofetch.tabs;
+    opens org.example.doggofetch.tabs to javafx.fxml;
 }

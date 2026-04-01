@@ -1,4 +1,4 @@
-package org.example.doggofetch;
+package org.example.doggofetch.tabs;
 
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
