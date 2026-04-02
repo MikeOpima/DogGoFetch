@@ -65,7 +65,7 @@ public class RemoveProductTab extends Tab {
                 if (newValue != null) {
                     Product selectedProduct = product.getProduct(((DisplayProduct) newValue).getId());
                     //Product object version of DisplayItem (Selected in table)
-                    UpdateItemPane pane = new UpdateItemPane(selectedProduct)
+                    UpdateItemPane pane = new UpdateItemPane(selectedProduct);  /// TO-FIXX
                     root.getRight(pane);
                 }
             }
