@@ -5,6 +5,12 @@ package org.example.doggofetch.pojo;
  * march2026
  * katkoe
  */
+
+/**
+ * Hania - April 2 update
+ * Constructors are not assigning category
+ * Getter for category has typo
+ */
 public class Product {
     private int id;
     private String name;
@@ -19,6 +25,7 @@ public class Product {
         this.quantity = quantity;
         this.location = location;
         this.supplier = supplier;
+        this.category = category;
     }
 
     public Product(String name, int quantity, String location, int supplier, int category) {
@@ -26,6 +33,7 @@ public class Product {
         this.quantity = quantity;
         this.location = location;
         this.supplier = supplier;
+        this.category = category;
     }
 
     public Product() {
@@ -72,7 +80,7 @@ public class Product {
         this.supplier = supplier;
     }
 
-    public int getSCategory() {
+    public int getCategory() {
         return category;
     }
 

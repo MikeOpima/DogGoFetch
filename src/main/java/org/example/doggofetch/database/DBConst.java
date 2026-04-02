@@ -2,6 +2,18 @@ package org.example.doggofetch.database;
 
 import org.example.doggofetch.pojo.Category;
 
+/**
+ * Hania updated April 2
+ *  - rename Order table to Orders
+ *  - remove supplier address column
+ *  - add user table constants
+ *  - add address table constants
+ *  - add ORDER_COLUMN_USER_ID
+ *  - fix product column names
+ *  - fix category column capitalization
+ *  - fix product name datatype in create table query
+ */
+
 public class DBConst {
 
     //Product table
@@ -21,26 +33,44 @@ public class DBConst {
     public static final String INVENTORY_COLUMN_DESCRIPTION = "Description";
     public static final String INVENTORY_COLUMN_LOCATION = "Location";
 
-    //ORDER TABLE
-    public static final String TABLE_ORDER = "Order";
+    // ORDER TABLE
+    public static final String TABLE_ORDER = "Orders";
     public static final String ORDER_COLUMN_ID = "Id";
     public static final String ORDER_COLUMN_DATE = "Date";
     public static final String ORDER_COLUMN_QUANTITY = "Quantity";
     public static final String ORDER_COLUMN_STATUS = "Status";
+    public static final String ORDER_COLUMN_USER_ID = "UserId";
 
-    //SUPPLIER TABLE
+    // SUPPLIER TABLE
     public static final String TABLE_SUPPLIER = "Supplier";
     public static final String SUPPLIER_COLUMN_ID = "Id";
     public static final String SUPPLIER_COLUMN_NAME = "Name";
-    public static final String SUPPLIER_COLUMN_ADDRESS = "Address";
     public static final String SUPPLIER_COLUMN_PHONE = "Phone";
     public static final String SUPPLIER_COLUMN_EMAIL = "Email";
 
-    //CATEGORY TABLE
+    // CATEGORY TABLE
     public static final String TABLE_CATEGORY = "Category";
-    public static final String CATEGORY_COLUMN_ID = "id";
-    public static final String CATEGORY_COLUMN_NAME = "name";
+    public static final String CATEGORY_COLUMN_ID = "Id";
+    public static final String CATEGORY_COLUMN_NAME = "Name";
 
+    // USER TABLE
+    public static final String TABLE_USER = "User";
+    public static final String USER_COLUMN_ID = "Id";
+    public static final String USER_COLUMN_FIRST_NAME = "FirstName";
+    public static final String USER_COLUMN_LAST_NAME = "LastName";
+    public static final String USER_COLUMN_PASSWORD = "Password";
+    public static final String USER_COLUMN_ROLE = "UserRole";
+
+    // ADDRESS TABLE
+    public static final String TABLE_ADDRESS = "Address";
+    public static final String ADDRESS_COLUMN_ID = "Id";
+    public static final String ADDRESS_COLUMN_STREET = "Street";
+    public static final String ADDRESS_COLUMN_CITY = "City";
+    public static final String ADDRESS_COLUMN_PROVINCE = "Province";
+    public static final String ADDRESS_COLUMN_POSTAL_CODE = "PostalCode";
+    public static final String ADDRESS_COLUMN_COUNTRY = "Country";
+    public static final String ADDRESS_COLUMN_USER_ID = "UserId";
+    public static final String ADDRESS_COLUMN_SUPPLIER_ID = "SupplierId";
 
     public static final String CREATE_TABLE_INVENTORY =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_INVENTORY +"(" +
@@ -51,35 +81,63 @@ public class DBConst {
                     INVENTORY_COLUMN_LOCATION + " VARCHAR(200) NOT NULL, " +
                     "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "));";
 
+    public static final String CREATE_TABLE_USER =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "(" +
+                    USER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
+                    USER_COLUMN_FIRST_NAME + " VARCHAR(100) NOT NULL, " +
+                    USER_COLUMN_LAST_NAME + " VARCHAR(100) NOT NULL, " +
+                    USER_COLUMN_PASSWORD + " VARCHAR(255) NOT NULL, " +
+                    USER_COLUMN_ROLE + " VARCHAR(20) NOT NULL, " +
+                    "PRIMARY KEY(" + USER_COLUMN_ID + "));";
+
     public static final String CREATE_TABLE_ORDER =
-            "CREATE TABLE IF NOT EXISTS "+ TABLE_ORDER +"(" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_ORDER + "(" +
                     ORDER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     ORDER_COLUMN_DATE + " VARCHAR(12) NOT NULL, " +
                     ORDER_COLUMN_QUANTITY + " INT NOT NULL, " +
-                    ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL," +
-                    "PRIMARY KEY(" + ORDER_COLUMN_ID + "));";
+                    ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL, " +
+                    ORDER_COLUMN_USER_ID + " INT, " +
+                    "PRIMARY KEY(" + ORDER_COLUMN_ID + ")," +
+                    "FOREIGN KEY(" + ORDER_COLUMN_USER_ID + ") REFERENCES " +
+                    TABLE_USER + "(" + USER_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_SUPPLIER =
-            "CREATE TABLE IF NOT EXISTS "+ TABLE_SUPPLIER +"(" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_SUPPLIER + "(" +
                     SUPPLIER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     SUPPLIER_COLUMN_NAME + " VARCHAR(200) NOT NULL, " +
-                    SUPPLIER_COLUMN_ADDRESS + " VARCHAR(200) NOT NULL, " +
                     SUPPLIER_COLUMN_PHONE + " VARCHAR(200) NOT NULL, " +
-                    SUPPLIER_COLUMN_EMAIL + " VARCHAR(200) NOT NULL," +
+                    SUPPLIER_COLUMN_EMAIL + " VARCHAR(200) NOT NULL, " +
                     "PRIMARY KEY(" + SUPPLIER_COLUMN_ID + "));";
+
+    public static final String CREATE_TABLE_ADDRESS =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_ADDRESS + "(" +
+                    ADDRESS_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
+                    ADDRESS_COLUMN_STREET + " VARCHAR(200) NOT NULL, " +
+                    ADDRESS_COLUMN_CITY + " VARCHAR(100) NOT NULL, " +
+                    ADDRESS_COLUMN_PROVINCE + " VARCHAR(100) NOT NULL, " +
+                    ADDRESS_COLUMN_POSTAL_CODE + " VARCHAR(20) NOT NULL, " +
+                    ADDRESS_COLUMN_COUNTRY + " VARCHAR(100) NOT NULL, " +
+                    ADDRESS_COLUMN_USER_ID + " INT, " +
+                    ADDRESS_COLUMN_SUPPLIER_ID + " INT, " +
+                    "PRIMARY KEY(" + ADDRESS_COLUMN_ID + ")," +
+                    "FOREIGN KEY(" + ADDRESS_COLUMN_USER_ID + ") REFERENCES " +
+                    TABLE_USER + "(" + USER_COLUMN_ID + ")," +
+                    "FOREIGN KEY(" + ADDRESS_COLUMN_SUPPLIER_ID + ") REFERENCES " +
+                    TABLE_SUPPLIER + "(" + SUPPLIER_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_PRODUCTS =
             "CREATE TABLE IF NOT EXISTS " + TABLE_PRODUCT + " (" +
                     PRODUCT_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
-                    PRODUCT_COLUMN_NAME + " INT, " +
-                    PRODUCT_COLUMN_QUANTITY + " INT, " +
+                    PRODUCT_COLUMN_NAME + " VARCHAR(200) NOT NULL, " +
+                    PRODUCT_COLUMN_QUANTITY + " INT NOT NULL, " +
                     PRODUCT_COLUMN_LOCATION + " VARCHAR(200) NOT NULL," +
-                    PRODUCT_COLUMN_SUPPLIER + " INT," +
-                    PRODUCT_COLUMN_CATEGORY + " INT," +
+                    PRODUCT_COLUMN_SUPPLIER + " INT NOT NULL," +
+                    PRODUCT_COLUMN_CATEGORY + " INT NOT NULL," +
+                    "PRIMARY KEY(" + PRODUCT_COLUMN_ID + ")," +
                     "FOREIGN KEY(" +PRODUCT_COLUMN_SUPPLIER +")" +
                         "REFERENCES " + TABLE_SUPPLIER + "(" + SUPPLIER_COLUMN_ID +")," +
                     "FOREIGN KEY(" +PRODUCT_COLUMN_CATEGORY +")" +
-                    "REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_COLUMN_ID +")," +
+                        "REFERENCES " + TABLE_CATEGORY + "(" + CATEGORY_COLUMN_ID +")," +
 
 //                    "FOREIGN KEY(" +PRODUCT_COLUMN_LOCATION +")" +
 //                        "REFERENCES " + TABLE_INVENTORY + "(" + INVENTORY_COLUMN_ID +")," +

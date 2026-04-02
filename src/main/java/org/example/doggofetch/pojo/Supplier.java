@@ -3,14 +3,18 @@ package org.example.doggofetch.pojo;
 public class Supplier {
     private int id;
     private String name;
-    private String address;
     private String phone;
     private String email;
 
     public Supplier(int id, String name, String address, String phone, String email) {
         this.id = id;
         this.name = name;
-        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public Supplier(String name, String phone, String email) {
+        this.name = name;
         this.phone = phone;
         this.email = email;
     }
@@ -33,14 +37,6 @@ public class Supplier {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {
