@@ -9,6 +9,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * OrderTable
+ * March 2026
+ * Hania
+ * Hania - updated April 2 to add CRUD methods
+ */
+
 public class OrderTable implements OrderDAO {
     Database db = Database.getInstance();
     ArrayList<Order> order;

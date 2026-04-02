@@ -1,6 +1,5 @@
 package org.example.doggofetch.tables;
 
-
 import org.example.doggofetch.dao.UserDAO;
 import org.example.doggofetch.database.DBConst;
 import org.example.doggofetch.database.Database;
@@ -9,6 +8,13 @@ import org.example.doggofetch.pojo.User;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+/**
+ * UserTable
+ * April  2, 2026
+ * Hania
+ */
+
 
 public class UserTable implements UserDAO {
     private static UserTable instance;
