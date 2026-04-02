@@ -6,7 +6,7 @@ public class Supplier {
     private String phone;
     private String email;
 
-    public Supplier(int id, String name, String address, String phone, String email) {
+    public Supplier(int id, String name, String address, String phone) {
         this.id = id;
         this.name = name;
         this.phone = phone;

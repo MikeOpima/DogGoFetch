@@ -32,7 +32,6 @@ public class SupplierTable implements SupplierDAO {
                 suppliers.add(new Supplier(
                         data.getInt(DBConst.SUPPLIER_COLUMN_ID),
                         data.getString(DBConst.SUPPLIER_COLUMN_NAME),
-                        data.getString(DBConst.SUPPLIER_COLUMN_ADDRESS),
                         data.getString(DBConst.SUPPLIER_COLUMN_PHONE),
                         data.getString(DBConst.SUPPLIER_COLUMN_EMAIL)
                 ));
@@ -55,7 +54,6 @@ public class SupplierTable implements SupplierDAO {
                 return new Supplier(
                         data.getInt(DBConst.SUPPLIER_COLUMN_ID),
                         data.getString(DBConst.SUPPLIER_COLUMN_NAME),
-                        data.getString(DBConst.SUPPLIER_COLUMN_ADDRESS),
                         data.getString(DBConst.SUPPLIER_COLUMN_PHONE),
                         data.getString(DBConst.SUPPLIER_COLUMN_EMAIL)
                 );
@@ -65,4 +63,52 @@ public class SupplierTable implements SupplierDAO {
         }
         return null;
     }
+
+    @Override
+    public void createSupplier(Supplier supplier) {
+        String query = "INSERT INTO " + DBConst.TABLE_SUPPLIER +
+                "(" + DBConst.SUPPLIER_COLUMN_NAME + ", " +
+                DBConst.SUPPLIER_COLUMN_PHONE + ", " +
+                DBConst.SUPPLIER_COLUMN_EMAIL + ") VALUES ('" +
+                supplier.getName() + "', '" +
+                supplier.getPhone() + "', '" +
+                supplier.getEmail() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Created Supplier");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateSupplier(Supplier supplier) {
+        String query = "UPDATE " + DBConst.TABLE_SUPPLIER + " SET " +
+                DBConst.SUPPLIER_COLUMN_NAME + " = '" + supplier.getName() + "', " +
+                DBConst.SUPPLIER_COLUMN_PHONE + " = '" + supplier.getPhone() + "', " +
+                DBConst.SUPPLIER_COLUMN_EMAIL + " = '" + supplier.getEmail() + "' " +
+                "WHERE " + DBConst.SUPPLIER_COLUMN_ID + " = " + supplier.getId();
+
+        try {
+            db.getConnection().createStatement().executeUpdate(query);
+            System.out.println("Updated Supplier");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteSupplier(int id) {
+        String query = "DELETE FROM " + DBConst.TABLE_SUPPLIER +
+                " WHERE " + DBConst.SUPPLIER_COLUMN_ID + " = " + id;
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Supplier");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
