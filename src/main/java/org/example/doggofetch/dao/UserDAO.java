@@ -4,6 +4,12 @@ import org.example.doggofetch.pojo.User;
 
 import java.util.ArrayList;
 
+/**
+ * UserDAO
+ * April 2, 2026
+ * Hania
+ */
+
 public interface UserDAO {
     public ArrayList<User> getAllUsers();
     public User getUser (int id);
