@@ -40,7 +40,7 @@ public class OrderTable implements OrderDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    }//end getAllOrders
 
     @Override
     public Order getOrder(int id) {
@@ -62,7 +62,7 @@ public class OrderTable implements OrderDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    }//end getOrder
 
     @Override
     public void createOrder(Order orderObj) {
@@ -82,7 +82,7 @@ public class OrderTable implements OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }//end createOrder
 
     @Override
     public void updateOrder(Order orderObj) {
@@ -100,7 +100,7 @@ public class OrderTable implements OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }// end updateOrder
 
     @Override
     public void deleteOrder(int id) {
@@ -113,5 +113,5 @@ public class OrderTable implements OrderDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-}
+    }//end deleteOrder
+}//end OrderTable class

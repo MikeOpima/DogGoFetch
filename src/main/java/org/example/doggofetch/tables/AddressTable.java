@@ -26,7 +26,7 @@ public class AddressTable implements AddressDAO {
             instance = new AddressTable();
         }
         return instance;
-    }
+    } //get AddressTable instance
 
     @Override
     public ArrayList<Address> getAllAddresses() {
@@ -52,7 +52,7 @@ public class AddressTable implements AddressDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    } //end getAllAddresses
 
     @Override
     public Address getAddress(int id) {
@@ -77,7 +77,7 @@ public class AddressTable implements AddressDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    } //end getAddress
 
     @Override
     public void createAddress(Address address) {
@@ -103,7 +103,7 @@ public class AddressTable implements AddressDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //create Address
 
     @Override
     public void updateAddress(Address address) {
@@ -129,7 +129,7 @@ public class AddressTable implements AddressDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //end update Address
 
     @Override
     public void deleteAddress(int id) {
@@ -142,5 +142,5 @@ public class AddressTable implements AddressDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-}
+    }  //end delete Address
+}//end AddressTable class

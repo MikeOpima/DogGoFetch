@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * Hania
  */
 
-
 public class UserTable implements UserDAO {
     private static UserTable instance;
     Database db = Database.getInstance();
@@ -26,7 +25,7 @@ public class UserTable implements UserDAO {
             instance = new UserTable();
         }
         return instance;
-    }
+    } //get UserTable instance
 
     @Override
     public ArrayList<User>getAllUsers(){
@@ -49,7 +48,8 @@ public class UserTable implements UserDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    }// end getAllUsers
+
     @Override
     public User getUser(int id){
         String query = "SELECT * FROM "+ DBConst.TABLE_USER+
@@ -70,8 +70,7 @@ public class UserTable implements UserDAO {
             e.printStackTrace();
         }
         return null;
-    }
-
+    }//end getUsers
 
     @Override
     public void createUser(User user) {
@@ -91,7 +90,7 @@ public class UserTable implements UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //end createUser
 
     @Override
     public void updateUser(User user) {
@@ -108,7 +107,7 @@ public class UserTable implements UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //end updateUser
 
     @Override
     public void deleteUser(int id) {
@@ -121,5 +120,5 @@ public class UserTable implements UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-}
+    }//end deleteUser
+}//end UserTable class
