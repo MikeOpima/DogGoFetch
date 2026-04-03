@@ -15,6 +15,13 @@ public class Inventory {
         this.inventoryLocation = inventoryLocation;
     }
 
+    public Inventory(int inventoryQuantity, String inventoryName, String inventoryDescription, String inventoryLocation) {
+        this.inventoryQuantity = inventoryQuantity;
+        this.inventoryName = inventoryName;
+        this.inventoryDescription = inventoryDescription;
+        this.inventoryLocation = inventoryLocation;
+    }
+
     public int getInventoryId() {return inventoryId;}
 
     public void setInventoryId(int inventoryId) {this.inventoryId = inventoryId;}
