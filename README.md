@@ -14,7 +14,7 @@ interface.
 -   Inventory tracking and stock monitoring
 -   Product management (add, edit, delete products)
 -   Order and transaction processing
--   Search and filter products quickly
+-   Search and filter products efficiently
 -   Automatic inventory updates after transactions
 -   Simple dashboard for warehouse staff
 
@@ -25,7 +25,7 @@ interface.
 ## Warehouse Staff / Cashier
 
 -   Add and update product information
--   Process product sales
+-   Process product orders
 -   Monitor inventory levels
 
 ## System
@@ -57,10 +57,7 @@ Server     SCWEB
     ├── dashboard.php
     │
     ├── css/
-    │   └── styles.css
-    │
-    ├── js/
-    │   └── scripts.js
+    │   └── jajvaFx
     │
     ├── database/
     │   └── doggofetch.sql
