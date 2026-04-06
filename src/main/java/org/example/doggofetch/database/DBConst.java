@@ -88,4 +88,5 @@ public class DBConst {
                     CATEGORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     CATEGORY_COLUMN_NAME + " VARCHAR(50) NOT NULL, " +
                     "PRIMARY KEY(" + CATEGORY_COLUMN_ID + "));";
+
 }

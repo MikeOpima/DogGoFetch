@@ -81,7 +81,6 @@ public class AddProductTab extends Tab {
         Button submitButton = new Button(" Add New Product ");
         submitButton.setOnAction( e->{
             Product product = new Product(
-//                    @TODO  fix product
             tfName.getText(),
             Integer.parseInt(tfSku.getText()),
             Integer.parseInt(tfQty.getText()),
