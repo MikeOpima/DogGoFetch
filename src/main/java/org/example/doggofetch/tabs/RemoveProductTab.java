@@ -62,9 +62,10 @@ public class RemoveProductTab extends Tab {
                 if (newValue != null) {
                     Product selectedProduct = product.getProduct(((DisplayProduct) newValue).getId());
                     //Product object version of DisplayItem (Selected in table)
-                    //related to pojo/DatabaseItem Class // katkoe
-                    UpdateProductPane pane = new UpdateProductPane(selectedProduct);  /// TO-FIXX
-                    root.getRight(pane);
+                    //related to pojo/DatabaseItem Class
+                    // fixed root to setRight // katkoe
+                    UpdateProductPane pane = new UpdateProductPane(selectedProduct);
+                    root.setRight(pane);
                 }
             }
         });
