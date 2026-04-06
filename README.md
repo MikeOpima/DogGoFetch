@@ -13,7 +13,7 @@ interface.
 
 -   Inventory tracking and stock monitoring
 -   Product management (add, edit, delete products)
--   Order and transaction processing
+-   Track incoming orders.
 -   Search and filter products quickly
 -   Automatic inventory updates after transactions
 -   Simple dashboard for warehouse staff
@@ -22,15 +22,14 @@ interface.
 
 # 👤 System Actors
 
-## Warehouse Staff / Cashier
+## Warehouse Staff / User
 
 -   Add and update product information
--   Process product sales
 -   Monitor inventory levels
 
 ## System
 
--   Stores product and transaction data
+-   Stores product and inventory data
 -   Updates inventory automatically
 -   Maintains order history
 
@@ -54,13 +53,9 @@ Server     SCWEB
     │
     ├── index.php
     ├── login.php
-    ├── dashboard.php
     │
     ├── css/
-    │   └── styles.css
-    │
-    ├── js/
-    │   └── scripts.js
+    │   └── JavaFx
     │
     ├── database/
     │   └── doggofetch.sql
@@ -108,11 +103,10 @@ Open in browser:
 
 ### Process a Sale
 
-1.  Cashier selects or scans a product
+1.  User selects or scans a product
 2.  System retrieves product details
-3.  Cashier confirms purchase
-4.  System records the transaction
-5.  Inventory is updated automatically
+3.  System records the transaction
+4.  Inventory is updated automatically
 
 ------------------------------------------------------------------------
 

@@ -8,6 +8,6 @@ public class CartTab extends Tab {
     public CartTab(){
     this.setText("View Cart");
     BorderPane root = new BorderPane();
-    Text welcome = new Text("Remove Items");
+//  Text welcome = new Text("Cart");
     } // con
 }
