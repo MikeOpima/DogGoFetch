@@ -1,10 +1,5 @@
 package org.example.doggofetch.pojo;
 
-/**
- * Product POJO
- * march2026
- * katkoe
- */
 public class Product {
     private int id;
     private String name;
@@ -19,6 +14,7 @@ public class Product {
         this.quantity = quantity;
         this.location = location;
         this.supplier = supplier;
+        this.category = category;
     }
 
     public Product(String name, int quantity, String location, int supplier, int category) {
