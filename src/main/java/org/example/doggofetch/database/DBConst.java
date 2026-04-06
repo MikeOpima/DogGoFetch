@@ -8,6 +8,7 @@ public class DBConst {
     public static final String TABLE_PRODUCT = "Product";
     public static final String PRODUCT_COLUMN_ID = "Id";
     public static final String PRODUCT_COLUMN_NAME = "Name";
+    public static final String PRODUCT_COLUMN_SKU= "Sku";
     public static final String PRODUCT_COLUMN_QUANTITY = "Quantity";
     public static final String PRODUCT_COLUMN_LOCATION = "Location";
     public static final String PRODUCT_COLUMN_SUPPLIER = "Supplier";
@@ -71,6 +72,7 @@ public class DBConst {
             "CREATE TABLE IF NOT EXISTS " + TABLE_PRODUCT + " (" +
                     PRODUCT_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     PRODUCT_COLUMN_NAME + " INT, " +
+                    PRODUCT_COLUMN_SKU + " INT, " +
                     PRODUCT_COLUMN_QUANTITY + " INT, " +
                     PRODUCT_COLUMN_LOCATION + " VARCHAR(200) NOT NULL," +
                     PRODUCT_COLUMN_SUPPLIER + " INT," +

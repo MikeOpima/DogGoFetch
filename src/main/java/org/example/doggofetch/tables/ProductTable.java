@@ -41,6 +41,7 @@ public class ProductTable implements ProductDAO {
                 products.add(new Product(
                         data.getInt(PRODUCT_COLUMN_ID),
                         data.getString(PRODUCT_COLUMN_NAME),
+                        data.getInt(PRODUCT_COLUMN_SKU),
                         data.getInt(PRODUCT_COLUMN_QUANTITY),
                         data.getString(PRODUCT_COLUMN_LOCATION),
                         data.getInt(PRODUCT_COLUMN_SUPPLIER),
@@ -70,6 +71,7 @@ public class ProductTable implements ProductDAO {
                 product = new Product(
                         data.getInt(PRODUCT_COLUMN_ID),
                         data.getString(PRODUCT_COLUMN_NAME),
+                        data.getInt(PRODUCT_COLUMN_SKU),
                         data.getInt(PRODUCT_COLUMN_QUANTITY),
                         data.getString(PRODUCT_COLUMN_LOCATION),
                         data.getInt(PRODUCT_COLUMN_SUPPLIER),
@@ -86,6 +88,7 @@ public class ProductTable implements ProductDAO {
     public void updateProduct(Product product) {
         String query = "UPDATE " + TABLE_PRODUCT + " SET " +
                 PRODUCT_COLUMN_NAME + "= " + product.getName() + ", " +
+                PRODUCT_COLUMN_SKU + "= " + product.getSku() + ", " +
                 PRODUCT_COLUMN_QUANTITY + "= " + product.getQuantity() + ", " +
                 PRODUCT_COLUMN_LOCATION + "= " + product.getLocation() + ", " +
                 PRODUCT_COLUMN_SUPPLIER + "= " + product.getSupplier() +
@@ -117,6 +120,7 @@ public class ProductTable implements ProductDAO {
     public void createProduct(Product product) {
         String query = "INSERT INTO " + TABLE_PRODUCT +
                 "(" + PRODUCT_COLUMN_NAME +"," +
+                PRODUCT_COLUMN_SKU +"," +
                 PRODUCT_COLUMN_QUANTITY +"," +
                 PRODUCT_COLUMN_LOCATION +") VALUES ('" +
                 product.getName() +"','" + product.getQuantity() +"','" +

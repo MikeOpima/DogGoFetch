@@ -8,24 +8,30 @@ package org.example.doggofetch.pojo;
 public class Product {
     private int id;
     private String name;
+    private int sku;
     private int quantity;
     private String location;
     private int supplier;
     private int category;
 
-    public Product(int id, String name,  int quantity, String location, int supplier, int category) {
+    public Product(int id, String name, int sku, int quantity, String location,
+                   int supplier, int category) {
         this.id = id;
         this.name = name;
+        this.sku = sku;
         this.quantity = quantity;
         this.location = location;
         this.supplier = supplier;
+        this.category = category;
     }
 
-    public Product(String name, int quantity, String location, int supplier, int category) {
+    public Product(String name, int sku, int quantity, String location, int supplier, int category) {
         this.name = name;
+        this.sku = sku;
         this.quantity = quantity;
         this.location = location;
         this.supplier = supplier;
+        this.category = category;
     }
 
     public Product() {
@@ -46,6 +52,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getSku() {
+        return sku;
+    }
+
+    public void setSku(int sku) {
+        this.sku = sku;
     }
 
     public int getQuantity() {
