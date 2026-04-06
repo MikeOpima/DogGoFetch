@@ -106,16 +106,8 @@ public class UpdateProductPane extends GridPane {
             product.setSku(Integer.parseInt(tfSku.getText()));
             product.setQuantity(Integer.parseInt(tfQty.getText()));
             product.setLocation(tfLocation.getText());
-            
+
         }));
-
-
-
-
-
-
-    }
-
-
-
-}
+        this.add(updateButton, 1, 6);
+    } // end UpdateProductPane
+} // end class
