@@ -36,8 +36,8 @@ public class AddProductTab extends Tab {
 
         Text category = new Text("Category");
         ComboBox<Category> comboName = new ComboBox<>();
-        comboName.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
-        comboName.getSelectionModel().select(0);
+       // comboName.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
+      //  comboName.getSelectionModel().select(0);
 
 
 
