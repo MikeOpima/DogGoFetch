@@ -27,6 +27,10 @@ public class ProductStatsTab extends Tab {
         refresh.setOnAction(e -> {
             generateChart();
         });
+        generateChart();
+        bp.setCenter(pieChart);
+        bp.setBottom(refresh);
+        this.setContent(bp);
 
     }
 
@@ -43,7 +47,8 @@ public class ProductStatsTab extends Tab {
                 pieChartData.add(new PieChart.Data(product.getName(), count));
             }
         }
-        ObservableList<PieChart.Data> chartData = FXCollections.observableArrayList(pieChartData);
+        ObservableList<PieChart.Data> chartData
+                = FXCollections.observableArrayList(pieChartData);
         pieChart.setData(chartData);
     }
 
