@@ -8,16 +8,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.DisplayProduct;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.ProductTable;
 
-import static org.example.doggofetch.database.DBConst.*;
-import static org.example.doggofetch.database.DBConst.PRODUCT_COLUMN_CATEGORY;
 
 public class RemoveProductTab extends Tab {
+
     private static RemoveProductTab instance;
 
     public TableView tableView;
@@ -65,7 +62,8 @@ public class RemoveProductTab extends Tab {
                 if (newValue != null) {
                     Product selectedProduct = product.getProduct(((DisplayProduct) newValue).getId());
                     //Product object version of DisplayItem (Selected in table)
-                    UpdateItemPane pane = new UpdateItemPane(selectedProduct);  /// TO-FIXX
+                    //related to pojo/DatabaseItem Class // katkoe
+                    UpdateProductPane pane = new UpdateProductPane(selectedProduct);  /// TO-FIXX
                     root.getRight(pane);
                 }
             }
