@@ -4,15 +4,17 @@ public class DisplayProduct {
     private int id;
     private String name;
     private int quantity;
-    private String location;
     private String supplier;
+    private String category;
+    private String orderStatus;
 
-    public DisplayProduct(int id, String name,  int quantity, String location, String supplier) {
+    public DisplayProduct(int id, String name,  int quantity, String supplier, String category, String orderStatus) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
-        this.location = location;
         this.supplier = supplier;
+        this.category = category;
+        this.orderStatus = orderStatus;
     }
 
     public int getId() {
@@ -39,14 +41,6 @@ public class DisplayProduct {
         this.quantity = quantity;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getSupplier() {
         return supplier;
     }
@@ -55,4 +49,19 @@ public class DisplayProduct {
         this.supplier = supplier;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }
