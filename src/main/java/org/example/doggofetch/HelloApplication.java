@@ -9,9 +9,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.doggofetch.tabs.AddProductTab;
+import org.example.doggofetch.pojo.Category;
+import org.example.doggofetch.tables.CategoryTable;
+import org.example.doggofetch.tables.ProductTable;
+import org.example.doggofetch.tables.SupplierTable;
+import org.example.doggofetch.tabs.product.AddProductTab;
 import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.RemoveProductTab;
+import org.example.doggofetch.tabs.product.RemoveProductTab;
 
 import java.io.File;
 import java.io.IOException;
@@ -104,6 +108,17 @@ public class HelloApplication extends Application {
                 itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
                 root.setTop(headerContent);
                 root.setCenter(itemTabPane);
+
+                //get table instances
+                ProductTable productTable = new ProductTable();
+                CategoryTable categoryTable = CategoryTable.getInstance();
+                SupplierTable supplierTable = SupplierTable.getInstance();
+
+                Category tools = new Category("tools");
+                categoryTable.createCategory(tools);
+                Category boxes = new Category("boxes");
+                categoryTable.createCategory(boxes);
+
             } else {
                 root.setCenter(configCheck);
 

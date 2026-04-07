@@ -1,4 +1,4 @@
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.product;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;

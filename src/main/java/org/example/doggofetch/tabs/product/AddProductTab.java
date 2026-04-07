@@ -1,18 +1,16 @@
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.product;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tables.CategoryTable;
-import org.example.doggofetch.tables.InventoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
 
@@ -39,6 +37,11 @@ public class AddProductTab extends Tab {
         ProductTable productTable = new ProductTable();
         CategoryTable categoryTable = CategoryTable.getInstance();
         SupplierTable supplierTable = SupplierTable.getInstance();
+
+//        Category tools = new Category("tools");
+//        categoryTable.createCategory(tools);
+//        Category boxes = new Category("boxes");
+//        categoryTable.createCategory(boxes);
 
         // product name
         Text name = new Text("Name: ");

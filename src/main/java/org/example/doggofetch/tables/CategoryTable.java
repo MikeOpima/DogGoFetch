@@ -1,9 +1,11 @@
 package org.example.doggofetch.tables;
 
+import org.example.doggofetch.database.DBConst;
 import org.example.doggofetch.database.Database;
 import org.example.doggofetch.dao.CategoryDAO;
 import org.example.doggofetch.pojo.Category;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,60 +13,54 @@ import java.util.ArrayList;
 
 import static org.example.doggofetch.database.DBConst.*;
 
+/**
+ * Category Table Class
+ * CRUD and getAll get
+ * Mike March 2026
+ * Hania - updated getAllCategory() method
+ */
+
 public class CategoryTable implements CategoryDAO {
     private static CategoryTable instance;
     Database db = Database.getInstance();
     ArrayList<Category> categories;
 
-    @Override
     public ArrayList<Category> getAllCategory() {
-        String query = "SELECT * FROM " + TABLE_CATEGORY;
         categories = new ArrayList<>();
-        try{
-
-            //TODO RUN QUERY
-            Statement getCoins = db.getConnection().createStatement();
-            ResultSet resultSet = getCoins.executeQuery(query);
-
-            while (resultSet.next()){
+        String query = "SELECT * FROM " + TABLE_CATEGORY;
+        try {
+            PreparedStatement getCategories = db.getConnection().prepareStatement(query);
+            ResultSet data = getCategories.executeQuery();
+            while (data.next()) {
                 categories.add(new Category(
-                        resultSet.getInt(CATEGORY_COLUMN_ID),
-                        resultSet.getString(CATEGORY_COLUMN_NAME)
+                        data.getInt(CATEGORY_COLUMN_ID),
+                        data.getString(CATEGORY_COLUMN_NAME)
                 ));
             }
-        }catch (Exception e){
+            return categories;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return categories;
-    } // end getALLCategory
-
-
+    }//end getAllCategory
 
     public Category getCategory(int id){
-        String query = "SELECT * FROM " + TABLE_CATEGORY + " WHERE " + CATEGORY_COLUMN_ID + " = " + id;
+        String query = "SELECT * FROM " + TABLE_CATEGORY +
+                " WHERE " + DBConst.CATEGORY_COLUMN_ID + " = " + id;
+        Category category = null;
         try {
-            Statement getCoins = db.getConnection().createStatement();
-            ResultSet resultSet = getCoins.executeQuery(query);
-            if(resultSet.next()){
-                Category coin = new Category(
-                        resultSet.getInt(CATEGORY_COLUMN_ID),
-                        resultSet.getString(CATEGORY_COLUMN_NAME)
-                );
-                return coin;
+            Statement getCategory = db.getConnection().createStatement();
+            ResultSet data = getCategory.executeQuery(query);
+            if (data.next()) {
+                return new Category(
+                        data.getInt(DBConst.CATEGORY_COLUMN_ID),
+                        data.getString(CATEGORY_COLUMN_NAME) );
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return category;
     } // end getCategory
-
-    public static CategoryTable getInstance(){
-        if(instance == null){
-            instance = new CategoryTable();
-        }
-        return instance;
-    } // get CategoryTable instance
-
 
     public void deleteCategory(int id) {
         String query  = "DELETE FROM " + TABLE_CATEGORY + " WHERE " +
@@ -104,5 +100,17 @@ public class CategoryTable implements CategoryDAO {
             e.printStackTrace();
         }
     }  // end updateProduct
+
+    public static CategoryTable getInstance(){
+        if(instance == null){
+            instance = new CategoryTable();
+        }
+        return instance;
+    } // get CategoryTable instance
+
+
+
+
+
 
 } // end Category Table Class

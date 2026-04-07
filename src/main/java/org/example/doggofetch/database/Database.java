@@ -1,9 +1,14 @@
 package org.example.doggofetch.database;
 
+import org.example.doggofetch.pojo.Category;
+import org.example.doggofetch.pojo.Product;
+import org.example.doggofetch.tables.CategoryTable;
+
 import java.io.File;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.util.Scanner;
+import static org.example.doggofetch.tables.CategoryTable.*;
 
 import static org.example.doggofetch.database.DBConst.*;
 
@@ -42,8 +47,6 @@ public class Database {
             createTable(TABLE_CATEGORY, CREATE_TABLE_CATEGORY, connection);
             createTable(TABLE_PRODUCT, CREATE_TABLE_PRODUCTS, connection);
             createTable(TABLE_ORDER, CREATE_TABLE_ORDER, connection);
-
-
 
         }catch (Exception e){
             e.printStackTrace();
