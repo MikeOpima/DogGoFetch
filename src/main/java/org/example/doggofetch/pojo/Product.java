@@ -1,10 +1,5 @@
 package org.example.doggofetch.pojo;
 
-/**
- * Product POJO
- * march2026
- * katkoe
- */
 public class Product {
     private int id;
     private String name;
