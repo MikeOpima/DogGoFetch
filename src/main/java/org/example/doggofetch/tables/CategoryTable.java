@@ -104,6 +104,7 @@ public class CategoryTable implements CategoryDAO {
     public static CategoryTable getInstance(){
         if(instance == null){
             instance = new CategoryTable();
+            //get table instances
         }
         return instance;
     } // get CategoryTable instance

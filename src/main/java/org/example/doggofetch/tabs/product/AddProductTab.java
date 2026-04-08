@@ -25,7 +25,7 @@ public class AddProductTab extends Tab {
     private static AddProductTab instance;
 
     public AddProductTab(){
-        this.setText("Add Item");
+        this.setText("Add Product");
 
         Text welcome = new Text("Welcome to add items");
 
@@ -37,11 +37,6 @@ public class AddProductTab extends Tab {
         ProductTable productTable = new ProductTable();
         CategoryTable categoryTable = CategoryTable.getInstance();
         SupplierTable supplierTable = SupplierTable.getInstance();
-
-//        Category tools = new Category("tools");
-//        categoryTable.createCategory(tools);
-//        Category boxes = new Category("boxes");
-//        categoryTable.createCategory(boxes);
 
         // product name
         Text name = new Text("Name: ");

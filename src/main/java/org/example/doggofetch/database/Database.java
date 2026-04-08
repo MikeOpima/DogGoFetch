@@ -3,6 +3,8 @@ package org.example.doggofetch.database;
 import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.CategoryTable;
+import org.example.doggofetch.tables.ProductTable;
+import org.example.doggofetch.tables.SupplierTable;
 
 import java.io.File;
 import java.sql.*;
