@@ -1,6 +1,8 @@
 package org.example.doggofetch;
 
 import org.example.doggofetch.pojo.Category;
+import org.example.doggofetch.pojo.Product;
+import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
@@ -12,8 +14,8 @@ public class ConfigAddSampleData {
     // loop to prepopulate sql tables
 
     /**
-     * ConfigCheckPane Class
-     * Load Sample Data at Config.txt file creation
+     * ConfigAddSampleData Class
+     * Load Sample Data at Config.txt file creation only
      * @author katkoe
      * 8apr26
      * v1.0
@@ -38,8 +40,22 @@ public class ConfigAddSampleData {
         }
 
         SupplierTable supplierTable = SupplierTable.getInstance();
+//        ArrayList<String> supplierLoad = new ArrayList<String>();
+//
+//        supplierLoad.add("Tools");
+//
+//        for (String supplier : supplierLoad) {
+//            supplierTable.createSupplier(new Supplier(supplier));
+//        }
 
         ProductTable productTable = new ProductTable();
+        ArrayList<String> productLoad = new ArrayList<String>();
+
+//        productLoad.add("Tools");
+//
+//        for (String product : productLoad) {
+//            supplierTable.createProduct(new Product(product));
+//        }
 
     }
 
