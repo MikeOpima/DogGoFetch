@@ -41,13 +41,12 @@ public class CategoryTable implements CategoryDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return categories;
+        return null;
     }//end getAllCategory
 
     public Category getCategory(int id){
         String query = "SELECT * FROM " + TABLE_CATEGORY +
                 " WHERE " + DBConst.CATEGORY_COLUMN_ID + " = " + id;
-        Category category = null;
         try {
             Statement getCategory = db.getConnection().createStatement();
             ResultSet data = getCategory.executeQuery(query);
@@ -59,7 +58,7 @@ public class CategoryTable implements CategoryDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return category;
+        return null;
     } // end getCategory
 
     public void deleteCategory(int id) {

@@ -9,6 +9,14 @@ public class Product {
     private int supplier;
     private int category;
 
+
+    /**
+     * Product POJO
+     * Hania - April 2 update v.1.1
+     * Constructors are not assigning category
+     * Getter for category has typo
+     */
+
     public Product(int id, String name, int sku, int quantity, String location,
                    int supplier, int category) {
         this.id = id;
@@ -81,7 +89,7 @@ public class Product {
         this.supplier = supplier;
     }
 
-    public int getSCategory() {
+    public int getCategory() {
         return category;
     }
 
