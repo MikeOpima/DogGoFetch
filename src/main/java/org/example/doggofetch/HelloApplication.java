@@ -10,10 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.doggofetch.database.Database;
-import org.example.doggofetch.pojo.Category;
-import org.example.doggofetch.tables.CategoryTable;
-import org.example.doggofetch.tables.ProductTable;
-import org.example.doggofetch.tables.SupplierTable;
 import org.example.doggofetch.tabs.product.AddProductTab;
 import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.RemoveProductTab;
@@ -147,7 +143,7 @@ public class HelloApplication extends Application {
                 connect.setOnMouseClicked( e->{
                     try{
 
-                        ConfigCheckPane configSQL = ConfigCheckPane.getInstance();
+                        ConfigAddSampleData configSQL = ConfigAddSampleData.getInstance();
 
                         // create tab pane
                         TabPane itemTabPane = new TabPane();
