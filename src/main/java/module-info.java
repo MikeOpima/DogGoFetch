@@ -5,7 +5,6 @@ module org.example.doggofetch {
     requires javafx.graphics;
     requires java.desktop;
     requires javafx.base;
-    requires org.example.doggofetch;
 
 
     opens org.example.doggofetch to javafx.fxml;
