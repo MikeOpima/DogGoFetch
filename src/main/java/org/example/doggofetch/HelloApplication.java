@@ -18,14 +18,6 @@ import org.example.doggofetch.tabs.product.RemoveProductTab;
 import java.io.*;
 import java.util.ArrayList;
 
-
-/**
- * HelloApplication
- * checks for config settings - displays landing page
- * Kat Koeller
- * Feb 2026
- **/
-
 public class HelloApplication extends Application {
 
     boolean user = false;
