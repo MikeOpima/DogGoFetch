@@ -1,4 +1,4 @@
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.product;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -15,7 +15,6 @@ import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 
 /**

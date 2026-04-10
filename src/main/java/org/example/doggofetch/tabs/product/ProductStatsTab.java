@@ -1,4 +1,4 @@
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.product;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

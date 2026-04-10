@@ -9,12 +9,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.doggofetch.tabs.AddProductTab;
+import org.example.doggofetch.database.Database;
+import org.example.doggofetch.tabs.product.AddProductTab;
 import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.RemoveProductTab;
+import org.example.doggofetch.tabs.product.RemoveProductTab;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 
 /**
@@ -29,7 +30,9 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         BorderPane root = new BorderPane();
+        ArrayList<String> dbArray = new ArrayList<String>();
 
+        BorderPane indexPane = new BorderPane();
         // menu bar
         MenuBar mainMenuBar = new MenuBar();
         mainMenuBar.getStyleClass().add("mainMenuBar");
@@ -42,7 +45,6 @@ public class HelloApplication extends Application {
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
-
         // menuBar.getMenu().add(file);
         mainMenuBar.getMenus().addAll(inventory, search, cart,
                 orders,login);
@@ -50,7 +52,8 @@ public class HelloApplication extends Application {
             System.exit(0);
         });
 
-        // add items
+
+        // add header items
         Text title = new Text("Dog.Go Fetch");
         title.getStyleClass().add("title");
 
@@ -65,47 +68,129 @@ public class HelloApplication extends Application {
         headerContent.setLeft(logo);
         headerContent.setBottom(mainMenuBar);
 
-        // create tab pane
-        TabPane itemTabPane = new TabPane();
-        itemTabPane.getStyleClass().add("itemTabPane");
-
-        // create tabs
-        AddProductTab addItemTab = new AddProductTab();
-        RemoveProductTab removeItemTab = new RemoveProductTab();
-        CartTab statsTab = new CartTab();
-
-        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-        BorderPane configCheck = new BorderPane();
-
-        VBox instructionsVb = new VBox();
-        Text instructions = new Text("Missing Config Doc \n \n");
-        Text dbName = new Text("Enter in DB_NAME: ");
-        TextField dbNameTf = new TextField();
-        Text dbUser = new Text("Enter in USER NAME: ");
-        TextField dbUserTf = new TextField();
-        Text dbPass = new Text("Enter in PASSWORD: ");
-        PasswordField dbPassPf = new PasswordField();
-        Button test = new Button(" test connection ");
-        Button submit = new Button(" connect ");
-
-
-        instructionsVb.getChildren().addAll(
-                instructions, dbName, dbNameTf, dbUser, dbUserTf, dbPass, dbPassPf, test, submit);
-
-        configCheck.setCenter(instructionsVb);
 
         ///  add in db config.txt check with scene switches //
-
         File dbConfig = new File("config.txt");
+
         try {
-            if (dbConfig.isFile()) {
+            if (!dbConfig.isFile()) {
+                // if no config --- configCheck pane
+                BorderPane configCheck = new BorderPane();
+                VBox instructionsVb = new VBox();
+                Text instructions = new Text("Missing Config Doc \n \n");
+                Text dbName = new Text("Enter in NAME: ");
+                TextField dbNameTf = new TextField();
+                Text dbUser = new Text("Enter in USER: ");
+                TextField dbUserTf = new TextField();
+                Text dbPass = new Text("Enter in PASS: ");
+                PasswordField dbPassTf = new PasswordField();
+                Button test = new Button(" test connection ");
+                Button connect = new Button(" connect ");
+                instructionsVb.getChildren().addAll(
+                        instructions, dbName, dbNameTf, dbUser, dbUserTf,
+                        dbPass, dbPassTf, test, connect);
+
+                configCheck.setCenter(instructionsVb);
+
+                root.setCenter(configCheck);
+                
+                // on test
+
+                test.setOnMouseClicked( e->{
+                    try{
+                        // add to array
+                        dbArray.add(dbNameTf.getText() + "\n" +
+                                dbUserTf.getText() + "\n" +
+                                dbPassTf.getText() + "\n");
+
+                        BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+                        out.close();
+
+                        System.out.println("Wrote to File");
+
+                        Text testMessage = new Text("Connection Created");
+                        root.setBottom(testMessage);
+
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        Text testMessage = new Text("Connection Error try again");
+                        root.setBottom(testMessage);
+                    }
+
+                    try {
+                        PrintWriter out = new PrintWriter( new BufferedWriter
+                                (new FileWriter("config.txt", true)));
+
+                        for(String str : dbArray) {
+                            out.write(str + "\n");
+                        }
+
+                        out.close();
+
+                        Database db = Database.getInstance();
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                }); /// end test action
+
+
+                // on connect
+                connect.setOnMouseClicked( e->{
+                    try{
+
+                        ConfigAddSampleData configSQL = ConfigAddSampleData.getInstance();
+
+                        // create tab pane
+                        TabPane itemTabPane = new TabPane();
+                        itemTabPane.getStyleClass().add("itemTabPane");
+
+                        // create tabs
+                        AddProductTab addItemTab = new AddProductTab();
+                        RemoveProductTab removeItemTab = new RemoveProductTab();
+                        CartTab statsTab = new CartTab();
+
+                        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+                        // end header with tabs
+
+                        // add tabs to pane
+                        itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
+                        indexPane.setTop(headerContent);
+                        indexPane.setCenter(itemTabPane);
+
+                        root.setCenter(indexPane);
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        System.out.println("db connection error");
+                    }
+
+
+                }); /// end connect action
+
+            } else {
+                // create tab pane
+                TabPane itemTabPane = new TabPane();
+                itemTabPane.getStyleClass().add("itemTabPane");
+
+                // create tabs
+                AddProductTab addItemTab = new AddProductTab();
+                RemoveProductTab removeItemTab = new RemoveProductTab();
+                CartTab statsTab = new CartTab();
+
+                itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+                // end header with tabs
+
+
                 // add tabs to pane
                 itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-                root.setTop(headerContent);
-                root.setCenter(itemTabPane);
-            } else {
-                root.setCenter(configCheck);
+                indexPane.setTop(headerContent);
+                indexPane.setCenter(itemTabPane);
+
+                root.setCenter(indexPane);
 
             }
 

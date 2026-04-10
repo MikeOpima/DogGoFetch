@@ -23,17 +23,21 @@ public class DBConst {
     public static final String INVENTORY_COLUMN_LOCATION = "Location";
 
     //ORDER TABLE
-    public static final String TABLE_ORDER = "Order";
+    public static final String TABLE_ORDER = "Orders";
     public static final String ORDER_COLUMN_ID = "Id";
     public static final String ORDER_COLUMN_DATE = "Date";
     public static final String ORDER_COLUMN_QUANTITY = "Quantity";
     public static final String ORDER_COLUMN_STATUS = "Status";
+    public static final String ORDER_COLUMN_USER_ID = "UserId";
 
     //SUPPLIER TABLE
     public static final String TABLE_SUPPLIER = "Supplier";
     public static final String SUPPLIER_COLUMN_ID = "Id";
     public static final String SUPPLIER_COLUMN_NAME = "Name";
     public static final String SUPPLIER_COLUMN_ADDRESS = "Address";
+    public static final String SUPPLIER_COLUMN_CITY = "City";
+    public static final String SUPPLIER_COLUMN_PROVINCE = "Province";
+    public static final String SUPPLIER_COLUMN_POSTALCODE = "PostalCode";
     public static final String SUPPLIER_COLUMN_PHONE = "Phone";
     public static final String SUPPLIER_COLUMN_EMAIL = "Email";
 
@@ -41,6 +45,14 @@ public class DBConst {
     public static final String TABLE_CATEGORY = "Category";
     public static final String CATEGORY_COLUMN_ID = "id";
     public static final String CATEGORY_COLUMN_NAME = "name";
+
+    // USER TABLE
+    public static final String TABLE_USER = "User";
+    public static final String USER_COLUMN_ID = "Id";
+    public static final String USER_COLUMN_FIRST_NAME = "FirstName";
+    public static final String USER_COLUMN_LAST_NAME = "LastName";
+    public static final String USER_COLUMN_PASSWORD = "Password";
+    public static final String USER_COLUMN_ROLE = "UserRole";
 
     public static final String CREATE_TABLE_INVENTORY =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_INVENTORY +"(" +
@@ -51,13 +63,25 @@ public class DBConst {
                     INVENTORY_COLUMN_LOCATION + " VARCHAR(200) NOT NULL, " +
                     "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "));";
 
+    public static final String CREATE_TABLE_USER =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "(" +
+                    USER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
+                    USER_COLUMN_FIRST_NAME + " VARCHAR(100) NOT NULL, " +
+                    USER_COLUMN_LAST_NAME + " VARCHAR(100) NOT NULL, " +
+                    USER_COLUMN_PASSWORD + " VARCHAR(255) NOT NULL, " +
+                    USER_COLUMN_ROLE + " VARCHAR(20) NOT NULL, " +
+                    "PRIMARY KEY(" + USER_COLUMN_ID + "));";
+
     public static final String CREATE_TABLE_ORDER =
-            "CREATE TABLE IF NOT EXISTS "+ TABLE_ORDER +"(" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_ORDER + "(" +
                     ORDER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     ORDER_COLUMN_DATE + " VARCHAR(12) NOT NULL, " +
                     ORDER_COLUMN_QUANTITY + " INT NOT NULL, " +
-                    ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL," +
-                    "PRIMARY KEY(" + INVENTORY_COLUMN_ID + "));";
+                    ORDER_COLUMN_STATUS + " VARCHAR(100) NOT NULL, " +
+                    ORDER_COLUMN_USER_ID + " INT, " +
+                    "PRIMARY KEY(" + ORDER_COLUMN_ID + ")," +
+                    "FOREIGN KEY(" + ORDER_COLUMN_USER_ID + ") REFERENCES " +
+                    TABLE_USER + "(" + USER_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_SUPPLIER =
             "CREATE TABLE IF NOT EXISTS "+ TABLE_SUPPLIER +"(" +
@@ -88,4 +112,5 @@ public class DBConst {
                     CATEGORY_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
                     CATEGORY_COLUMN_NAME + " VARCHAR(50) NOT NULL, " +
                     "PRIMARY KEY(" + CATEGORY_COLUMN_ID + "));";
+
 }

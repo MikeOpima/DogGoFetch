@@ -92,7 +92,7 @@ public class ProductTable implements ProductDAO {
                 PRODUCT_COLUMN_QUANTITY + "= " + product.getQuantity() + ", " +
                 PRODUCT_COLUMN_LOCATION + "= " + product.getLocation() + ", " +
                 PRODUCT_COLUMN_SUPPLIER + "= " + product.getSupplier() +
-                PRODUCT_COLUMN_CATEGORY + "= " + product.getSCategory() +
+                PRODUCT_COLUMN_CATEGORY + "= " + product.getCategory() +
                 "WHERE " + PRODUCT_COLUMN_ID + " = " + product.getId();
         try {
             Statement updateProduct = db.getConnection().createStatement();
@@ -117,14 +117,23 @@ public class ProductTable implements ProductDAO {
     } // end deleteProduct
 
     @Override
+    /**
+     * update by Hania april26
+     */
     public void createProduct(Product product) {
         String query = "INSERT INTO " + TABLE_PRODUCT +
-                "(" + PRODUCT_COLUMN_NAME +"," +
-                PRODUCT_COLUMN_SKU +"," +
-                PRODUCT_COLUMN_QUANTITY +"," +
-                PRODUCT_COLUMN_LOCATION +") VALUES ('" +
-                product.getName() +"','" + product.getQuantity() +"','" +
-                product.getLocation() + "')";
+                "(" + PRODUCT_COLUMN_NAME + ", " +
+                PRODUCT_COLUMN_SKU + ", " +
+                PRODUCT_COLUMN_QUANTITY + ", " +
+                PRODUCT_COLUMN_LOCATION + ", " +
+                PRODUCT_COLUMN_SUPPLIER + ", " +
+                PRODUCT_COLUMN_CATEGORY + ") VALUES ('" +
+                product.getName() + "', " +
+                product.getSku() + "', " +
+                product.getQuantity() + ", '" +
+                product.getLocation() + "', " +
+                product.getSupplier() + ", " +
+                product.getCategory() + ")";
         try{
             db.getConnection().createStatement().execute(query);
             System.out.println("Add New Product: " + product.getName());
