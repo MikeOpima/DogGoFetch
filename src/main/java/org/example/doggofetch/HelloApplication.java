@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
  **/
 
 public class HelloApplication extends Application {
+
+    boolean user = false;
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -52,7 +55,6 @@ public class HelloApplication extends Application {
             System.exit(0);
         });
 
-
         // add header items
         Text title = new Text("Dog.Go Fetch");
         title.getStyleClass().add("title");
@@ -68,6 +70,51 @@ public class HelloApplication extends Application {
         headerContent.setLeft(logo);
         headerContent.setBottom(mainMenuBar);
 
+        // create tab pane
+        TabPane itemTabPane = new TabPane();
+        itemTabPane.getStyleClass().add("itemTabPane");
+
+        // create tabs
+        AddProductTab addItemTab = new AddProductTab();
+        RemoveProductTab removeItemTab = new RemoveProductTab();
+        CartTab statsTab = new CartTab();
+
+        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+        // end header with tabs
+
+        // add tabs to pane
+        itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
+        indexPane.setTop(headerContent);
+        indexPane.setCenter(itemTabPane);
+
+
+        // check for user login
+        BorderPane userCheck = new BorderPane();
+        VBox userVb = new VBox();
+        Text loginInstructions = new Text("Please Sign In \n \n");
+        Text loginUser = new Text("Enter in USER: ");
+        TextField loginUserTf = new TextField();
+        Text loginPass = new Text("Enter in PASS: ");
+        PasswordField loginPassTf = new PasswordField();
+        Button loginButton = new Button("TEST CLICK ME Sign In");
+        userVb.getChildren().addAll(
+                loginInstructions, loginUser, loginUserTf,
+                loginPass, loginPassTf, loginButton);
+
+        loginButton.setOnMouseClicked(e -> {
+            try {
+                user = true;
+                root.setCenter(indexPane);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("login error");
+            }
+
+        }); /// end login action
+        userCheck.setCenter(userVb);
+        // end user check
 
         ///  add in db config.txt check with scene switches //
         File dbConfig = new File("config.txt");
@@ -86,12 +133,15 @@ public class HelloApplication extends Application {
                 PasswordField dbPassTf = new PasswordField();
                 Button test = new Button(" test connection ");
                 Button connect = new Button(" connect ");
+                HBox connectButtons = new HBox();
+                connectButtons.getChildren().addAll(test, connect);
                 instructionsVb.getChildren().addAll(
                         instructions, dbName, dbNameTf, dbUser, dbUserTf,
-                        dbPass, dbPassTf, test, connect);
+                        dbPass, dbPassTf, connectButtons);
 
                 configCheck.setCenter(instructionsVb);
 
+                user = true;
                 root.setCenter(configCheck);
                 
                 // on test
@@ -142,24 +192,6 @@ public class HelloApplication extends Application {
 
                         ConfigAddSampleData configSQL = ConfigAddSampleData.getInstance();
 
-                        // create tab pane
-                        TabPane itemTabPane = new TabPane();
-                        itemTabPane.getStyleClass().add("itemTabPane");
-
-                        // create tabs
-                        AddProductTab addItemTab = new AddProductTab();
-                        RemoveProductTab removeItemTab = new RemoveProductTab();
-                        CartTab statsTab = new CartTab();
-
-                        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-                        // end header with tabs
-
-                        // add tabs to pane
-                        itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-                        indexPane.setTop(headerContent);
-                        indexPane.setCenter(itemTabPane);
-
                         root.setCenter(indexPane);
 
                     } catch (Exception ex) {
@@ -170,29 +202,20 @@ public class HelloApplication extends Application {
 
                 }); /// end connect action
 
-            } else {
-                // create tab pane
-                TabPane itemTabPane = new TabPane();
-                itemTabPane.getStyleClass().add("itemTabPane");
-
-                // create tabs
-                AddProductTab addItemTab = new AddProductTab();
-                RemoveProductTab removeItemTab = new RemoveProductTab();
-                CartTab statsTab = new CartTab();
-
-                itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-                // end header with tabs
-
-
-                // add tabs to pane
-                itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-                indexPane.setTop(headerContent);
-                indexPane.setCenter(itemTabPane);
-
-                root.setCenter(indexPane);
-
             }
+
+                // TEMP test pane for user login check
+                // will set value in config db check // katkoe 9apr26
+
+                if (!user) {
+
+                    root.setCenter(userCheck);
+
+                } else {
+
+                    root.setCenter(indexPane);
+
+                }
 
             // set global variables from config.txt
 
