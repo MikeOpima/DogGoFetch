@@ -3,14 +3,19 @@ package org.example.doggofetch.tabs.product;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.DisplayProduct;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.ProductTable;
+import org.example.doggofetch.tables.SupplierTable;
+
+import java.util.ArrayList;
 
 
 public class RemoveProductTab extends Tab {
@@ -21,58 +26,57 @@ public class RemoveProductTab extends Tab {
 
     public RemoveProductTab(){
         this.setText("Remove Product");
-        ProductTable product = ProductTable.getInstance();
-        BorderPane root = new BorderPane();
-        tableView = new TableView();
-//            Text welcome = new Text("Remove Items");
-//      Product Name
-        TableColumn<DisplayProduct, String> column1 = new TableColumn<>("Product Name");
 
-        column1.setCellValueFactory(
-                e-> new SimpleStringProperty(e.getValue().getName()));
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
 
-        TableColumn<DisplayProduct, String> column2  = new TableColumn<>("Product Supplier");
+        //get item istances
+        ProductTable productTable = new ProductTable();
+        SupplierTable supplierTable = SupplierTable.getInstance();
 
-        column2.setCellValueFactory(
-                e-> new SimpleStringProperty(e.getValue().getSupplier()));
+        Text productId = new Text("Product ID: ");
+        TextField productIdField = new TextField();
+        productIdField.setPromptText("Product ID");
+        gridPane.add(productId,0,0);
+        gridPane.add(productIdField,1,0);
 
-        TableColumn<DisplayProduct, String> column3  = new TableColumn<>("Product Quantity");
+        Text productName = new Text("Product Name: ");
+        TextField productNameField = new TextField();
+        productNameField.setPromptText("Product Name");
+        gridPane.add(productName,0,1);
+        gridPane.add(productNameField,1,1);
 
-        column3.setCellValueFactory(
-                e->new SimpleStringProperty(String.valueOf(e.getValue().getQuantity())));
+        Text supplierName = new Text("Supplier Name: ");
+        TextField supplierNameField = new TextField();
+        supplierNameField.setPromptText("Supplier Name");
+        gridPane.add(supplierName,0,2);
+        gridPane.add(supplierNameField,1,2);
 
-        tableView.getColumns().addAll(column1, column2, column3);
-        tableView.getItems().addAll(product.getAllProducts()); //select * from displayable table
-        root.setCenter(tableView);
-        Button removeProduct = new Button("Remove Product");
-        removeProduct.setOnAction(e -> {
-            DisplayProduct remove = (DisplayProduct) tableView.getSelectionModel().getSelectedItem();
-            product.deleteProduct(remove.getId());
-            refreshTable();
-            tableView.getItems().clear();
-            tableView.getItems().addAll(product.getAllProducts());  /// getAllProoducts is supposed to be the table the user views like PrettyItems
-            ProductStatsTab.getInstance().generateChart();
+        Text quantity = new Text("Quantity: ");
+        TextField quantityField = new TextField();
+        productNameField.setPromptText("Quantity");
+        gridPane.add(quantity,0,3);
+        gridPane.add(quantityField,1,3);
 
+        Button removeButton = new Button("Remove Product");
+        removeButton.setOnAction(e -> {
+            Product product = new Product();
+            productNameField.getText();
+            supplierNameField.getText();
+            Integer.parseInt(quantityField.getText());
+
+            productTable.deleteProduct(product.getId());
+            RemoveProductTab.getInstance().refreshTable();
         });
+        gridPane.add(removeButton,1,4);
 
-        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-                System.out.println("Changed");
-                if (newValue != null) {
-                    Product selectedProduct = product.getProduct(((DisplayProduct) newValue).getId());
-                    //Product object version of DisplayItem (Selected in table)
-                    //related to pojo/DatabaseItem Class
-                    // fixed root to setRight // katkoe
-                    UpdateProductPane pane = new UpdateProductPane(selectedProduct);
-                    root.setRight(pane);
-                }
-            }
-        });
-        root.setBottom(removeProduct);
-        this.setContent(root);
+        this.setContent(gridPane);
 
-    }// end con
+    }
+
+
+
     public void refreshTable(){
         ProductTable product = ProductTable.getInstance();
         tableView.getItems().clear();

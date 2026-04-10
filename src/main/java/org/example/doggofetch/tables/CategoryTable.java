@@ -88,7 +88,7 @@ public class CategoryTable implements CategoryDAO {
 
     public void updateCategory(Category category) {
         String query = "UPDATE " + TABLE_CATEGORY + " SET " +
-                CATEGORY_COLUMN_NAME + "= " + category.getName() + ", " +
+                CATEGORY_COLUMN_NAME + "= " + category.getName() + " " +
                 "WHERE " + CATEGORY_COLUMN_ID + " = " + category.getId();
         try {
             Statement updateCategory = db.getConnection().createStatement();
