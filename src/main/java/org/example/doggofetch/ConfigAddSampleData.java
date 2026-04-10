@@ -8,6 +8,7 @@ import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ConfigAddSampleData {
     private static ConfigAddSampleData instance;
@@ -40,22 +41,22 @@ public class ConfigAddSampleData {
         }
 
         SupplierTable supplierTable = SupplierTable.getInstance();
-//        ArrayList<String> supplierLoad = new ArrayList<String>();
-//
-//        supplierLoad.add("Tools");
-//
-//        for (String supplier : supplierLoad) {
-//            supplierTable.createSupplier(new Supplier(supplier));
-//        }
+        ArrayList<String> supplierLoad = new ArrayList<String>();
+        supplierLoad.add("Global Tools Inc.");
+
+        for (String supplier : supplierLoad) {
+            supplierTable.createSupplier(new Supplier(supplier));
+        }
 
         ProductTable productTable = new ProductTable();
         ArrayList<String> productLoad = new ArrayList<String>();
 
-        productLoad.add("Tools");
+        productLoad.add("'Hammer', 1001, 50, 'Aisle 1 - Shelf A', 1 , 1");
+        productLoad.add("'Big Hammer', 1001, 50, 'Aisle 1 - Shelf A', 1 , 1");
 
-//        for (String product : productLoad) {
-//            supplierTable.createProduct(new Product(product));
-//        }
+        for (String product : productLoad) {
+            productTable.createProduct(new Product(product));
+        }
 
     }
 

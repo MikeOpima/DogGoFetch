@@ -41,6 +41,9 @@ public class Product {
 
     }
 
+    public Product(String product) {
+    }
+
     public int getId() {
         return id;
     }

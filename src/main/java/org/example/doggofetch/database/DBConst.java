@@ -35,6 +35,9 @@ public class DBConst {
     public static final String SUPPLIER_COLUMN_ID = "Id";
     public static final String SUPPLIER_COLUMN_NAME = "Name";
     public static final String SUPPLIER_COLUMN_ADDRESS = "Address";
+    public static final String SUPPLIER_COLUMN_CITY = "City";
+    public static final String SUPPLIER_COLUMN_PROVINCE = "Province";
+    public static final String SUPPLIER_COLUMN_POSTALCODE = "PostalCode";
     public static final String SUPPLIER_COLUMN_PHONE = "Phone";
     public static final String SUPPLIER_COLUMN_EMAIL = "Email";
 

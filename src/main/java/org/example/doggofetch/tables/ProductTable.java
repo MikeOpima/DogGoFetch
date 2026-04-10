@@ -123,11 +123,13 @@ public class ProductTable implements ProductDAO {
     public void createProduct(Product product) {
         String query = "INSERT INTO " + TABLE_PRODUCT +
                 "(" + PRODUCT_COLUMN_NAME + ", " +
+                PRODUCT_COLUMN_SKU + ", " +
                 PRODUCT_COLUMN_QUANTITY + ", " +
                 PRODUCT_COLUMN_LOCATION + ", " +
                 PRODUCT_COLUMN_SUPPLIER + ", " +
                 PRODUCT_COLUMN_CATEGORY + ") VALUES ('" +
                 product.getName() + "', " +
+                product.getSku() + "', " +
                 product.getQuantity() + ", '" +
                 product.getLocation() + "', " +
                 product.getSupplier() + ", " +
