@@ -93,10 +93,7 @@ public class HelloApplication extends Application {
                 configCheck.setCenter(instructionsVb);
 
                 root.setCenter(configCheck);
-
-
-
-
+                
                 // on test
 
                 test.setOnMouseClicked( e->{
