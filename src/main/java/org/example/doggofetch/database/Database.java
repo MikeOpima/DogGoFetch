@@ -49,6 +49,7 @@ public class Database {
             createTable(TABLE_CATEGORY, CREATE_TABLE_CATEGORY, connection);
             createTable(TABLE_PRODUCT, CREATE_TABLE_PRODUCTS, connection);
             createTable(TABLE_ORDER, CREATE_TABLE_ORDER, connection);
+            createTable(TABLE_USER, CREATE_TABLE_USER, connection);
 
         }catch (Exception e){
             e.printStackTrace();

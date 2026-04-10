@@ -51,8 +51,8 @@ public class ConfigAddSampleData {
         ProductTable productTable = new ProductTable();
         ArrayList<String> productLoad = new ArrayList<String>();
 
-//        productLoad.add("Tools");
-//
+        productLoad.add("Tools");
+
 //        for (String product : productLoad) {
 //            supplierTable.createProduct(new Product(product));
 //        }

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 /**
  * OrderTable
  * March 2026
- * Hania
  * Hania - updated April 2 to add CRUD methods
  */
 
@@ -64,7 +63,6 @@ public class OrderTable implements OrderDAO {
         return null;
     }//end getOrder
 
-    @Override
     public void createOrder(Order orderObj) {
         String query = "INSERT INTO " + DBConst.TABLE_ORDER +
                 "(" + DBConst.ORDER_COLUMN_DATE + ", " +
@@ -84,7 +82,6 @@ public class OrderTable implements OrderDAO {
         }
     }//end createOrder
 
-    @Override
     public void updateOrder(Order orderObj) {
         String query = "UPDATE " + DBConst.TABLE_ORDER + " SET " +
                 DBConst.ORDER_COLUMN_DATE + " = '" + orderObj.getOrderDate() + "', " +
@@ -101,8 +98,7 @@ public class OrderTable implements OrderDAO {
             e.printStackTrace();
         }
     }// end updateOrder
-
-    @Override
+    
     public void deleteOrder(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_ORDER +
                 " WHERE " + DBConst.ORDER_COLUMN_ID + " = " + id;
