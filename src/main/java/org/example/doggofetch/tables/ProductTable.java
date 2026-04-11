@@ -22,21 +22,14 @@ import static org.example.doggofetch.database.DBConst.*;
 public class ProductTable implements ProductDAO {
     private static ProductTable instance;
     Database db =  Database.getInstance();
-    ArrayList<Product> products = new ArrayList<>();
-
-    public static ProductTable getInstance(){
-        if(instance == null){
-            instance = new ProductTable();
-        }
-        return instance;
-    }
+    ArrayList<Product> products;
 
     @Override
     public ArrayList<Product> getAllProducts() {
         String query = "SELECT * FROM " + TABLE_PRODUCT;
         try{
-            ResultSet data = db.getConnection()
-                    .createStatement().executeQuery(query);
+            PreparedStatement getProducts = db.getConnection().prepareStatement(query);
+            ResultSet data = getProducts.executeQuery();
             while(data.next()){
                 products.add(new Product(
                         data.getInt(PRODUCT_COLUMN_ID),
@@ -62,13 +55,13 @@ public class ProductTable implements ProductDAO {
      */
     @Override
     public Product getProduct(int id) {
-        Product product = new Product();
+//        Product product = new Product();
         String query = "SELECT * FROM " + TABLE_PRODUCT +
                 " WHERE " + PRODUCT_COLUMN_ID + " = " + id;
         try{
             ResultSet data = db.getConnection().createStatement().executeQuery(query);
             if(data.next()){
-                product = new Product(
+                products.add(new Product(
                         data.getInt(PRODUCT_COLUMN_ID),
                         data.getString(PRODUCT_COLUMN_NAME),
                         data.getInt(PRODUCT_COLUMN_SKU),
@@ -76,12 +69,12 @@ public class ProductTable implements ProductDAO {
                         data.getString(PRODUCT_COLUMN_LOCATION),
                         data.getInt(PRODUCT_COLUMN_SUPPLIER),
                         data.getInt(PRODUCT_COLUMN_CATEGORY)
-                );
+                ));
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return product;
+        return null;
 
     } // end getProduct
 
@@ -129,7 +122,7 @@ public class ProductTable implements ProductDAO {
                 PRODUCT_COLUMN_SUPPLIER + ", " +
                 PRODUCT_COLUMN_CATEGORY + ") VALUES ('" +
                 product.getName() + "', " +
-                product.getSku() + "', " +
+                product.getSku() + ", " +
                 product.getQuantity() + ", '" +
                 product.getLocation() + "', " +
                 product.getSupplier() + ", " +
@@ -139,6 +132,7 @@ public class ProductTable implements ProductDAO {
             System.out.println("Add New Product: " + product.getName());
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println(query);
         }
     } // end createProduct
 
@@ -158,4 +152,10 @@ public class ProductTable implements ProductDAO {
         return count;
     } // end get ProductCount  --- count qty of product type added
 
+    public static ProductTable getInstance(){
+        if(instance == null){
+            instance = new ProductTable();
+        }
+        return instance;
+    }
 }

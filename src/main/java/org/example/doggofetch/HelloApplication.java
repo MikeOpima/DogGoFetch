@@ -3,42 +3,45 @@ package org.example.doggofetch;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.doggofetch.database.Database;
+import org.example.doggofetch.tabs.*;
 import org.example.doggofetch.tabs.product.AddProductTab;
-import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.RemoveProductTab;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.io.IOException;
 
-
-/**
- * HelloApplication
- * checks for config settings - displays landing page
- * Kat Koeller
- * Feb 2026
- **/
+/** Hello Application
+ *  @author katkoe
+ *  march 2026
+ *  @version 1.0
+ */
 
 public class HelloApplication extends Application {
+    boolean userLoggedIn = false;
 
-    boolean user = false;
     @Override
     public void start(Stage stage) throws IOException {
-
         BorderPane root = new BorderPane();
-        ArrayList<String> dbArray = new ArrayList<String>();
 
+        // if file exists show app
         BorderPane indexPane = new BorderPane();
+
         // menu bar
         MenuBar mainMenuBar = new MenuBar();
         mainMenuBar.getStyleClass().add("mainMenuBar");
+
         // menu items inventory, search, user/login, cart
         Menu login = new Menu("Log-in");
         Menu inventory = new Menu("Inventory");
@@ -48,9 +51,8 @@ public class HelloApplication extends Application {
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
-        // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(inventory, search, cart,
-                orders,login);
+        // add items
+        mainMenuBar.getMenus().addAll(login, inventory, search, cart, orders);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -70,82 +72,71 @@ public class HelloApplication extends Application {
         headerContent.setLeft(logo);
         headerContent.setBottom(mainMenuBar);
 
-        // create tab pane
-        TabPane itemTabPane = new TabPane();
-        itemTabPane.getStyleClass().add("itemTabPane");
+        BorderPane configCheck = new BorderPane();
+        VBox instructionsVb = new VBox();
+        Text instructions = new Text("Missing Config Doc \n \n");
+        Text dbName = new Text("Enter in NAME: ");
+        TextField dbNameTf = new TextField();
+        Text dbUser = new Text("Enter in USER: ");
+        TextField dbUserTf = new TextField();
+        Text dbPass = new Text("Enter in PASS: ");
+        PasswordField dbPassTf = new PasswordField();
+        Button test = new Button(" test connection ");
+        Button connect = new Button(" connect ");
+        instructionsVb.getChildren().addAll(
+                instructions, dbName, dbNameTf, dbUser, dbUserTf,
+                dbPass, dbPassTf, test, connect);
 
-        // create tabs
-        AddProductTab addItemTab = new AddProductTab();
-        RemoveProductTab removeItemTab = new RemoveProductTab();
-        CartTab statsTab = new CartTab();
-
-        itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-
-        // end header with tabs
-
-        // add tabs to pane
-        itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
-        indexPane.setTop(headerContent);
-        indexPane.setCenter(itemTabPane);
+        configCheck.setCenter(instructionsVb);
+        // end configCheck pane form
 
 
-        // check for user login
-        BorderPane userCheck = new BorderPane();
+        // user pane check
+        BorderPane userCheckPane = new BorderPane();
         VBox userVb = new VBox();
-        Text loginInstructions = new Text("Please Sign In \n \n");
-        Text loginUser = new Text("Enter in USER: ");
-        TextField loginUserTf = new TextField();
-        Text loginPass = new Text("Enter in PASS: ");
-        PasswordField loginPassTf = new PasswordField();
-        Button loginButton = new Button("TEST CLICK ME Sign In");
+        Text user = new Text("Please Sign-in \n \n");
+        Text userUser = new Text("Enter in USER: ");
+        TextField userUserTf = new TextField();
+        Text userPass = new Text("Enter in PASS: ");
+        PasswordField userPassTf = new PasswordField();
+        Button userBtn = new Button(" TEST CLICK TO LOGIN ");
         userVb.getChildren().addAll(
-                loginInstructions, loginUser, loginUserTf,
-                loginPass, loginPassTf, loginButton);
-
-        loginButton.setOnMouseClicked(e -> {
-            try {
-                user = true;
+                instructions, userUser, userUserTf,
+                userPass, userPassTf, userBtn);
+        userBtn.setOnMouseClicked( e->{
+            try{
+                // add user
+                System.out.println("User Log-in Okay");
+                Text userMessage = new Text("User Logged In");
+                root.setBottom(userMessage);
                 root.setCenter(indexPane);
+                userLoggedIn = true;
 
-            } catch (Exception ex) {
+            }catch (Exception ex){
                 ex.printStackTrace();
-                System.out.println("login error");
+                Text userMessage = new Text("Log-in Error try again");
+                root.setBottom(userMessage);
             }
 
-        }); /// end login action
-        userCheck.setCenter(userVb);
-        // end user check
+
+        }); /// end user check action
+
+        userCheckPane.setCenter(userVb);
+        // end configCheck pane form
 
         ///  add in db config.txt check with scene switches //
+        ArrayList<String> dbArray = new ArrayList<String>();
+
         File dbConfig = new File("config.txt");
 
+        // check for config file
         try {
             if (!dbConfig.isFile()) {
                 // if no config --- configCheck pane
-                BorderPane configCheck = new BorderPane();
-                VBox instructionsVb = new VBox();
-                Text instructions = new Text("Missing Config Doc \n \n");
-                Text dbName = new Text("Enter in NAME: ");
-                TextField dbNameTf = new TextField();
-                Text dbUser = new Text("Enter in USER: ");
-                TextField dbUserTf = new TextField();
-                Text dbPass = new Text("Enter in PASS: ");
-                PasswordField dbPassTf = new PasswordField();
-                Button test = new Button(" test connection ");
-                Button connect = new Button(" connect ");
-                HBox connectButtons = new HBox();
-                connectButtons.getChildren().addAll(test, connect);
-                instructionsVb.getChildren().addAll(
-                        instructions, dbName, dbNameTf, dbUser, dbUserTf,
-                        dbPass, dbPassTf, connectButtons);
-
-                configCheck.setCenter(instructionsVb);
-
-                user = true;
                 root.setCenter(configCheck);
-                
-                // on test
 
+
+                // on test
                 test.setOnMouseClicked( e->{
                     try{
                         // add to array
@@ -185,40 +176,83 @@ public class HelloApplication extends Application {
 
                 }); /// end test action
 
-
-                // on connect
+                // create connection
                 connect.setOnMouseClicked( e->{
                     try{
+                        // add to array
+                        dbArray.add(dbNameTf.getText() + "\n" +
+                                dbUserTf.getText() + "\n" +
+                                dbPassTf.getText() + "\n");
 
-                        ConfigAddSampleData configSQL = ConfigAddSampleData.getInstance();
+                        BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+                        out.close();
 
-                        root.setCenter(indexPane);
+                        System.out.println("Created Connection");
+                        Text testMessage = new Text("Connection Created");
+                        root.setBottom(testMessage);
+
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                        Text testMessage = new Text("Connection Error try again");
+                        root.setBottom(testMessage);
+                    }
+
+                    try {
+                        PrintWriter out = new PrintWriter( new BufferedWriter
+                                (new FileWriter("config.txt", true)));
+
+                        for(String str : dbArray) {
+                            out.write(str + "\n");
+                        }
+
+                        out.close();
+
+                        // clear the form
+                        dbNameTf.clear();
+                        dbUserTf.clear();
+                        dbPassTf.clear();
+
+                        Database db = Database.getInstance();
+
+                        ConfigAddSampleData.getInstance();
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
-                        System.out.println("db connection error");
                     }
-
-
+                    root.setCenter(indexPane);
                 }); /// end connect action
 
+
+            } else {
+
+                ConfigAddSampleData.getInstance();
+                
+                // create tab pane
+                TabPane itemTabPane = new TabPane();
+                itemTabPane.getStyleClass().add("itemTabPane");
+
+                // create tabs
+                AddProductTab addItemTab = new AddProductTab();
+                RemoveProductTab removeItemTab = new RemoveProductTab();
+                CartTab statsTab = new CartTab();
+
+                itemTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+                // end header with tabs
+
+                // add tabs to pane
+                itemTabPane.getTabs().addAll(addItemTab, removeItemTab, statsTab);
+                indexPane.setTop(headerContent);
+                indexPane.setCenter(itemTabPane);
+
+            if(!userLoggedIn){
+                root.setCenter(userCheckPane);
+
+            }else{
+                root.setCenter(indexPane);
             }
 
-                // TEMP test pane for user login check
-                // will set value in config db check // katkoe 9apr26
-
-                if (!user) {
-
-                    root.setCenter(userCheck);
-
-                } else {
-
-                    root.setCenter(indexPane);
-
-                }
-
-            // set global variables from config.txt
-
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -228,5 +262,6 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
         stage.show();
-    }
-}
+
+    }// end main
+} // end hello app

@@ -42,7 +42,7 @@ public class AddProductTab extends Tab {
         Text name = new Text("Name: ");
         TextField tfName = new TextField();
         root.add(name,0,0);
-        root.add(tfName,1,1);
+        root.add(tfName,1,0);
 
         // product sku
         Text sku = new Text("SKU: ");
@@ -79,14 +79,13 @@ public class AddProductTab extends Tab {
         Button submitButton = new Button(" Add New Product ");
         submitButton.setOnAction( e->{
             Product product = new Product(
-            tfName.getText(),
-            Integer.parseInt(tfSku.getText()),
-            Integer.parseInt(tfQty.getText()),
-            tfLocation.getText(),
+                    tfName.getText(),
+                    Integer.parseInt(tfSku.getText()),
+                    Integer.parseInt(tfQty.getText()),
+                    tfName.getText(),
             comboCategory.getSelectionModel().getSelectedItem().getId(),
-             comboSupplier.getSelectionModel().getSelectedItem().getId()
+            comboSupplier.getSelectionModel().getSelectedItem().getId()
             );
-
             productTable.createProduct(product);
             ProductStatsTab.getInstance().generateChart();
         });

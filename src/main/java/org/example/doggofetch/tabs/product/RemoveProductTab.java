@@ -61,13 +61,13 @@ public class RemoveProductTab extends Tab {
 
         Button removeButton = new Button("Remove Product");
         removeButton.setOnAction(e -> {
-            Product product = new Product();
-            productNameField.getText();
-            supplierNameField.getText();
-            Integer.parseInt(quantityField.getText());
-
-            productTable.deleteProduct(product.getId());
-            RemoveProductTab.getInstance().refreshTable();
+//            Product product = new Product();
+//            productNameField.getText();
+//            supplierNameField.getText();
+//            Integer.parseInt(quantityField.getText());
+//
+//            productTable.deleteProduct(product.getId());
+//            RemoveProductTab.getInstance().refreshTable();
         });
         gridPane.add(removeButton,1,4);
 

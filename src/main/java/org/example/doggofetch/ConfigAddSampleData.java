@@ -19,7 +19,6 @@ public class ConfigAddSampleData {
      * Load Sample Data at Config.txt file creation only
      * @author katkoe
      * 8apr26
-     * v1.0
      **/
     public ConfigAddSampleData() {
         //get table instances // set up sample data loads
@@ -42,23 +41,12 @@ public class ConfigAddSampleData {
 
         SupplierTable supplierTable = SupplierTable.getInstance();
         ArrayList<String> supplierLoad = new ArrayList<String>();
-        supplierLoad.add("Global Tools Inc.");
+        supplierTable.createSupplier(new Supplier(0, "Global Something", "123 main", "Windsor", "ON", "465468685", "65465465", "slkd@lskdjls.com"));
 
-        for (String supplier : supplierLoad) {
-            supplierTable.createSupplier(new Supplier(supplier));
+
+        ProductTable productTable = ProductTable.getInstance();
+        productTable.createProduct(new Product("Hammer",1001, 50, "Aisle 1 - Shelf A", 1 , 1));
         }
-
-        ProductTable productTable = new ProductTable();
-        ArrayList<String> productLoad = new ArrayList<String>();
-
-        productLoad.add("'Hammer', 1001, 50, 'Aisle 1 - Shelf A', 1 , 1");
-        productLoad.add("'Big Hammer', 1001, 50, 'Aisle 1 - Shelf A', 1 , 1");
-
-        for (String product : productLoad) {
-            productTable.createProduct(new Product(product));
-        }
-
-    }
 
     public static ConfigAddSampleData getInstance(){
         if(instance == null){
