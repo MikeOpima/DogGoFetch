@@ -45,7 +45,7 @@ public class ConfigAddSampleData {
 
 
         ProductTable productTable = ProductTable.getInstance();
-        productTable.createProduct(new Product("Hammer",1001, 50, "Aisle 1 - Shelf A", 1 , 1));
+        productTable.createProduct(new Product(0,"Hammer",1001, 50, "Aisle 1 - Shelf A", 1 , 1));
         }
 
     public static ConfigAddSampleData getInstance(){
