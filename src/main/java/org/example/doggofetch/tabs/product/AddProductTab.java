@@ -21,6 +21,7 @@ import org.example.doggofetch.tables.SupplierTable;
  * add in products tab feature
  * @version 1.0
  */
+
 public class AddProductTab extends Tab {
     private static AddProductTab instance;
 

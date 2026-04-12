@@ -10,30 +10,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.doggofetch.database.Database;
 import org.example.doggofetch.tabs.*;
 import org.example.doggofetch.tabs.product.AddProductTab;
+import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.RemoveProductTab;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-/** Hello Application
- *  @author katkoe
- *  march 2026
- *  @version 1.0
- */
+/**
+ * HelloApplication
+ * checks for config settings - displays landing page
+ * Kat Koeller
+ * Feb 2026
+ **/
 
 public class HelloApplication extends Application {
     boolean userLoggedIn = false;
 
     @Override
     public void start(Stage stage) throws IOException {
+
         BorderPane root = new BorderPane();
+
 
         // if file exists show app
         BorderPane indexPane = new BorderPane();
@@ -51,8 +56,9 @@ public class HelloApplication extends Application {
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
-        // add items
-        mainMenuBar.getMenus().addAll(inventory, search, cart, orders, login);
+        // menuBar.getMenu().add(file);
+        mainMenuBar.getMenus().addAll(inventory, search, cart,
+                orders,login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -126,13 +132,13 @@ public class HelloApplication extends Application {
 
         ///  add in db config.txt check with scene switches //
         ArrayList<String> dbArray = new ArrayList<String>();
-
         File dbConfig = new File("config.txt");
 
         // check for config file
         try {
             if (!dbConfig.isFile()) {
                 // if no config --- configCheck pane
+
                 root.setCenter(configCheck);
 
 
@@ -218,6 +224,7 @@ public class HelloApplication extends Application {
 
                     } catch (Exception ex) {
                         ex.printStackTrace();
+                        System.out.println("db connection error");
                     }
                     root.setCenter(indexPane);
                 }); /// end connect action

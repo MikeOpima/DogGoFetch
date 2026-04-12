@@ -1,3 +1,9 @@
+
+/**
+ * Supplier POJO
+ * Mike - April 2 update v.1.1
+ * Constructors are not assigning category
+ */
 package org.example.doggofetch.pojo;
 
 public class Supplier {

@@ -22,6 +22,7 @@ import java.util.ArrayList;
  * @author katkoe
  * 5apr26
  */
+
 public class UpdateProductPane extends GridPane {
 
     /**
