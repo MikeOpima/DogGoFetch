@@ -1,3 +1,10 @@
+
+/**
+ * Supplier Tab
+ * Mike - April 9
+ * Tab to display supplier info
+ */
+
 package org.example.doggofetch.tabs;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -53,6 +60,25 @@ public class SupplierTab extends Tab {
 
         root.setCenter(tableView);
 
+        }
+
+        private static TableColumn<Supplier, String> getSupplierStringTableColumn(SupplierTable supplierTable) {
+        TableColumn<Supplier, String> column1 = new TableColumn<>("Supplier Name");
+        column1.setCellValueFactory(e->new SimpleStringProperty(e.getValue().getName()));
+        return column1;
+        }
+
+        public  void refreshTable() {
+            SupplierTable supplier = SupplierTable.getInstance();
+            tableView.getItems().clear();
+            tableView.getItems().addAll(supplier.getSuppliers());
+        }
+
+        public static SupplierTab getInstance() {
+            if (instance == null) {
+                instance = new SupplierTab();
+            }
+            return instance;
         }
 
 
