@@ -6,9 +6,9 @@ import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
+import org.example.doggofetch.tables.UserTable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ConfigAddSampleData {
     private static ConfigAddSampleData instance;

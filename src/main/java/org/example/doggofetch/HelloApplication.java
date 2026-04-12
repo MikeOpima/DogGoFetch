@@ -52,7 +52,7 @@ public class HelloApplication extends Application {
         login.getItems().add(signout);
 
         // add items
-        mainMenuBar.getMenus().addAll(login, inventory, search, cart, orders);
+        mainMenuBar.getMenus().addAll(inventory, search, cart, orders, login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -225,8 +225,6 @@ public class HelloApplication extends Application {
 
             } else {
 
-                ConfigAddSampleData.getInstance();
-                
                 // create tab pane
                 TabPane itemTabPane = new TabPane();
                 itemTabPane.getStyleClass().add("itemTabPane");
