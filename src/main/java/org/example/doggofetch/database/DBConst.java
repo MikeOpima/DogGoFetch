@@ -1,6 +1,12 @@
 package org.example.doggofetch.database;
 
-import org.example.doggofetch.pojo.Category;
+/**
+ @title DBConst
+ Set values for tables / SQL
+ @author Mike and Hania
+ @date march 2026
+ @version 2.0
+ **/
 
 public class DBConst {
 
@@ -49,6 +55,7 @@ public class DBConst {
     // USER TABLE
     public static final String TABLE_USER = "User";
     public static final String USER_COLUMN_ID = "Id";
+    public static final String USER_COLUMN_USER_NAME = "UserName";
     public static final String USER_COLUMN_FIRST_NAME = "FirstName";
     public static final String USER_COLUMN_LAST_NAME = "LastName";
     public static final String USER_COLUMN_PASSWORD = "Password";
@@ -84,6 +91,7 @@ public class DBConst {
     public static final String CREATE_TABLE_USER =
             "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "(" +
                     USER_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT, " +
+                    USER_COLUMN_USER_NAME + " VARCHAR(50) NOT NULL, " +
                     USER_COLUMN_FIRST_NAME + " VARCHAR(100) NOT NULL, " +
                     USER_COLUMN_LAST_NAME + " VARCHAR(100) NOT NULL, " +
                     USER_COLUMN_PASSWORD + " VARCHAR(255) NOT NULL, " +
