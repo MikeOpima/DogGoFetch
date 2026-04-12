@@ -14,6 +14,14 @@ import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
 
+/**
+ * AddProductTab
+ * @author katkoe
+ * @date 29mar26
+ * add in products tab feature
+ * @version 1.0
+ */
+
 public class AddProductTab extends Tab {
     private static AddProductTab instance;
 
