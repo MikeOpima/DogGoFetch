@@ -103,7 +103,7 @@ public class AddProductTab extends Tab {
 
                 root.add(confirmMessage, 1, 7);
 
-                ProductStatsTab.getInstance().generateChart();
+                //ProductStatsTab.getInstance().generateChart();
             } catch(Exception ex){
                 ex.printStackTrace();
             }
