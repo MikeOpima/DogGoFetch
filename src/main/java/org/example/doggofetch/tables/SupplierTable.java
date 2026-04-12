@@ -1,9 +1,7 @@
 package org.example.doggofetch.tables;
 
 import org.example.doggofetch.dao.SupplierDAO;
-import org.example.doggofetch.database.DBConst;
 import org.example.doggofetch.database.Database;
-import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
 
 import java.sql.PreparedStatement;
@@ -159,4 +157,25 @@ public class SupplierTable implements SupplierDAO {
         return count;
     } // end get SupplierCount  --- count qty of Supplier type added
 
+    public ArrayList<Supplier> getSuppliers() {
+        ArrayList<Supplier> suppliers = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_SUPPLIER;
+        try {
+            Statement getSuppliers = db.getConnection().createStatement();
+            ResultSet data = getSuppliers.executeQuery(query);
+            while (data.next()) {
+                suppliers.add(new Supplier(data.getInt(SUPPLIER_COLUMN_ID),
+                        data.getString("name"),
+                        data.getString("address"),
+                        data.getString("province"),
+                        data.getString("city"),
+                        data.getString("postalcode"),
+                        data.getString("contact"),
+                        data.getString("email")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return suppliers;
+    }
 }

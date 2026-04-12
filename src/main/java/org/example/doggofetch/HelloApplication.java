@@ -18,7 +18,6 @@ import org.example.doggofetch.tabs.product.RemoveProductTab;
 import java.io.*;
 import java.util.ArrayList;
 
-
 /**
  * HelloApplication
  * checks for config settings - displays landing page
