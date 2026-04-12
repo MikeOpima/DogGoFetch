@@ -7,9 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import org.example.doggofetch.tables.SupplierTable;
-import org.example.doggofetch.tabs.IndexPane;
 
 /**
  * User Check class
@@ -47,7 +44,6 @@ public class UserCheck extends BorderPane {
                 System.out.println("User Log-in Okay");
                 UserCheck.setUserLoggedIn(true);
                 Text userMessage = new Text("User Logged In");
-
                 this.setBottom(userMessage);
 
             }catch (Exception ex){

@@ -4,28 +4,18 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.doggofetch.database.Database;
-import org.example.doggofetch.pojo.User;
 import org.example.doggofetch.tabs.*;
-import org.example.doggofetch.tabs.product.AddProductTab;
-import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.product.RemoveProductTab;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-import static org.example.doggofetch.UserCheck.getInstance;
 import static org.example.doggofetch.UserCheck.userLoggedIn;
 
 /**
@@ -39,10 +29,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        UserCheck.setUserLoggedIn(false);
+
         BorderPane root = new BorderPane();
-
-
 
         BorderPane configCheck = new BorderPane();
         VBox instructionsVb = new VBox();
@@ -63,38 +51,6 @@ public class HelloApplication extends Application {
         // end configCheck pane form
 
 
-//        // user pane check
-//        BorderPane userCheckPane = new BorderPane();
-//        VBox userVb = new VBox();
-//        Text user = new Text("Please Sign-in \n \n");
-//        Text userUser = new Text("Enter in USER: ");
-//        TextField userUserTf = new TextField();
-//        Text userPass = new Text("Enter in PASS: ");
-//        PasswordField userPassTf = new PasswordField();
-//        Button userBtn = new Button(" TEST CLICK TO LOGIN ");
-//        userVb.getChildren().addAll(
-//                instructions, userUser, userUserTf,
-//                userPass, userPassTf, userBtn);
-//        userBtn.setOnMouseClicked( e->{
-//            try{
-//                // add user
-//                System.out.println("User Log-in Okay");
-//                Text userMessage = new Text("User Logged In");
-//                root.setBottom(userMessage);
-//                root.setCenter(indexPane);
-//                userLoggedIn = true;
-//
-//            }catch (Exception ex){
-//                ex.printStackTrace();
-//                Text userMessage = new Text("Log-in Error try again");
-//                root.setBottom(userMessage);
-//            }
-//
-//
-//        }); /// end user check action
-//
-//        userCheckPane.setCenter(userVb);
-//        // end configCheck pane form
 
         ///  add in db config.txt check with scene switches //
         ArrayList<String> dbArray = new ArrayList<String>();
@@ -188,24 +144,26 @@ public class HelloApplication extends Application {
 
                         ConfigAddSampleData.getInstance();
 
+
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
                         System.out.println("db connection error");
                     }
-                    root.setCenter(IndexPane.getInstance());
+//                    root.setCenter(IndexPane.getInstance());
 
                 }); /// end connect action
 
 
             } else {
 
-
             if(!userLoggedIn) {
-                root.setCenter(UserCheck.getInstance());
                 System.out.println("display login panel");
-            }else{
+                root.setCenter(UserCheck.getInstance());
+            }else {
+                System.out.println("display index panel");
                 root.setCenter(IndexPane.getInstance());
-            }
+                }
 
             }
         } catch (Exception e) {
