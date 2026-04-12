@@ -17,6 +17,12 @@ import org.example.doggofetch.tables.SupplierTable;
 
 import java.util.ArrayList;
 
+/**
+ * UpdateProductPane Class
+ * @author katkoe
+ * 5apr26
+ */
+
 public class UpdateProductPane extends GridPane {
 
     /**
