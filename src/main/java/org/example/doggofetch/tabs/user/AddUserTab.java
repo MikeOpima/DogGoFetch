@@ -10,7 +10,7 @@ import org.example.doggofetch.pojo.User;
 import org.example.doggofetch.tables.UserTable;
 
 /**
- * AddProductTab
+ * AddUserTab
  * @author hania
  * @date 13apr26
  * add in user tab feature
@@ -69,7 +69,7 @@ public class AddUserTab extends Tab {
 
                 root.add(confirmMessage, 1, 7);
 
-                //ProductStatsTab.getInstance().generateChart();
+                //UserStatsTab.getInstance().generateChart();
             } catch(Exception ex){
                 ex.printStackTrace();
             }
@@ -79,7 +79,7 @@ public class AddUserTab extends Tab {
 
         this.setContent(root);
 
-    } // end AddProductTab form
+    } // end AddUserTab form
 
     public static AddUserTab getInstance(){
         if(instance == null){
