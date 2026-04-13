@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.example.doggofetch.tables.UserTable;
 
 /**
  * User Check class
@@ -27,14 +28,14 @@ public class UserCheck extends BorderPane {
 
     public UserCheck(){
 
+        // user pane check
         BorderPane userCheckPane = new BorderPane();
+
+        UserTable userTable = UserTable.getInstance();
 
         if(!userLoggedIn){
             this.setCenter(userCheckPane);
             System.out.println("no user detected");
-
-
-        // user pane check
 
         VBox userVb = new VBox();
         Text userInstructions = new Text("Please Sign-in \n \n");
@@ -51,13 +52,19 @@ public class UserCheck extends BorderPane {
                 // add user
                 System.out.println("User Log-in Okay");
                 UserCheck.setUserLoggedIn(true);
-                Text userMessage = new Text("User Logged In");
+                Text userMessage = new Text(" ");
+
+                if (userUserTf.equals(userUserTf) && userPassTf.equals(userPassTf)) {
+                    //TODO CheckUser method to User Table
+                    
+                    userMessage.setText("Login Compare Successful!");
+                } else {
+                   userMessage.setText("Login failed. Please check your credentials.");
+                }
+
                 this.setBottom(userMessage);
 
                 this.setCenter(new IndexPane());
-
-
-
             }catch (Exception ex){
                 ex.printStackTrace();
                 Text userMessage = new Text("Log-in Error try again");
