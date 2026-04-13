@@ -1,4 +1,4 @@
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.supplier;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
