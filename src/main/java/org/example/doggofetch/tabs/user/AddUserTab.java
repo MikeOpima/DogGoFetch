@@ -23,8 +23,8 @@ public class AddUserTab extends Tab {
     public AddUserTab(){
         this.setText("Add User");
 
-        Text welcome = new Text("Welcome to add items");
-        Text confirmMessage = new Text("Product Added Successfully");
+        Text welcome = new Text("Welcome to add user");
+        Text confirmMessage = new Text("User Added Successfully");
 
         GridPane root = new GridPane();
         root.setHgap(10);
@@ -47,7 +47,7 @@ public class AddUserTab extends Tab {
         root.add(dbPassTf,1,1);
 
 
-        Button submitButton = new Button(" Add New Product ");
+        Button submitButton = new Button(" Add New User ");
         int id = 0;
         submitButton.setOnAction( e->{
             try {
