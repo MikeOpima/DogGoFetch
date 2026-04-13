@@ -55,8 +55,6 @@ public class RemoveSupplierTab extends Tab {
 
     }
 
-
-
     public void refreshTable(){
         ProductTable product = ProductTable.getInstance();
         tableView.getItems().clear();
