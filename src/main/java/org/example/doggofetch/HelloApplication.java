@@ -20,7 +20,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
 
-import static org.example.doggofetch.UserCheck.userLoggedIn;
+import static org.example.doggofetch.UserCheck.isUserLoggedIn;
+
 
 /**
  * HelloApplication
@@ -53,7 +54,7 @@ public class HelloApplication extends Application {
 
         configCheck.setCenter(instructionsVb);
         // end configCheck pane form
-        
+
         ///  add in db config.txt check with scene switches //
         ArrayList<String> dbArray = new ArrayList<String>();
         File dbConfig = new File("config.txt");
@@ -160,14 +161,15 @@ public class HelloApplication extends Application {
             } else {
 
                 root.setCenter(IndexPane.getInstance());
-                // user login check
-//            if(!userLoggedIn) {
-//                System.out.println("display login panel");
-//                root.setCenter(UserCheck.getInstance());
-//            }else {
-//                System.out.println("display index panel");
-//                root.setCenter(IndexPane.getInstance());
-//                }
+
+//                 user login check
+            if(!isUserLoggedIn()) {
+                System.out.println("display login panel");
+                root.setCenter(UserCheck.getInstance());
+            }else {
+                System.out.println("display index panel");
+                root.setCenter(IndexPane.getInstance());
+                }
 
 
             }

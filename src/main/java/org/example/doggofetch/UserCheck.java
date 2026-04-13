@@ -1,6 +1,7 @@
 package org.example.doggofetch;
 
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,12 +23,19 @@ public class UserCheck extends BorderPane {
     private String password;
     private String role;
 
-    public static boolean userLoggedIn = false;
+    private static boolean userLoggedIn = false;
 
     public UserCheck(){
 
-        // user pane check
         BorderPane userCheckPane = new BorderPane();
+
+        if(!userLoggedIn){
+            this.setCenter(userCheckPane);
+            System.out.println("no user detected");
+
+
+        // user pane check
+
         VBox userVb = new VBox();
         Text userInstructions = new Text("Please Sign-in \n \n");
         Text userUser = new Text("Enter in USER: ");
@@ -46,6 +54,8 @@ public class UserCheck extends BorderPane {
                 Text userMessage = new Text("User Logged In");
                 this.setBottom(userMessage);
 
+                this.setCenter(new IndexPane());
+
 
 
             }catch (Exception ex){
@@ -60,13 +70,12 @@ public class UserCheck extends BorderPane {
         userCheckPane.setCenter(userVb);
         // end configCheck pane form
 
-        if(!userLoggedIn){
-            this.setCenter(userCheckPane);
-
         } else {
             setUserLoggedIn(true);
-            this.setCenter(IndexPane.getInstance());
+            this.setCenter(new IndexPane());
+            System.out.println("user logged in");
         }
+
 
     }
 
