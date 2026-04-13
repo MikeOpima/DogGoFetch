@@ -56,7 +56,7 @@ public class UserCheck extends BorderPane {
 
                 if (userUserTf.equals(userUserTf) && userPassTf.equals(userPassTf)) {
                     //TODO CheckUser method to User Table
-                    
+
                     userMessage.setText("Login Compare Successful!");
                 } else {
                    userMessage.setText("Login failed. Please check your credentials.");
