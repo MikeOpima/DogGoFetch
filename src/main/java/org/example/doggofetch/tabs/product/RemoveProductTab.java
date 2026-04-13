@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.DisplayProduct;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.ProductTable;
@@ -35,11 +36,20 @@ public class RemoveProductTab extends Tab {
         ProductTable productTable = new ProductTable();
         SupplierTable supplierTable = SupplierTable.getInstance();
 
+//        Text category = new Text("Category");
+//        ComboBox<Category> comboCategory = new ComboBox<>();
+//        comboCategory.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
+//        comboCategory.getSelectionModel().select(0);
+//        root.add(category, 0,4);
+//        root.add(comboCategory, 1, 4);
+
         Text productId = new Text("Product ID: ");
-        TextField productIdField = new TextField();
-        productIdField.setPromptText("Product ID");
-        gridPane.add(productId,0,0);
-        gridPane.add(productIdField,1,0);
+        ComboBox<Product> comboProduct = new ComboBox<>();
+        comboProduct.setItems(FXCollections.observableList(productTable.getAllProducts()));
+        comboProduct.getSelectionModel().select(0);
+        gridPane.add(productId,0 ,0);
+        gridPane.add(comboProduct, 1, 0);
+
 
         Text productName = new Text("Product Name: ");
         TextField productNameField = new TextField();
