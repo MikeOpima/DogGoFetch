@@ -113,7 +113,7 @@ public class AddProductTab extends Tab {
 
         this.setContent(root);
 
-    } // end AddProductTab f    orm
+    } // end AddProductTab form
 
     public static AddProductTab getInstance(){
         if(instance == null){
