@@ -30,10 +30,10 @@ public class SupplierTable implements SupplierDAO {
     @Override
     public ArrayList<Supplier> getAllSuppliers() {
         String query = "SELECT * FROM " + TABLE_SUPPLIER;
-        suppliers = new ArrayList<>();
+//        suppliers = new ArrayList<>();
         try{
-            Statement getSuppliers = db.getConnection().createStatement();
-            ResultSet data = getSuppliers.executeQuery(query);
+            ResultSet data = db.getConnection()
+                    .createStatement().executeQuery(query);
             while(data.next()){
                 suppliers.add(new Supplier(
                         data.getInt(SUPPLIER_COLUMN_ID),
@@ -91,13 +91,13 @@ public class SupplierTable implements SupplierDAO {
                 SUPPLIER_COLUMN_POSTALCODE + ", " +
                 SUPPLIER_COLUMN_PHONE + ", " +
                 SUPPLIER_COLUMN_EMAIL + ") VALUES ('" +
-                supplier.getName() + "', " +
-                supplier.getAddress() + "', " +
-                supplier.getCity() + ", " +
-                supplier.getProvince() + "', " +
-                supplier.getPostalcode() + ", " +
-                supplier.getPhone() + ", " +
-                supplier.getEmail() + ")";
+                supplier.getName()  +"','" +
+                supplier.getAddress()  +"','" +
+                supplier.getCity() +  "','" +
+                supplier.getProvince()  +"','" +
+                supplier.getPostalcode()  +"','" +
+                supplier.getPhone()  +"','" +
+                supplier.getEmail() + "')";
         try{
             db.getConnection().createStatement().execute(query);
             System.out.println("Add New Supplier: " + supplier.getName());

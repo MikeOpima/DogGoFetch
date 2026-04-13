@@ -9,10 +9,12 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import static org.example.doggofetch.database.DBConst.*;
+
 /**
  * UserTable
- * April  2, 2026
- * Hania
+ * @date April  2, 2026
+ * @author Hania
  */
 
 public class UserTable implements UserDAO {
@@ -29,18 +31,19 @@ public class UserTable implements UserDAO {
 
     @Override
     public ArrayList<User>getAllUsers(){
-        String query = "SELECT * FROM " + DBConst.TABLE_USER;
+        String query = "SELECT * FROM " + TABLE_USER;
         users=new ArrayList<>();
         try{
             Statement getUsers = db.getConnection().createStatement();
             ResultSet data = getUsers.executeQuery(query);
             while (data.next()){
                 users.add(new User(
-                        data.getInt(DBConst.USER_COLUMN_ID),
-                        data.getString(DBConst.USER_COLUMN_FIRST_NAME),
-                        data.getString(DBConst.USER_COLUMN_LAST_NAME),
-                        data.getString(DBConst.USER_COLUMN_PASSWORD),
-                        data.getString(DBConst.USER_COLUMN_ROLE)
+                        data.getInt(USER_COLUMN_ID),
+                        data.getString(USER_COLUMN_USER_NAME),
+                        data.getString(USER_COLUMN_FIRST_NAME),
+                        data.getString(USER_COLUMN_LAST_NAME),
+                        data.getString(USER_COLUMN_PASSWORD),
+                        data.getString(USER_COLUMN_ROLE)
                 ));
             }
             return users;
@@ -52,18 +55,19 @@ public class UserTable implements UserDAO {
 
     @Override
     public User getUser(int id){
-        String query = "SELECT * FROM "+ DBConst.TABLE_USER+
-                " WHERE " + DBConst.USER_COLUMN_ID +" = " + id;
+        String query = "SELECT * FROM "+ TABLE_USER+
+                " WHERE " + USER_COLUMN_ID +" = " + id;
         try{
             Statement getUser= db.getConnection().createStatement();
             ResultSet data = getUser.executeQuery(query);
             if (data.next()){
                 return new User(
-                        data.getInt(DBConst.USER_COLUMN_ID),
-                        data.getString(DBConst.USER_COLUMN_FIRST_NAME),
-                        data.getString(DBConst.USER_COLUMN_LAST_NAME),
-                        data.getString(DBConst.USER_COLUMN_PASSWORD),
-                        data.getString(DBConst.USER_COLUMN_ROLE)
+                        data.getInt(USER_COLUMN_ID),
+                        data.getString(USER_COLUMN_USER_NAME),
+                        data.getString(USER_COLUMN_FIRST_NAME),
+                        data.getString(USER_COLUMN_LAST_NAME),
+                        data.getString(USER_COLUMN_PASSWORD),
+                        data.getString(USER_COLUMN_ROLE)
                 );
             }
         }catch(Exception e){
@@ -74,11 +78,13 @@ public class UserTable implements UserDAO {
 
     @Override
     public void createUser(User user) {
-        String query = "INSERT INTO " + DBConst.TABLE_USER +
-                "(" + DBConst.USER_COLUMN_FIRST_NAME + ", " +
-                DBConst.USER_COLUMN_LAST_NAME + ", " +
-                DBConst.USER_COLUMN_PASSWORD + ", " +
-                DBConst.USER_COLUMN_ROLE + ") VALUES ('" +
+        String query = "INSERT INTO " + TABLE_USER +
+                "(" + USER_COLUMN_USER_NAME + ", " +
+                USER_COLUMN_FIRST_NAME + ", " +
+                USER_COLUMN_LAST_NAME + ", " +
+                USER_COLUMN_PASSWORD + ", " +
+                USER_COLUMN_ROLE + ") VALUES ('" +
+                user.getUserName() + "', '" +
                 user.getFirstName() + "', '" +
                 user.getLastName() + "', '" +
                 user.getPassword() + "', '" +
@@ -94,12 +100,13 @@ public class UserTable implements UserDAO {
 
     @Override
     public void updateUser(User user) {
-        String query = "UPDATE " + DBConst.TABLE_USER + " SET " +
-                DBConst.USER_COLUMN_FIRST_NAME + " = '" + user.getFirstName() + "', " +
-                DBConst.USER_COLUMN_LAST_NAME + " = '" + user.getLastName() + "', " +
-                DBConst.USER_COLUMN_PASSWORD + " = '" + user.getPassword() + "', " +
-                DBConst.USER_COLUMN_ROLE + " = '" + user.getUserRole() + "' " +
-                "WHERE " + DBConst.USER_COLUMN_ID + " = " + user.getId();
+        String query = "UPDATE " + TABLE_USER + " SET " +
+                USER_COLUMN_USER_NAME + " = '" + user.getUserName() + "', " +
+                USER_COLUMN_FIRST_NAME + " = '" + user.getFirstName() + "', " +
+                USER_COLUMN_LAST_NAME + " = '" + user.getLastName() + "', " +
+                USER_COLUMN_PASSWORD + " = '" + user.getPassword() + "', " +
+                USER_COLUMN_ROLE + " = '" + user.getUserRole() + "' " +
+                "WHERE " + USER_COLUMN_ID + " = " + user.getId();
 
         try {
             db.getConnection().createStatement().executeUpdate(query);
@@ -111,7 +118,7 @@ public class UserTable implements UserDAO {
 
     @Override
     public void deleteUser(int id) {
-        String query = "DELETE FROM " + DBConst.TABLE_USER +
+        String query = "DELETE FROM " + TABLE_USER +
                 " WHERE " + DBConst.USER_COLUMN_ID + " = " + id;
 
         try {

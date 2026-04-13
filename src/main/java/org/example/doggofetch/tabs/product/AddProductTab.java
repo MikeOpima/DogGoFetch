@@ -1,7 +1,7 @@
 package org.example.doggofetch.tabs.product;
 
 import javafx.collections.FXCollections;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -29,6 +29,7 @@ public class AddProductTab extends Tab {
         this.setText("Add Product");
 
         Text welcome = new Text("Welcome to add items");
+        Text confirmMessage = new Text("Product Added Successfully");
 
         GridPane root = new GridPane();
         root.setHgap(10);
@@ -43,7 +44,7 @@ public class AddProductTab extends Tab {
         Text name = new Text("Name: ");
         TextField tfName = new TextField();
         root.add(name,0,0);
-        root.add(tfName,1,1);
+        root.add(tfName,1,0);
 
         // product sku
         Text sku = new Text("SKU: ");
@@ -78,25 +79,41 @@ public class AddProductTab extends Tab {
         root.add(comboSupplier, 1, 5);
 
         Button submitButton = new Button(" Add New Product ");
+        int id = 0;
         submitButton.setOnAction( e->{
-            Product product = new Product(
-            tfName.getText(),
-            Integer.parseInt(tfSku.getText()),
-            Integer.parseInt(tfQty.getText()),
-            tfLocation.getText(),
-            comboCategory.getSelectionModel().getSelectedItem().getId(),
-             comboSupplier.getSelectionModel().getSelectedItem().getId()
-            );
+            try {
+                Product product = new Product(
+                        id, // null value needs to pass to add in entry
+                        tfName.getText(),
+                        Integer.parseInt(tfSku.getText()),
+                        Integer.parseInt(tfQty.getText()),
+                        tfLocation.getText(),
+                        comboCategory.getSelectionModel().getSelectedItem().getId(),
+                        comboSupplier.getSelectionModel().getSelectedItem().getId()
+                );
+                productTable.createProduct(product);
 
-            productTable.createProduct(product);
-            ProductStatsTab.getInstance().generateChart();
+                // add confirmation pane
+
+                tfName.clear();
+                tfSku.clear();
+                tfQty.clear();
+                tfLocation.clear();
+
+
+                root.add(confirmMessage, 1, 7);
+
+                //ProductStatsTab.getInstance().generateChart();
+            } catch(Exception ex){
+                ex.printStackTrace();
+            }
         });
 
         root.add(submitButton, 1, 6);
 
         this.setContent(root);
 
-    } // end AddProductTab f    orm
+    } // end AddProductTab form
 
     public static AddProductTab getInstance(){
         if(instance == null){
