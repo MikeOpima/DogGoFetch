@@ -160,7 +160,7 @@ public class HelloApplication extends Application {
 
             } else {
 
-                root.setCenter(IndexPane.getInstance());
+                root.setCenter(new IndexPane());
 
 //                 user login check
             if(!isUserLoggedIn()) {

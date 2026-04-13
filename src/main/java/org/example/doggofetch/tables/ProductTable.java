@@ -136,6 +136,11 @@ public class ProductTable implements ProductDAO {
         }
     } // end createProduct
 
+    @Override
+    public void getProductCount(Product product) {
+
+    }
+
     public int getProductCount(int product) {
         int count = -1;
         try {

@@ -103,9 +103,11 @@ public class ConfigAddSampleData {
 
         fadeIn.stop();
 
-//        loading.setCenter(IndexPane.getInstance());
+//        loading.setCenter(new IndexPane());
 
     } // end Preload - ConfigAddSampleData
+
+
 
     public static ConfigAddSampleData getInstance(){
         if(instance == null){
