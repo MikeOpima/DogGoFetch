@@ -1,5 +1,9 @@
 package org.example.doggofetch;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
@@ -73,7 +77,9 @@ public class ConfigAddSampleData {
         // preload users
         UserTable userTable = UserTable.getInstance();
         userTable.createUser(new User(0, "admin1", "User1","User1LastName","can123","Admin"));
-        }
+
+
+    } // end Preload - ConfigAddSampleData
 
     public static ConfigAddSampleData getInstance(){
         if(instance == null){

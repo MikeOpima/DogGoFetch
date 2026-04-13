@@ -218,6 +218,7 @@ public class HelloApplication extends Application {
 
 
             } else {
+
                 root.setCenter(IndexPane.getInstance());
                 // user login check
 //            if(!userLoggedIn) {

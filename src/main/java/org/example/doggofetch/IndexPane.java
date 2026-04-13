@@ -1,6 +1,9 @@
 package org.example.doggofetch;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.SequentialTransition;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TabPane;
@@ -8,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.AddProductTab;
@@ -71,6 +75,24 @@ public class IndexPane extends BorderPane {
         // add tabs to pane
         this.setTop(headerContent);
         this.setCenter(productTabPane);
+
+        FadeTransition titleFade = new FadeTransition(Duration.seconds(3), title);
+        titleFade.setFromValue(0);
+        titleFade.setToValue(1);
+        titleFade.setCycleCount(1);
+        titleFade.play();
+
+        FadeTransition logoFade = new FadeTransition(Duration.seconds(3.5), logo);
+        logoFade.setFromValue(0);
+        logoFade.setToValue(1);
+        logoFade.setCycleCount(1);
+        logoFade.play();
+
+        ParallelTransition fadeIn = new ParallelTransition(titleFade, logoFade);
+        fadeIn.setCycleCount(1);
+        fadeIn.play();
+
+
 
     }
 

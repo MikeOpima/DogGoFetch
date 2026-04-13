@@ -2,22 +2,22 @@ package org.example.doggofetch;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 
-public class ProgressAnimation extends BorderPane {
-    public ProgressAnimation(){
+public class ProgressBars extends BorderPane {
+    private static ProgressBars instance;
 
+    public ProgressBars(){
         BorderPane progressAnimation = new BorderPane();
 
-        // progress bar animation
-        BorderPane loadingBarPane = new BorderPane();
-        ProgressBar loadingBar = new ProgressBar(0); //0% progress
-        loadingBar.setPrefSize(200, 30);
-        loadingBar.setProgress(0.1); // 10% progress
-        Double currentProgress = loadingBar.getProgress();
+//        // progress bar animation
+//        BorderPane loadingBarPane = new BorderPane();
+//        ProgressBar loadingBar = new ProgressBar(0); //0% progress
+//        loadingBar.setPrefSize(200, 30);
+//        loadingBar.setProgress(0.1); // 10% progress
+//        Double currentProgress = loadingBar.getProgress();
 
         // progress spinning animation
         ProgressIndicator progressSpin = new ProgressIndicator();
@@ -44,12 +44,14 @@ public class ProgressAnimation extends BorderPane {
         ///  update values of progress spinner
         progressSpin.setProgress(0.75);
 
-
-
-
-
-
-
-
     }
+
+
+    public static ProgressBars getInstance(){
+        if(instance == null){
+            instance = new ProgressBars();
+        }
+        return instance;
+    }
+
 }

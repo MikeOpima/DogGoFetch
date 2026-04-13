@@ -46,6 +46,8 @@ public class UserCheck extends BorderPane {
                 Text userMessage = new Text("User Logged In");
                 this.setBottom(userMessage);
 
+
+
             }catch (Exception ex){
                 ex.printStackTrace();
                 Text userMessage = new Text("Log-in Error try again");
