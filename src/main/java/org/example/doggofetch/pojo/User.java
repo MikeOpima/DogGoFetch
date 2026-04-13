@@ -31,6 +31,9 @@ public class User {
         this.userRole = userRole;
     }
 
+    public User(int id, String text, int i) {
+    }
+
     public int getId() {return id;}
 
     public void setId(int id) {this.id = id;}

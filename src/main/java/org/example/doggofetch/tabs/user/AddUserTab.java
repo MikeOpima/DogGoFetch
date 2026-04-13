@@ -1,6 +1,7 @@
 package org.example.doggofetch.tabs.user;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -20,7 +21,7 @@ public class AddUserTab extends Tab {
     private static AddUserTab instance;
 
     public AddUserTab(){
-        this.setText("Add Product");
+        this.setText("Add User");
 
         Text welcome = new Text("Welcome to add items");
         Text confirmMessage = new Text("Product Added Successfully");
@@ -34,43 +35,17 @@ public class AddUserTab extends Tab {
 //        CategoryTable categoryTable = CategoryTable.getInstance();
 //        SupplierTable supplierTable = SupplierTable.getInstance();
 
-        // product name
-        Text name = new Text("Name: ");
-        TextField tfName = new TextField();
-        root.add(name,0,0);
-        root.add(tfName,1,0);
 
-        // product sku //TODO Password logic
-        Text sku = new Text("SKU: ");
-        TextField tfSku = new TextField();
-        root.add(sku,0,1);
-        root.add(tfSku,1,1);
 
-//        // product Qty
-//        Text qty = new Text("Quantity: ");
-//        TextField tfQty = new TextField();
-//        root.add(qty,0,2);
-//        root.add(tfQty,1,2);
-//
-//        // product location
-//        Text location = new Text("Location: ");
-//        TextField tfLocation = new TextField();
-//        root.add(location,0,3);
-//        root.add(tfLocation,1,3);
+        Text dbUser = new Text("Enter in USER: ");
+        TextField dbUserTf = new TextField();
+        root.add(dbUser,0,0);
+        root.add(dbUserTf,1,0);
+        Text dbPass = new Text("Enter in PASS: ");
+        PasswordField dbPassTf = new PasswordField();
+        root.add(dbPass,0,1);
+        root.add(dbPassTf,1,1);
 
-//        Text category = new Text("Category");
-//        ComboBox<Category> comboCategory = new ComboBox<>();
-//        comboCategory.setItems(FXCollections.observableList(categoryTable.getAllCategory()));
-//        comboCategory.getSelectionModel().select(0);
-//        root.add(category, 0,4);
-//        root.add(comboCategory, 1, 4);
-//
-//        Text supplier = new Text("Supplier");
-//        ComboBox<Supplier> comboSupplier = new ComboBox<>();
-//        comboSupplier.setItems(FXCollections.observableList(supplierTable.getAllSuppliers()));
-//        comboSupplier.getSelectionModel().select(0);
-//        root.add(supplier, 0,5);
-//        root.add(comboSupplier, 1, 5);
 
         Button submitButton = new Button(" Add New Product ");
         int id = 0;
@@ -78,19 +53,16 @@ public class AddUserTab extends Tab {
             try {
                 User user = new User(
                         id, // null value needs to pass to add in entry
-                        tfName.getText(),
-                        Integer.parseInt(tfSku.getText() //TODO password
-//                        Integer.parseInt(tfQty.getText()),
-//                        tfLocation.getText(),
-//                        comboCategory.getSelectionModel().getSelectedItem().getId(),
-//                        comboSupplier.getSelectionModel().getSelectedItem().getId()
-                );
+                        dbUser.getText(),
+                        Integer.parseInt(dbPass.getText()
+
+                        ));
                 userTable.createUser(user);
 
                 // add confirmation pane
 
-                tfName.clear();
-                tfSku.clear(); //TODO Password
+//                dbUser.clear();
+//                dbPass.clear();
 //                tfQty.clear();
 //                tfLocation.clear();
 
