@@ -20,6 +20,7 @@ import org.example.doggofetch.tabs.product.AddProductTab;
 import org.example.doggofetch.tabs.product.RemoveProductTab;
 import org.example.doggofetch.tabs.product.UpdateProductTab;
 import org.example.doggofetch.tabs.user.AddUserTab;
+import org.example.doggofetch.tabs.user.RemoveUserTab;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,7 @@ public class IndexPane extends BorderPane {
         productTabPane.getStyleClass().add("itemTabPane");
 
         productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance());
-        productTabPane.getTabs().addAll(AddUserTab.getInstance());
+        productTabPane.getTabs().addAll(AddUserTab.getInstance(), (RemoveUserTab.getInstance()));
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // end header with tabs
