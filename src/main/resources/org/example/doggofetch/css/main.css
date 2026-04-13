@@ -24,6 +24,14 @@
 	-fx-fill:#FF0000;
 }
 
+.loading{
+    -fx-font-size: 3.6em;
+	-fx-font-family: 'Bungee';
+	-fx-fill: #FFFFFF;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 6, 0, 0, 0);
+}
+
+
 /** menu bars default **/
 * {
     menu-color: #000000;
@@ -115,6 +123,7 @@
     -fx-text-fill: 'green';
     -fx-background-color: 'yellow';
 }
+
 /* button focused */
 .button:focused {
     -fx-text-fill: 'purple';

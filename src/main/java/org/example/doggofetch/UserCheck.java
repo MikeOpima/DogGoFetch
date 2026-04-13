@@ -1,12 +1,14 @@
 package org.example.doggofetch;
 
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.example.doggofetch.tables.UserTable;
 
 /**
  * User Check class
@@ -22,12 +24,19 @@ public class UserCheck extends BorderPane {
     private String password;
     private String role;
 
-    public static boolean userLoggedIn = false;
+    private static boolean userLoggedIn = false;
 
     public UserCheck(){
 
         // user pane check
         BorderPane userCheckPane = new BorderPane();
+
+        UserTable userTable = UserTable.getInstance();
+
+        if(!userLoggedIn){
+            this.setCenter(userCheckPane);
+            System.out.println("no user detected");
+
         VBox userVb = new VBox();
         Text userInstructions = new Text("Please Sign-in \n \n");
         Text userUser = new Text("Enter in USER: ");
@@ -43,11 +52,19 @@ public class UserCheck extends BorderPane {
                 // add user
                 System.out.println("User Log-in Okay");
                 UserCheck.setUserLoggedIn(true);
-                Text userMessage = new Text("User Logged In");
+                Text userMessage = new Text(" ");
+
+                if (userUserTf.equals(userUserTf) && userPassTf.equals(userPassTf)) {
+                    //TODO CheckUser method to User Table
+
+                    userMessage.setText("Login Compare Successful!");
+                } else {
+                   userMessage.setText("Login failed. Please check your credentials.");
+                }
+
                 this.setBottom(userMessage);
 
-
-
+                this.setCenter(new IndexPane());
             }catch (Exception ex){
                 ex.printStackTrace();
                 Text userMessage = new Text("Log-in Error try again");
@@ -60,13 +77,12 @@ public class UserCheck extends BorderPane {
         userCheckPane.setCenter(userVb);
         // end configCheck pane form
 
-        if(!userLoggedIn){
-            this.setCenter(userCheckPane);
-
         } else {
             setUserLoggedIn(true);
-            this.setCenter(IndexPane.getInstance());
+            this.setCenter(new IndexPane());
+            System.out.println("user logged in");
         }
+
 
     }
 
