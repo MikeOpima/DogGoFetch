@@ -8,6 +8,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.ProductTable;
+import org.example.doggofetch.tables.CategoryTable;
+import org.example.doggofetch.tables.SupplierTable;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,9 @@ public class ProductStatsTab extends Tab {
 
     public void generateChart(){
         ProductTable productTable = ProductTable.getInstance();
+        CategoryTable categoryTable = CategoryTable.getInstance();
+        SupplierTable supplierTable = SupplierTable.getInstance();
+
         // Another table mostly category
         ArrayList<Product> products = productTable.getAllProducts();
 

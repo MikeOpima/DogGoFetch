@@ -8,13 +8,15 @@ package org.example.doggofetch.pojo;
 
 public class User {
     private int id;
+    private String userName;
     private String firstName;
     private String lastName;
     private String password;
     private String userRole;
 
-    public User(int id, String firstName, String lastName, String password, String userRole) {
+    public User(int id, String userNameName, String firstName, String lastName, String password, String userRole) {
         this.id = id;
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -22,6 +24,7 @@ public class User {
     }
 
     public User(String firstName, String lastName, String password, String userRole) {
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -31,6 +34,10 @@ public class User {
     public int getId() {return id;}
 
     public void setId(int id) {this.id = id;}
+
+    public String getUserName() {return userName;}
+
+    public void setUserName(String userName) {this.userName = userName;}
 
     public String getFirstName() {return firstName;}
 
