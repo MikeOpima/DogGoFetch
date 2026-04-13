@@ -1,9 +1,14 @@
 package org.example.doggofetch;
 
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
@@ -27,6 +32,20 @@ public class ConfigAddSampleData {
      **/
     public ConfigAddSampleData() {
         //get table instances // set up sample data loads
+        BorderPane loading = new BorderPane();
+
+        Text loadingTxt = new Text("LOADING ...");
+        loadingTxt.getStyleClass().add("loading");
+
+        loading.setCenter(loadingTxt);
+
+        FadeTransition loadingFade = new FadeTransition(Duration.seconds(1.2), loadingTxt);
+        loadingFade.setFromValue(0);
+        loadingFade.setToValue(1);
+        loadingFade.setCycleCount(Animation.INDEFINITE);
+
+        ParallelTransition fadeIn = new ParallelTransition(loadingFade);
+        fadeIn.play();
 
         // preload categories
         CategoryTable categoryTable = CategoryTable.getInstance();
@@ -78,6 +97,16 @@ public class ConfigAddSampleData {
         UserTable userTable = UserTable.getInstance();
         userTable.createUser(new User(0, "admin1", "User1","User1LastName","can123","Admin"));
 
+        // link to hello app // TODO fix pane change
+//        FadeTransition loadingFade = new FadeTransition(Duration.seconds(2), loadingTxt);
+//        loadingFade.setFromValue(0);
+//        loadingFade.setToValue(1);
+//        loadingFade.setCycleCount(Animation.INDEFINITE);
+//        loadingFade.play();
+
+        fadeIn.stop();
+
+//        loading.setCenter(IndexPane.getInstance());
 
     } // end Preload - ConfigAddSampleData
 

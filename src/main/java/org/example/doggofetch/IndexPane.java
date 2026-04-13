@@ -1,6 +1,7 @@
 package org.example.doggofetch;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -10,6 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
@@ -33,17 +35,17 @@ public class IndexPane extends BorderPane {
         mainMenuBar.getStyleClass().add("mainMenuBar");
 
         // menu items inventory, search, user/login, cart
+        Menu spacer = new Menu("                 ");
         Menu login = new Menu("Log-in");
-        Menu inventory = new Menu("Inventory");
+        Menu products = new Menu("Products");
         Menu search = new Menu("Input by SKU");
-        Menu cart = new Menu("View Cart");
-        Menu orders = new Menu("View Orders");
+       // Menu cart = new Menu("View Cart");
+       // Menu orders = new Menu("View Orders");
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(inventory, search, cart,
-                orders,login);
+        mainMenuBar.getMenus().addAll(spacer, products, search, login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -51,6 +53,8 @@ public class IndexPane extends BorderPane {
         // add header items
         Text title = new Text("Dog.Go Fetch");
         title.getStyleClass().add("title");
+//        VBox titleVb = new VBox();
+//        titleVb.getChildren().addAll(title, loadingTxt);
 
         ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("images/doggofetch_logo.png")));
         logo.setFitHeight(108);
@@ -80,20 +84,15 @@ public class IndexPane extends BorderPane {
         titleFade.setFromValue(0);
         titleFade.setToValue(1);
         titleFade.setCycleCount(1);
-        titleFade.play();
 
         FadeTransition logoFade = new FadeTransition(Duration.seconds(3.5), logo);
         logoFade.setFromValue(0);
         logoFade.setToValue(1);
         logoFade.setCycleCount(1);
-        logoFade.play();
 
         ParallelTransition fadeIn = new ParallelTransition(titleFade, logoFade);
         fadeIn.setCycleCount(1);
         fadeIn.play();
-
-
-
     }
 
     public static IndexPane getInstance(){
