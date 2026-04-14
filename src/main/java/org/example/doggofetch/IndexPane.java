@@ -76,7 +76,7 @@ public class IndexPane extends BorderPane {
         // create tab pane
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance());
+        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(), UpdateProductTab.getInstance());
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 //        // create tab pane

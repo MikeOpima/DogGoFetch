@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class UpdateProductTab extends Tab {
 
     private static UpdateProductTab instance;
-    public int productSelectedId;
 
     public int find(ArrayList<?> arrayList, int id){
         ArrayList<DatabaseItem> searchList = (ArrayList<DatabaseItem>)
@@ -63,6 +62,7 @@ public class UpdateProductTab extends Tab {
         ComboBox<Product> comboProduct = new ComboBox<>();
         ArrayList<Product> allProducts= productTable.getAllProducts();
         comboProduct.setItems(FXCollections.observableArrayList(productTable.getAllProducts()));
+
         comboProduct.getSelectionModel().select(0);
         selectProductPane.add(productIdLabel, 0, 0);
         selectProductPane.add(comboProduct, 1, 0);
