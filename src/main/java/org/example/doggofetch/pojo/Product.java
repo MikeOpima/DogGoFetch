@@ -46,18 +46,6 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String text, int i, int i1, String text1, int id, int id1) {
-
-        this.id = id;
-        this.name = name;
-        this.sku = sku;
-        this.quantity = quantity;
-        this.location = location;
-        this.supplier = supplier;
-        this.category = category;
-    }
-
-
     public int getId() {
         return id;
     }

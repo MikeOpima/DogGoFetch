@@ -78,6 +78,7 @@ public class ProductTable implements ProductDAO {
 
     } // end getProduct
 
+
     public void updateProduct(Product product) {
         String query = "UPDATE " + TABLE_PRODUCT + " SET " +
                 PRODUCT_COLUMN_NAME + "= " + product.getName() + ", " +
@@ -135,6 +136,11 @@ public class ProductTable implements ProductDAO {
             System.out.println(query);
         }
     } // end createProduct
+
+    @Override
+    public void getProductCount(Product product) {
+
+    }
 
     public int getProductCount(int product) {
         int count = -1;

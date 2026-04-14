@@ -79,7 +79,6 @@ public class ConfigAddSampleData {
 
         // preload products
         ProductTable productTable = ProductTable.getInstance();
-        productTable.createProduct(new Product(0,"Hammer",1001, 50, "Aisle 1 - Shelf A", 1 , 1));
         productTable.createProduct(new Product(0,"Screwdriver Set", 1002, 5, "Aisle 2 - Shelf A", 1 ,3));
         productTable.createProduct(new Product(0,"Nails (Box)", 1003, 120, "Aisle 1 - Shelf B", 1 ,2));
         productTable.createProduct(new Product(0,"Drill Machine", 1004, 20, "Aisle 2 - Shelf C", 1 ,3));
@@ -103,9 +102,11 @@ public class ConfigAddSampleData {
 
         fadeIn.stop();
 
-//        loading.setCenter(IndexPane.getInstance());
+//        loading.setCenter(new IndexPane());
 
     } // end Preload - ConfigAddSampleData
+
+
 
     public static ConfigAddSampleData getInstance(){
         if(instance == null){

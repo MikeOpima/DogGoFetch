@@ -17,13 +17,14 @@ import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.AddProductTab;
+import org.example.doggofetch.tabs.product.ProductStatsTab;
 import org.example.doggofetch.tabs.product.RemoveProductTab;
 import org.example.doggofetch.tabs.product.UpdateProductTab;
+import org.example.doggofetch.tabs.supplier.RemoveSupplierTab;
+import org.example.doggofetch.tabs.supplier.SupplierTab;
 import org.example.doggofetch.tabs.user.AddUserTab;
 import org.example.doggofetch.tabs.user.RemoveUserTab;
-import org.example.doggofetch.tabs.user.UpdateUserTab;
-//import org.example.doggofetch.tabs.user.UpdateUserTab;
-//
+
 import java.util.ArrayList;
 
 public class IndexPane extends BorderPane {
@@ -42,6 +43,7 @@ public class IndexPane extends BorderPane {
         Menu spacer = new Menu("                 ");
         Menu login = new Menu("Log-in");
         Menu products = new Menu("Products");
+        Menu suppliers = new Menu("Suppliers");
         Menu search = new Menu("Input by SKU");
        // Menu cart = new Menu("View Cart");
        // Menu orders = new Menu("View Orders");
@@ -74,18 +76,28 @@ public class IndexPane extends BorderPane {
         // create tab pane
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(),
-                RemoveProductTab.getInstance()); //,
-                //new UpdateProductTab()
-        productTabPane.getTabs().addAll(AddUserTab.getInstance(), (RemoveUserTab.getInstance()),UpdateUserTab.getInstance(),UpdateProductTab.getInstance());
+        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance());
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+//        // create tab pane
+//        TabPane supplierTabPane = new TabPane();
+//        supplierTabPane.getStyleClass().add("itemTabPane");
+//        supplierTabPane.getTabs().addAll(SupplierTab.getInstance(), RemoveSupplierTab.getInstance());
+//        supplierTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // end header with tabs
 
         // add tabs to pane
-        this.setTop(headerContent);
+        products.setOnAction( e-> {
+
+        });
+        suppliers.setOnAction( e-> {
+//            this.setCenter(supplierTabPane);
+        });
+
         this.setCenter(productTabPane);
+        this.setTop(headerContent);
+
 
         FadeTransition titleFade = new FadeTransition(Duration.seconds(3), title);
         titleFade.setFromValue(0);
