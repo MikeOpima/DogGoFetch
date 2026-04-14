@@ -14,6 +14,7 @@ public interface ProductDAO {
     public void updateProduct(Product product);
     public void deleteProduct(int id);
     public void createProduct(Product product);
+    public void getProductCount(Product product);
 }
 
 

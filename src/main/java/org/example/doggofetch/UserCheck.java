@@ -1,14 +1,25 @@
 package org.example.doggofetch;
 
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.example.doggofetch.database.Database;
+import org.example.doggofetch.pojo.User;
 import org.example.doggofetch.tables.UserTable;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import static org.example.doggofetch.database.DBConst.*;
+import static org.example.doggofetch.database.DBConst.USER_COLUMN_FIRST_NAME;
+import static org.example.doggofetch.database.DBConst.USER_COLUMN_LAST_NAME;
+import static org.example.doggofetch.database.DBConst.USER_COLUMN_PASSWORD;
+import static org.example.doggofetch.database.DBConst.USER_COLUMN_ROLE;
 
 /**
  * User Check class
@@ -20,14 +31,16 @@ import org.example.doggofetch.tables.UserTable;
 public class UserCheck extends BorderPane {
     private static UserCheck instance;
 
-    private String username;
+    private static String username;
     private String password;
     private String role;
 
     private static boolean userLoggedIn = false;
 
-    public UserCheck(){
+    static Database db = Database.getInstance();
+    ArrayList<User> users = new ArrayList<>();
 
+    public UserCheck(){
         // user pane check
         BorderPane userCheckPane = new BorderPane();
 
@@ -53,10 +66,12 @@ public class UserCheck extends BorderPane {
                 System.out.println("User Log-in Okay");
                 UserCheck.setUserLoggedIn(true);
                 Text userMessage = new Text(" ");
+                username = userUserTf.getText();
+                password = userPassTf.getText();
 
-                if (userUserTf.equals(userUserTf) && userPassTf.equals(userPassTf)) {
+                if (username.equals(UserCheck.getUserNameCheck(username.toString())) &&
+                password.equals(UserCheck.getUserNameCheck(password.toString()))) {
                     //TODO CheckUser method to User Table
-
                     userMessage.setText("Login Compare Successful!");
                 } else {
                    userMessage.setText("Login failed. Please check your credentials.");
@@ -86,9 +101,9 @@ public class UserCheck extends BorderPane {
 
     }
 
-    public String getUsername() {
-        return username;
-    }
+    //public String getUsername() {
+//        return username;
+//    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -124,6 +139,31 @@ public class UserCheck extends BorderPane {
         }
         return instance;
     }
+
+    public static User getUserNameCheck(String username){
+        String query = "SELECT * FROM "+ TABLE_USER+
+                " WHERE " + USER_COLUMN_USER_NAME +" = " + UserCheck.username;
+        try{
+            Statement getUser= db.getConnection().createStatement();
+            ResultSet data = getUser.executeQuery(query);
+            if (data.next()){
+                return new User(
+                        data.getInt(USER_COLUMN_ID),
+                        data.getString(USER_COLUMN_USER_NAME),
+                        data.getString(USER_COLUMN_FIRST_NAME),
+                        data.getString(USER_COLUMN_LAST_NAME),
+                        data.getString(USER_COLUMN_PASSWORD),
+                        data.getString(USER_COLUMN_ROLE)
+                );
+            }else{
+                System.out.println("no user");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("no user found, try again");
+        }
+        return null;
+    }//end getUsers
 
 
 }
