@@ -37,6 +37,8 @@ public class HelloApplication extends Application {
 
         BorderPane root = new BorderPane();
 
+        // TABS located in indexPane Class
+
         BorderPane configCheck = new BorderPane();
         VBox instructionsVb = new VBox();
         Text instructions = new Text("Missing Config Doc \n \n");
@@ -146,6 +148,8 @@ public class HelloApplication extends Application {
                         Database db = Database.getInstance();
 
                         ConfigAddSampleData.getInstance();
+
+                        root.setCenter(new IndexPane());
 
 
 
