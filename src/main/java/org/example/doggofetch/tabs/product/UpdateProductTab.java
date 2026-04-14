@@ -119,12 +119,16 @@ public class UpdateProductTab extends Tab {
         gridPane.add(updateButton, 1, 6);
     } // end UpdateProductPane
 
-//    public static UpdateProductTab getInstance(){
-//        if(instance == null){
-//            instance = new UpdateProductTab();
-//        }
-//        return instance;
-//    } // end create instance call
+
+    public UpdateProductTab() {
+    }
+
+    public static UpdateProductTab getInstance(){
+        if(instance == null){
+            instance = new UpdateProductTab();
+        }
+        return instance;
+    } // end create instance call
 
     public void refreshTable(){
         System.out.println("Test refresh");

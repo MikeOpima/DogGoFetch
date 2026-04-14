@@ -179,7 +179,7 @@ public class HelloApplication extends Application {
 
 
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 800);
         scene.getStylesheets().add(String.valueOf(this.getClass().getResource("css/main.css")));
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
