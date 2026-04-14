@@ -1,3 +1,5 @@
+//Remove Supplier Tab
+
 package org.example.doggofetch.tabs.supplier;
 
 import javafx.collections.FXCollections;

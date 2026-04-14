@@ -37,6 +37,8 @@ public class HelloApplication extends Application {
 
         BorderPane root = new BorderPane();
 
+        // TABS located in indexPane Class
+
         BorderPane configCheck = new BorderPane();
         VBox instructionsVb = new VBox();
         Text instructions = new Text("Missing Config Doc \n \n");
@@ -147,6 +149,8 @@ public class HelloApplication extends Application {
 
                         ConfigAddSampleData.getInstance();
 
+                        root.setCenter(new IndexPane());
+
 
 
                     } catch (Exception ex) {
@@ -160,7 +164,7 @@ public class HelloApplication extends Application {
 
             } else {
 
-                root.setCenter(IndexPane.getInstance());
+                root.setCenter(new IndexPane());
 
 //                 user login check
             if(!isUserLoggedIn()) {
@@ -179,7 +183,7 @@ public class HelloApplication extends Application {
 
 
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 800);
         scene.getStylesheets().add(String.valueOf(this.getClass().getResource("css/main.css")));
         stage.setScene(scene);
         stage.setTitle("Dog Go Fetch");
