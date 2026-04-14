@@ -5,7 +5,7 @@
  * Tab to display supplier info
  */
 
-package org.example.doggofetch.tabs;
+package org.example.doggofetch.tabs.supplier;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Tab;

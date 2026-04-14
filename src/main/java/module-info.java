@@ -14,4 +14,6 @@ module org.example.doggofetch {
     opens org.example.doggofetch.tabs to javafx.fxml;
     exports org.example.doggofetch.tabs.product;
     opens org.example.doggofetch.tabs.product to javafx.fxml;
+    exports org.example.doggofetch.tabs.supplier;
+    opens org.example.doggofetch.tabs.supplier to javafx.fxml;
 }
