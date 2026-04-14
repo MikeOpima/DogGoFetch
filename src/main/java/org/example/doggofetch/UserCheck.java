@@ -67,8 +67,10 @@ public class UserCheck extends BorderPane {
                 UserCheck.setUserLoggedIn(true);
                 Text userMessage = new Text(" ");
                 username = userUserTf.getText();
+                password = userPassTf.getText();
 
-                if (username.equals(UserCheck.getUserNameCheck(username.toString()))) {
+                if (username.equals(UserCheck.getUserNameCheck(username.toString())) &&
+                password.equals(UserCheck.getUserNameCheck(password.toString()))) {
                     //TODO CheckUser method to User Table
                     userMessage.setText("Login Compare Successful!");
                 } else {
