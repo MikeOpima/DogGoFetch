@@ -8,7 +8,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import org.example.doggofetch.dao.ProductDAO;
 import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.DatabaseItem;
 import org.example.doggofetch.pojo.Product;
@@ -119,6 +118,10 @@ public class UpdateProductTab extends Tab {
         }));
         gridPane.add(updateButton, 1, 6);
     } // end UpdateProductPane
+
+
+    public UpdateProductTab() {
+    }
 
     public static UpdateProductTab getInstance(){
         if(instance == null){
