@@ -48,7 +48,6 @@ public class UserCheck extends BorderPane {
 
         if(!userLoggedIn){
             this.setCenter(userCheckPane);
-            System.out.println("no user detected");
 
         VBox userVb = new VBox();
         Text userInstructions = new Text("Please Sign-in \n \n");
@@ -73,6 +72,8 @@ public class UserCheck extends BorderPane {
                 password.equals(UserCheck.getUserNameCheck(password.toString()))) {
                     //TODO CheckUser method to User Table
                     userMessage.setText("Login Compare Successful!");
+                    userLoggedIn = true;
+                    System.out.println(username + " " + password);
                 } else {
                    userMessage.setText("Login failed. Please check your credentials.");
                 }
@@ -142,7 +143,7 @@ public class UserCheck extends BorderPane {
 
     public static User getUserNameCheck(String username){
         String query = "SELECT * FROM "+ TABLE_USER+
-                " WHERE " + USER_COLUMN_USER_NAME +" = " + UserCheck.username;
+                " WHERE " + USER_COLUMN_USER_NAME +" = " + "' UserCheck.username '";
         try{
             Statement getUser= db.getConnection().createStatement();
             ResultSet data = getUser.executeQuery(query);

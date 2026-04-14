@@ -24,6 +24,7 @@ import org.example.doggofetch.tabs.user.RemoveUserTab;
 import org.example.doggofetch.tabs.user.UpdateUserTab;
 //import org.example.doggofetch.tabs.user.UpdateUserTab;
 //
+import javax.security.auth.Refreshable;
 import java.util.ArrayList;
 
 public class IndexPane extends BorderPane {
@@ -39,9 +40,11 @@ public class IndexPane extends BorderPane {
         mainMenuBar.getStyleClass().add("mainMenuBar");
 
         // menu items inventory, search, user/login, cart
-        Menu spacer = new Menu("                 ");
+        Menu spacer = new Menu("       ");
         Menu login = new Menu("Log-in");
         Menu products = new Menu("Products");
+        Menu suppliers = new Menu("Suppliers");
+        Menu users = new Menu("Users");
         Menu search = new Menu("Input by SKU");
         // Menu cart = new Menu("View Cart");
         // Menu orders = new Menu("View Orders");
@@ -49,7 +52,7 @@ public class IndexPane extends BorderPane {
         login.getItems().add(signout);
 
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(spacer, products, search, login);
+        mainMenuBar.getMenus().addAll(spacer, products, suppliers, users, login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -74,18 +77,31 @@ public class IndexPane extends BorderPane {
         // create tab pane
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(),
-                RemoveProductTab.getInstance()); //,
-        //new UpdateProductTab()
-        productTabPane.getTabs().addAll(AddUserTab.getInstance(), (RemoveUserTab.getInstance()),UpdateUserTab.getInstance(),UpdateProductTab.getInstance());
+        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(), UpdateProductTab.getInstance());
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+        // create tab pane
+        TabPane userTabPane = new TabPane();
+        userTabPane.getStyleClass().add("itemTabPane");
+        userTabPane.getTabs().addAll(AddUserTab.getInstance(), RemoveUserTab.getInstance(),UpdateUserTab.getInstance());
+        userTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // end header with tabs
 
         // add tabs to pane
         this.setTop(headerContent);
         this.setCenter(productTabPane);
+
+        products.setOnAction( e-> {
+            this.setCenter(new IndexPane());
+
+        });
+
+        suppliers.setOnAction( e-> {
+            this.setCenter(productTabPane);
+
+        });
+
 
         FadeTransition titleFade = new FadeTransition(Duration.seconds(3), title);
         titleFade.setFromValue(0);

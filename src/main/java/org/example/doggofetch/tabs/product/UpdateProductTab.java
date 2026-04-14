@@ -46,7 +46,6 @@ public class UpdateProductTab extends Tab {
     }
 
     public UpdateProductTab(Product selectedProduct) {
-        this.setText("Update Product");
 
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
@@ -121,6 +120,7 @@ public class UpdateProductTab extends Tab {
 
 
     public UpdateProductTab() {
+        this.setText("Update Product");
     }
 
     public static UpdateProductTab getInstance(){
