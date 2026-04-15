@@ -17,10 +17,7 @@ import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.product.AddProductTab;
-import org.example.doggofetch.tabs.product.ProductsPane;
-import org.example.doggofetch.tabs.product.RemoveProductTab;
-import org.example.doggofetch.tabs.product.UpdateProductTab;
+import org.example.doggofetch.tabs.product.*;
 import org.example.doggofetch.tabs.supplier.RemoveSupplierTab;
 import org.example.doggofetch.tabs.supplier.SupplierTab;
 import org.example.doggofetch.tabs.user.AddUserTab;
@@ -84,7 +81,7 @@ public class IndexPane extends BorderPane {
 
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(),UpdateProductTab.getInstance());
+        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(),UpdateProductTab.getInstance(), ProductStatsTab.getInstance());
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         TabPane supplierTabPane = new TabPane();
@@ -96,7 +93,7 @@ public class IndexPane extends BorderPane {
 
         // add tabs to pane
         this.setTop(headerContent);
-        this.setCenter(userTabPane);
+        this.setCenter(productTabPane);
 
 
         products.setOnAction( e-> {

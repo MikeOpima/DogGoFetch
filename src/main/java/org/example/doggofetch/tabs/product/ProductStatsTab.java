@@ -6,12 +6,21 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
+import org.example.doggofetch.pojo.Category;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.SupplierTable;
 
 import java.util.ArrayList;
+
+/**
+ * ProductStatsTab
+ * @author katkoe
+ * @date 04.14.26
+ *
+ * sort products by category, display in pie chart
+ */
 
 public class ProductStatsTab extends Tab {
     private static ProductStatsTab instance;
@@ -21,7 +30,7 @@ public class ProductStatsTab extends Tab {
     private ProductStatsTab()
     {
         this.setText("Product Statistics");
-        BorderPane bp = new BorderPane();
+        BorderPane root = new BorderPane();
         pieChart = new PieChart();
         pieChart.setTitle("Product Tracking");
         pieChart.setLabelsVisible(true);
@@ -30,30 +39,29 @@ public class ProductStatsTab extends Tab {
             generateChart();
         });
         generateChart();
-        bp.setCenter(pieChart);
-        bp.setBottom(refresh);
-        this.setContent(bp);
+        root.setCenter(pieChart);
+        root.setBottom(refresh);
+        this.setContent(root);
 
     }
 
     public void generateChart(){
         ProductTable productTable = ProductTable.getInstance();
         CategoryTable categoryTable = CategoryTable.getInstance();
-        SupplierTable supplierTable = SupplierTable.getInstance();
 
         // Another table mostly category
-        ArrayList<Product> products = productTable.getAllProducts();
+        ArrayList<Category> categories = categoryTable.getAllCategory();
 
-        ArrayList<PieChart.Data> pieChartData = new ArrayList<>();
-        for (Product product : products) {
-            double count = productTable.getProductCount(product.getId());
+        ArrayList<PieChart.Data> data = new ArrayList<>();
+        for (Category category : categories) {
+            double count = productTable.getProductCount(category.getId());
 
             if (count > 0) {
-                pieChartData.add(new PieChart.Data(product.getName(), count));
+                data.add(new PieChart.Data(category.getName(), count));
             }
         }
         ObservableList<PieChart.Data> chartData
-                = FXCollections.observableArrayList(pieChartData);
+                = FXCollections.observableArrayList(data);
         pieChart.setData(chartData);
     }
 
