@@ -22,14 +22,9 @@ import org.example.doggofetch.tabs.supplier.RemoveSupplierTab;
 import org.example.doggofetch.tabs.supplier.SupplierTab;
 import org.example.doggofetch.tabs.user.AddUserTab;
 import org.example.doggofetch.tabs.user.RemoveUserTab;
-<<<<<<< HEAD
 import org.example.doggofetch.tabs.user.UpdateUserTab;
 //import org.example.doggofetch.tabs.user.UpdateUserTab;
-//
-import javax.security.auth.Refreshable;
-=======
 
->>>>>>> dev
 import java.util.ArrayList;
 
 public class IndexPane extends BorderPane {
@@ -85,11 +80,8 @@ public class IndexPane extends BorderPane {
 
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-<<<<<<< HEAD
+
         productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(),UpdateProductTab.getInstance(), ProductStatsTab.getInstance());
-=======
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance());
->>>>>>> dev
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         TabPane supplierTabPane = new TabPane();

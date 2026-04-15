@@ -117,9 +117,7 @@ public class UpdateProductTab extends Tab {
         }));
         gridPane.add(updateButton, 1, 6);
     } // end UpdateProductPane
-
-<<<<<<< HEAD
-
+    
     public UpdateProductTab() {
         this.setText("Update Product");
     }
@@ -138,7 +136,4 @@ public class UpdateProductTab extends Tab {
 //        tableView.getItems().addAll(table.getPrettyItems());
     }
 
-
-=======
->>>>>>> dev
 } // end updateProductTab class
