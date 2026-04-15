@@ -44,11 +44,10 @@ public class UpdateUserTab extends Tab {
     }
 
     public UpdateUserTab() {
+        this.setText("Update User");
     }
 
     public UpdateUserTab(User selectedUser) {
-        this.setText("Update User");
-
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setVgap(10);

@@ -7,6 +7,7 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,15 +16,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
+import org.example.doggofetch.pojo.Supplier;
 import org.example.doggofetch.tabs.CartTab;
-import org.example.doggofetch.tabs.product.AddProductTab;
-import org.example.doggofetch.tabs.product.ProductStatsTab;
-import org.example.doggofetch.tabs.product.RemoveProductTab;
-import org.example.doggofetch.tabs.product.UpdateProductTab;
+import org.example.doggofetch.tabs.product.*;
 import org.example.doggofetch.tabs.supplier.RemoveSupplierTab;
 import org.example.doggofetch.tabs.supplier.SupplierTab;
 import org.example.doggofetch.tabs.user.AddUserTab;
 import org.example.doggofetch.tabs.user.RemoveUserTab;
+import org.example.doggofetch.tabs.user.UpdateUserTab;
+//import org.example.doggofetch.tabs.user.UpdateUserTab;
 
 import java.util.ArrayList;
 
@@ -40,18 +41,27 @@ public class IndexPane extends BorderPane {
         mainMenuBar.getStyleClass().add("mainMenuBar");
 
         // menu items inventory, search, user/login, cart
-        Menu spacer = new Menu("                 ");
+        Menu spacer = new Menu("    ");
         Menu login = new Menu("Log-in");
         Menu products = new Menu("Products");
+        MenuItem viewProducts = new MenuItem("View Products");
         Menu suppliers = new Menu("Suppliers");
-        Menu search = new Menu("Input by SKU");
-       // Menu cart = new Menu("View Cart");
-       // Menu orders = new Menu("View Orders");
+        MenuItem viewSuppliers = new MenuItem("View Suppliers");
+        Menu users = new Menu("Users");
+        MenuItem viewUsers = new MenuItem("View Users");
+        // Menu search = new Menu("Input by SKU");
+        // Menu cart = new Menu("View Cart");
+        // Menu orders = new Menu("View Orders");
         Menu signout = new Menu("Sign Out");
         login.getItems().add(signout);
 
+        // Add items to menus
+        products.getItems().add(viewProducts);
+        suppliers.getItems().add(viewSuppliers);
+        users.getItems().add(viewUsers);
+
         // menuBar.getMenu().add(file);
-        mainMenuBar.getMenus().addAll(spacer, products, search, login);
+        mainMenuBar.getMenus().addAll(spacer, products, suppliers, users, login);
         signout.setOnAction( e-> {
             System.exit(0);
         });
@@ -59,9 +69,6 @@ public class IndexPane extends BorderPane {
         // add header items
         Text title = new Text("Dog.Go Fetch");
         title.getStyleClass().add("title");
-//        VBox titleVb = new VBox();
-//        titleVb.getChildren().addAll(title, loadingTxt);
-
         ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("images/doggofetch_logo.png")));
         logo.setFitHeight(108);
         logo.setFitWidth(108);
@@ -74,29 +81,40 @@ public class IndexPane extends BorderPane {
         headerContent.setBottom(mainMenuBar);
 
         // create tab pane
+        TabPane userTabPane = new TabPane();
+        userTabPane.getStyleClass().add("itemTabPane");
+        userTabPane.getTabs().addAll(AddUserTab.getInstance(), RemoveUserTab.getInstance(),UpdateUserTab.getInstance());
+        userTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
         TabPane productTabPane = new TabPane();
         productTabPane.getStyleClass().add("itemTabPane");
-        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance());
+
+        productTabPane.getTabs().addAll(AddProductTab.getInstance(), RemoveProductTab.getInstance(),UpdateProductTab.getInstance(), ProductStatsTab.getInstance());
         productTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-//        // create tab pane
-//        TabPane supplierTabPane = new TabPane();
-//        supplierTabPane.getStyleClass().add("itemTabPane");
-//        supplierTabPane.getTabs().addAll(SupplierTab.getInstance(), RemoveSupplierTab.getInstance());
-//        supplierTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        TabPane supplierTabPane = new TabPane();
+        supplierTabPane.getStyleClass().add("itemTabPane");
+        supplierTabPane.getTabs().addAll(RemoveSupplierTab.getInstance());
+        supplierTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // end header with tabs
 
         // add tabs to pane
-        products.setOnAction( e-> {
-
-        });
-        suppliers.setOnAction( e-> {
-//            this.setCenter(supplierTabPane);
-        });
-
-        this.setCenter(productTabPane);
         this.setTop(headerContent);
+        this.setCenter(productTabPane);
+
+        viewProducts.setOnAction(e -> {
+            this.setCenter(productTabPane);
+        });
+
+        viewSuppliers.setOnAction(e -> {
+            //Missing?
+            //this.setCenter(supplierTabPane);
+        });
+
+        viewUsers.setOnAction(e -> {
+            this.setCenter(userTabPane);
+        });
 
 
         FadeTransition titleFade = new FadeTransition(Duration.seconds(3), title);
@@ -120,7 +138,6 @@ public class IndexPane extends BorderPane {
         }
         return instance;
     }
-
 }
 
 
