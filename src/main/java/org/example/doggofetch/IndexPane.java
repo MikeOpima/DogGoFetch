@@ -7,6 +7,7 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,14 +44,21 @@ public class IndexPane extends BorderPane {
         Menu spacer = new Menu("    ");
         Menu login = new Menu("Log-in");
         Menu products = new Menu("Products");
+        MenuItem viewProducts = new MenuItem("View Products");
         Menu suppliers = new Menu("Suppliers");
+        MenuItem viewSuppliers = new MenuItem("View Suppliers");
         Menu users = new Menu("Users");
+        MenuItem viewUsers = new MenuItem("View Users");
         // Menu search = new Menu("Input by SKU");
         // Menu cart = new Menu("View Cart");
         // Menu orders = new Menu("View Orders");
         Menu signout = new Menu("Sign Out");
-        Menu addProductTab = new Menu("Add Product Tab");
         login.getItems().add(signout);
+
+        // Add items to menus
+        products.getItems().add(viewProducts);
+        suppliers.getItems().add(viewSuppliers);
+        users.getItems().add(viewUsers);
 
         // menuBar.getMenu().add(file);
         mainMenuBar.getMenus().addAll(spacer, products, suppliers, users, login);
@@ -95,14 +103,17 @@ public class IndexPane extends BorderPane {
         this.setTop(headerContent);
         this.setCenter(productTabPane);
 
-
-        products.setOnAction( e-> {
-           IndexPane.getInstance().setCenter(productTabPane);
-        // @TODO Refresh / TabLoad
+        viewProducts.setOnAction(e -> {
+            this.setCenter(productTabPane);
         });
 
-        suppliers.setOnAction( e-> {
+        viewSuppliers.setOnAction(e -> {
+            //Missing?
+            //this.setCenter(supplierTabPane);
+        });
 
+        viewUsers.setOnAction(e -> {
+            this.setCenter(userTabPane);
         });
 
 
