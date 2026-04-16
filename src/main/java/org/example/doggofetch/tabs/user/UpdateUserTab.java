@@ -2,10 +2,7 @@ package org.example.doggofetch.tabs.user;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.example.doggofetch.pojo.*;
@@ -13,6 +10,9 @@ import org.example.doggofetch.tables.CategoryTable;
 import org.example.doggofetch.tables.ProductTable;
 import org.example.doggofetch.tables.SupplierTable;
 import org.example.doggofetch.tables.UserTable;
+import org.example.doggofetch.tabs.product.RemoveProductTab;
+import org.example.doggofetch.tabs.product.UpdateProductTab;
+import org.example.doggofetch.tabs.supplier.SupplierTab;
 
 import java.util.ArrayList;
 
@@ -22,8 +22,10 @@ import java.util.ArrayList;
  * April 13, 2026
  */
 
-public class UpdateUserTab extends Tab {
-    private static UpdateUserTab instance;
+public class UpdateUserTab extends GridPane {
+
+    private static  SupplierTab instance;
+    public TableView tableView;
 
     /**
      * Search Feature to Update Product
@@ -43,18 +45,20 @@ public class UpdateUserTab extends Tab {
         return 0;
     }
 
-    public UpdateUserTab() {
-        this.setText("Update User");
-    }
+    public UpdateUserTab(User user) {
+        TableView tableView = new TableView();
 
-    public UpdateUserTab(User selectedUser) {
+        this.setPadding(new Insets(10,10,10,10));
+        this.setVgap(10);
+        this.setHgap(10);
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setVgap(10);
         gridPane.setHgap(10);
 
-        User user = selectedUser;
+        User user1 = user;
         UserTable userTable = UserTable.getInstance();
+
 
         // user id
         Text id = new Text("Id: ");
@@ -98,9 +102,6 @@ public class UpdateUserTab extends Tab {
         gridPane.add(role, 0, 5);
         gridPane.add(tfURole, 1, 5);
 
-
-
-
         Button updateButton = new Button(" Update User ");
         updateButton.setOnAction((e -> {
             user.setUserName(tfUn.getText());
@@ -111,21 +112,11 @@ public class UpdateUserTab extends Tab {
 
             userTable.updateUser(user);
 
+            RemoveUserTab.getInstance().refreshTable();
+
         }));
-        gridPane.add(updateButton, 1, 6);
+        this.add(updateButton, 1, 6);
     } // end UpdateProductPan
 
-    public static UpdateUserTab getInstance(){
-        if(instance == null){
-            instance = new UpdateUserTab();
-        }
-        return instance;
-    } // end create instance call
 
-    public void refreshTable(){
-        System.out.println("Test refresh");
-//        ItemTable table = ItemTable.getInstance();
-//        tableView.getItems().clear();
-//        tableView.getItems().addAll(table.getPrettyItems());
-    } //end updateUser method
 } // end updateProductTab class

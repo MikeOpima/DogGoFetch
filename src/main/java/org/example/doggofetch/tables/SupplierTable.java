@@ -170,7 +170,7 @@ public class SupplierTable implements SupplierDAO {
                         data.getString("province"),
                         data.getString("city"),
                         data.getString("postalcode"),
-                        data.getString("contact"),
+                        data.getString("phone"),
                         data.getString("email")));
             }
         } catch (SQLException e) {
