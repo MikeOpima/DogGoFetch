@@ -8,6 +8,7 @@ import javafx.animation.SequentialTransition;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -16,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.doggofetch.pojo.Product;
 import org.example.doggofetch.pojo.Supplier;
+import org.example.doggofetch.tables.UserTable;
 import org.example.doggofetch.tabs.CartTab;
 import org.example.doggofetch.tabs.product.*;
 import org.example.doggofetch.tabs.supplier.RemoveSupplierTab;
@@ -29,8 +31,10 @@ import java.util.ArrayList;
 
 public class IndexPane extends BorderPane {
     private static IndexPane instance;
+    TableView tableView = new TableView();
 
     public IndexPane(){
+
 
         // if file exists show app
         BorderPane indexPane = new BorderPane();
@@ -75,7 +79,7 @@ public class IndexPane extends BorderPane {
         // create tab pane
         TabPane userTabPane = new TabPane();
         userTabPane.getStyleClass().add("itemTabPane");
-        userTabPane.getTabs().addAll(AddUserTab.getInstance(), RemoveUserTab.getInstance(),UpdateUserTab.getInstance());
+        userTabPane.getTabs().addAll(AddUserTab.getInstance(), RemoveUserTab.getInstance(),new UpdateProductTab());
         userTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         TabPane productTabPane = new TabPane();
@@ -126,6 +130,12 @@ public class IndexPane extends BorderPane {
             instance = new IndexPane();
         }
         return instance;
+
+//        public void refreshTable(){
+//            UserTable user = UserTable.getInstance();
+//            tableView.getItems().clear();
+//            tableView.getItems().addAll(user.getAllUsers());
+//        }
     }
 }
 

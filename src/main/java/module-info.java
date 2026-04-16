@@ -7,6 +7,7 @@ module org.example.doggofetch {
     requires javafx.base;
     requires mysql.connector.j;
     requires com.google.protobuf;
+    requires org.example.doggofetch;
 
 
     opens org.example.doggofetch to javafx.fxml;

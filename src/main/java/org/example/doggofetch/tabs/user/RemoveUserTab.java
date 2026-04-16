@@ -92,6 +92,7 @@ public class RemoveUserTab extends Tab {
         tableView.getItems().clear();
         tableView.getItems().addAll(user.getAllUsers());
     }
+
     public static RemoveUserTab getInstance(){
         if(instance == null){
             instance = new RemoveUserTab();
