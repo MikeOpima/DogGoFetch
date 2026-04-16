@@ -28,16 +28,17 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String name) {
-        this.name = name;
-        this.sku = sku;
-        this.quantity = quantity;
-        this.location = location;
-        this.supplier = supplier;
-        this.category = category;
-    }
+//    public Product(String name) {
+//        this.name = name;
+//        this.sku = sku;
+//        this.quantity = quantity;
+//        this.location = location;
+//        this.supplier = supplier;
+//        this.category = category;
+//    }
 
     public Product(Product product) {
+        this.id = id;
         this.name = name;
         this.sku = sku;
         this.quantity = quantity;

@@ -63,7 +63,7 @@ public class UserCheck extends BorderPane {
             try{
                 // add user
                 System.out.println("User Log-in Okay");
-                UserCheck.setUserLoggedIn(true);
+
                 Text userMessage = new Text(" ");
                 username = userUserTf.getText();
                 password = userPassTf.getText();
@@ -74,8 +74,11 @@ public class UserCheck extends BorderPane {
                     userMessage.setText("Login Compare Successful!");
                     userLoggedIn = true;
                     System.out.println(username + " " + password);
+                    UserCheck.setUserLoggedIn(true);
                 } else {
                    userMessage.setText("Login failed. Please check your credentials.");
+                    System.out.println("user:" + username + " " + password);
+                    UserCheck.setUserLoggedIn(false);
                 }
 
                 this.setBottom(userMessage);
