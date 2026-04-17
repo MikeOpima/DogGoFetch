@@ -1,6 +1,6 @@
 package org.example.doggofetch.pojo;
 
-public class Product {
+public class Product extends DatabaseItem{
     private int id;
     private String name;
     private int sku;
@@ -19,7 +19,7 @@ public class Product {
 
     public Product(int id, String name, int sku, int quantity, String location,
                    int supplier, int category) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.sku = sku;
         this.quantity = quantity;
@@ -37,15 +37,15 @@ public class Product {
 //        this.category = category;
 //    }
 
-    public Product(Product product) {
-        this.id = id;
-        this.name = name;
-        this.sku = sku;
-        this.quantity = quantity;
-        this.location = location;
-        this.supplier = supplier;
-        this.category = category;
-    }
+//    public Product(Product product) {
+//        this.id = id;
+//        this.name = name;
+//        this.sku = sku;
+//        this.quantity = quantity;
+//        this.location = location;
+//        this.supplier = supplier;
+//        this.category = category;
+//    }
 
     public int getId() {
         return id;

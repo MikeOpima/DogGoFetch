@@ -1,22 +1,22 @@
 package org.example.doggofetch.pojo;
 
-public class Category{
+public class Category extends DatabaseItem{
 
     private int id;
     private String name;
 
     public Category(int id, String name){
-        this.id = id;
+        super(id);
         this.name = name;
     }
 
-    public Category(String name){
-        this.name = name;
-    }
-
-    public Category(){
-
-    }
+//    public Category(String name){
+//        this.name = name;
+//    }
+//
+//    public Category(){
+//
+//    }
 
     public int getId() {
         return id;
