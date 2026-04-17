@@ -6,7 +6,7 @@
  */
 package org.example.doggofetch.pojo;
 
-public class Supplier {
+public class Supplier extends DatabaseItem {
     private int id;
     private String name;
     private String address;
@@ -17,6 +17,7 @@ public class Supplier {
     private String email;
 
     public Supplier(int id, String name, String address, String city, String province, String postalcode, String phone, String email) {
+        super (id);
         this.id = id;
         this.name = name;
         this.address = address;
@@ -27,12 +28,12 @@ public class Supplier {
         this.email = email;
     }
 
-    public Supplier(){
-
-    }
-
-    public Supplier(String supplier) {
-    }
+//    public Supplier(){
+//
+//    }
+//
+//    public Supplier(String supplier) {
+//    }
 
     public int getId() {
         return id;

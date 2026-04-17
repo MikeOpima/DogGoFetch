@@ -43,13 +43,12 @@ public class RemoveSupplierTab extends Tab {
 
         Button removeButton = new Button("Remove Supplier");
         removeButton.setOnAction(e -> {
-            Supplier supplier = new Supplier();
-            supplierNameField.getText();
-            supplierNameField.getText();
-            Integer.parseInt(supplierNameField.getText());
-
-            supplierTable.deleteSupplier(supplier.getId());
-            RemoveProductTab.getInstance().refreshTable();
+//            Supplier supplier = new Supplier(
+//            supplierNameField.getText(),
+//            supplierNameField.getText(),
+//            Integer.parseInt(supplierNameField.getText());
+//            supplierTable.deleteSupplier(supplier.getId());
+//            RemoveProductTab.getInstance().refreshTable();
         });
         gridPane.add(removeButton,1,4);
 

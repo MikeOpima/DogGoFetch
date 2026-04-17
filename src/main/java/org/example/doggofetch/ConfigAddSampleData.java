@@ -48,18 +48,15 @@ public class ConfigAddSampleData {
         CategoryTable categoryTable = CategoryTable.getInstance();
         ArrayList<String> categoryLoad = new ArrayList<String>();
 
-        categoryLoad.add("Tools");
-        categoryLoad.add("Fasteners - Hardware");
-        categoryLoad.add("Equipment - Heavy");
-        categoryLoad.add("Equipment - Light");
-        categoryLoad.add("Electronics");
-        categoryLoad.add("Electronics - Fragile");
-        categoryLoad.add("Packaging Materials");
-        categoryLoad.add("Structure Metal");
+        categoryTable.createCategory(new Category(0,"Fasteners - Hardware"));
+        categoryTable.createCategory(new Category(0,"Equipment - Heavy"));
+        categoryTable.createCategory(new Category(0,"Equipment - Light"));
+        categoryTable.createCategory(new Category(0,"Electronics"));
+        categoryTable.createCategory(new Category(0,"Electronics - Fragile"));
+        categoryTable.createCategory(new Category(0,"Tools"));
+        categoryTable.createCategory(new Category(0,"Packaging Materials"));
+        categoryTable.createCategory(new Category(0,"Structure Metal"));
 
-        for (String category : categoryLoad) {
-            categoryTable.createCategory(new Category(category));
-        }
 
         // preload suppliers
         SupplierTable supplierTable = SupplierTable.getInstance();
