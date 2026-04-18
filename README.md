@@ -18,6 +18,11 @@ interface.
 -   Automatic inventory updates after transactions
 -   Simple dashboard for warehouse staff
 
+  <img width="1004" height="817" alt="Screenshot 2026-04-17 at 1 52 15 PM" src="https://github.com/user-attachments/assets/c67351b7-df8c-4ff6-af1a-aeb47e5c3f06" />
+
+
+  
+
 ------------------------------------------------------------------------
 
 # 👤 System Actors
@@ -91,6 +96,9 @@ Start:
 
 -   SCWEB
 
+  <img width="958" height="609" alt="Screenshot 2026-04-17 at 1 56 21 PM" src="https://github.com/user-attachments/assets/a12f2937-1cfd-410f-befa-b82996f0e0f6" />
+
+
 ## 4. Run the project
 
 Open in browser:
@@ -107,6 +115,9 @@ Open in browser:
 2.  System retrieves product details
 3.  System records the transaction
 4.  Inventory is updated automatically
+
+   <img width="1004" height="817" alt="Screenshot 2026-04-17 at 1 52 24 PM" src="https://github.com/user-attachments/assets/a4ee2c2b-65ab-4483-80a3-5a0ba3e93e59" />
+
 
 ------------------------------------------------------------------------
 
